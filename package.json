@@ -1,0 +1,24 @@
+{
+  "name": "learn-node-express-koa-nestjs",
+  "version": "0.0.1",
+  "author": "xut0793",
+  "description": "学习 node 服务端编程，包括对应的 web 框架 express / koa / nestjs",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {},
+  "keywords": [
+    "node",
+    "express",
+    "koa",
+    "nestjs",
+    "server"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
