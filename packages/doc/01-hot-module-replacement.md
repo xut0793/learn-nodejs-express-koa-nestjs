@@ -105,7 +105,9 @@ nodemon 可以在命令行中添加参数以支持某种功能，也可以使用
 
 [webpack HMR](https://nest.nodejs.cn/recipes/hot-reload)
 
-### Vite Plugin Node
+### Vite
+
+要用 vite 作为 nestjs 项目的本也服务，需要配合 vite-plugin-node 插件。
 
 [Vite Plugin Node](https://www.npmjs.com/package/vite-plugin-node)
 
@@ -113,7 +115,8 @@ nodemon 可以在命令行中添加参数以支持某种功能，也可以使用
 
 示例： [Getting started with NestJS, Vite, and esbuild](https://blog.logrocket.com/getting-started-with-nestjs-vite-esbuild/#installing-vite-esbuild-nestjs)
 
-缺点是 vite 对 nestjs 的某些可选依赖还不能很好处理，但，所以暂不考虑。
+vite plugin node 的更新不是文件修改保存后就重新更新，而是当接口请求到该修改文件时，才执行更新编译。
+缺点是 vite 对 nestjs 的某些可选依赖还不能很好处理，所以在使用 vite 时注意以下这些库避免使用。
 
 ```js
 optimizeDeps: {
@@ -127,5 +130,126 @@ optimizeDeps: {
       'class-validator',
       'fastify-swagger',
     ],
+  },
+```
+
+并且默认情况下，使用 vite 默认的 ts 编译器 esbuild，但它对 nestjs 中装饰器某些功能支持不好。 (esbuild dont support 'emitDecoratorMetadata' yet)
+
+### vite + swc
+
+1. 安装依赖包
+
+```sh
+pnpm add -D vite vite-plugin-node @swc/core
+```
+
+2. 配置 vite.config.ts
+
+```ts
+/*
+ * @Date         : 2023-12-23 17:34:43 星期6
+ * @Author       : xut
+ * @Description  :
+ */
+import { defineConfig } from "vite"
+import { VitePluginNode } from "vite-plugin-node"
+
+export default defineConfig({
+  server: {
+    port: 9003,
+  },
+  plugins: [
+    ...VitePluginNode({
+      // Nodejs native Request adapter
+      // currently this plugin support 'express', 'nest', 'koa' and 'fastify' out of box,
+      // you can also pass a function if you are using other frameworks, see Custom Adapter section
+      adapter: "nest",
+
+      // tell the plugin where is your project entry
+      appPath: "./src/main.ts",
+
+      // Optional, default: 'viteNodeApp'
+      // the name of named export of you app from the appPath file
+      exportName: "viteNestjsApp",
+
+      // Optional, default: false
+      // if you want to init your app on boot, set this to true
+      initAppOnBoot: false,
+
+      // Optional, default: 'esbuild'
+      // The TypeScript compiler you want to use
+      // by default this plugin is using vite default ts compiler which is esbuild
+      // 'swc' compiler is supported to use as well for frameworks
+      // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
+      // you need to INSTALL `@swc/core` as dev dependency if you want to use swc
+      tsCompiler: "swc",
+
+      // Optional, default: {
+      // jsc: {
+      //   target: 'es2019',
+      //   parser: {
+      //     syntax: 'typescript',
+      //     decorators: true
+      //   },
+      //  transform: {
+      //     legacyDecorator: true,
+      //     decoratorMetadata: true
+      //   }
+      // }
+      // }
+      // swc configs, see [swc doc](https://swc.rs/docs/configuration/swcrc)
+      swcOptions: {},
+    }),
+  ],
+  optimizeDeps: {
+    // Vite does not work well with optionnal dependencies,
+    // you can mark them as ignored for now
+    // eg: for nestjs, exlude these optional dependencies:
+    // exclude: [
+    //   '@nestjs/microservices',
+    //   '@nestjs/websockets',
+    //   'cache-manager',
+    //   'class-transformer',
+    //   'class-validator',
+    //   'fastify-swagger',
+    // ],
+  },
+})
+```
+
+3. 更新 nest-cli.json 编译选项
+
+[nestjs 与 swc 集成](https://nest.nodejs.cn/recipes/swc)
+
+```json
+{
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "builder": "swc",
+    "typeCheck": true
+  }
+}
+```
+
+4. 增加以下 tsconfig.json 选项
+
+```ts
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "types": ["vite/client"]
+  }
+}
+```
+
+5. 更新 script 命令
+
+```json
+  "scripts": {
+    "build": "vite build",
+    "start": "vite",
+    "dev": "vite",
   },
 ```
