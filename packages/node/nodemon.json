@@ -1,0 +1,11 @@
+{
+  "restartable": "rs",
+  "watch": ["*.*"],
+  "colours": true,
+  "verbose": false,
+  "runOnChangeOnly": false,
+  "signal": "SIGUSR2",
+  "stdin": true,
+  "stdout": true,
+  "watchOptions": {}
+}

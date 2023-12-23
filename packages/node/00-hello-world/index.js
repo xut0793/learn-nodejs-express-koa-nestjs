@@ -6,7 +6,7 @@
 import http from "node:http"
 
 const app = http.createServer((req, res) => {
-  res.end("Hello World By Node")
+  res.end("Hello World By Node Watched nodemon")
 })
 
 app.listen(9000, () => {

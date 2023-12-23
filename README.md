@@ -1,15 +1,14 @@
 # Node 服务端实践指北
 
+## 实践列表
+
 分别用原生 node、express、koa、nestjs 实现以下主题：
 
-- [ ] Hello World
-- [ ] http server
-- [ ] 热更新
-- [ ] mvc 逻辑分层
-- [ ] router 实现
+- [x] Hello World
+- [x] 热更新 nodemon
 - [ ] 解析请求参数
-  - [ ] 路径参数 params
   - [ ] 查询参数 query
+  - [ ] 路径参数 params
   - [ ] cookie
   - [ ] body
     - [ ] x-www-form-urlencoded
@@ -22,6 +21,8 @@
   - [ ] res.sendFile 下载文件
   - [ ] res.download
   - [ ] 数据序列化：是在网络响应中返回对象之前发生的过程
+- [ ] router 实现
+- [ ] mvc 逻辑分层
 - [ ] 视图模板
   - [ ] res.render
   - [ ] 模板组织：layout / partial / helper
