@@ -9,6 +9,10 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./00-hello-world/index.js"
+    "dev": "nodemon ./02-request/file.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "multer": "1.4.5-lts.1"
   }
 }
