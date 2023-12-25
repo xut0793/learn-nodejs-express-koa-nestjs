@@ -143,7 +143,6 @@ HTTP 请求中，有几类参数需要获取，以便在业务逻辑中使用。
   - `"Content-Type": "application/x-www-form-urlencoded"`
   - `"Content-Type": "multipart/form-data"`
   - `"Content-Type": "application/json"`
-  - `"Content-Type": "application/octet-stream"`
 - 请求头（headers），常见的请求头：
   - cookie
   - authorization
@@ -159,7 +158,7 @@ HTTP 请求中，有几类参数需要获取，以便在业务逻辑中使用。
   - `"Content-Type": "application/x-www-form-urlencoded"`时，配置内置中间件 `express.urlencoded(options)`
   - `"Content-Type": "multipart/form-data"`时，可以使用外部中间件，比如 `multer`解析，如果采用 multer.single 解析，则通过 `res.file` 获取，如果采用 multer.array 或 multer.fields 解析，则通过 res.files 获取。
   - `"Content-Type": "application/json"`时，配置内置的中间件 `express.json(options)`
-  - `"Content-Type": "application/octet-stream"`时，配置内置中间件 `express.raw(options)`
+  - 获取请求体原始 buffer 字段流，配置内置中间件 `express.raw(options)`
 - 请求头 `req.headers`
   - cookie，需要使用 `cookie-parser` 依赖包解析，然后通过 `req.cookies` 获取对象，如果 cookie 已签名，则通过 `req.signedCookies` 获取。如果设置，则调用内置的 1res.cookies(key,name,options) 方法。
   - `req.headers.authorization`，或者 `req.get('authorization')`
@@ -178,7 +177,7 @@ koa 是一个比 express 更简洁的框架，并且将 request 和 response 对
 - 请求参数 `ctx.method / ctx.protocol / ctx.originalUrl / ctx.url / ctx.path`
 - 查询参数 query，这个可以直接通过 `ctx.query / ctx.req.query` 获取，因为 koa 内部通过 qs 依赖包完成了解析。
 - 路径参数 params，动态路由需要安装 `@koa/router` 配置路由，然后通过 `ctx.params` 获取。
-- 请求体 body，需要安装 `koa-body` 依赖包进行解析，然后通过 `ctx.req.body` 获取，这个中间件会自动处理不同的 Content-Type 情况(`x-www-form-urlencoded / multipart/form-data / application/json / octet-stream`)，比较特殊的是，如果有上传文件的话 `multipart/form-data`，通过 `ctx.req.files` 获取，koa-body 内部依赖于 formidable 来解析 form-data 数据。
+- 请求体 body，需要安装 `koa-body` 依赖包进行解析，然后通过 `ctx.req.body` 获取，这个中间件会自动处理不同的 Content-Type 情况(`x-www-form-urlencoded / multipart/form-data / application/json`)，比较特殊的是，如果有上传文件的话 `multipart/form-data`，通过 `ctx.req.files` 获取，koa-body 内部依赖于 formidable 来解析 form-data 数据。
 - 请求头 `ctx.headers`
   - cookie，通过 `ctx.cookies` 直接读写对象，内部通过 `cookies` 依赖包解析实现。
   - `ctx.headers.authorization`，或者 `ctx.get('authorization')`
@@ -214,14 +213,52 @@ koa 是一个比 express 更简洁的框架，并且将 request 和 response 对
 ```js
 // express.urlencoded(options) / body-parser.urlencoded(options)
 {
-  // 默认 true, 指定解析URL-encode数据的方法，true的话使用qs库来解析，false的话使用 querystring 库去解决
-  // 由于 express 内部使用了 qs 库实现了 req.query 的解析，所以这里默认 true，基本不改。
-  "extended": true,
+  "extended": false, // 指将（URL编码字符串形式的）表单数据解析为简单对象还是深度嵌套对象
   "inflate": true, // 默认 true，是否开启压缩体解析
   "limit": "100kb", // 默认 100kb，最大请求数据，传入数字默认单位是bytes，传入字符串要带上单位
   "parameterLimit": 1000, // 默认 1000，控制url编码数据中最大参数数量，超过这个数量返回413
   "type": "application/x-www-form-urlencoded", // 接收数据的类型，默认是"application/x-www-form-urlencoded"
   "verify": (req, res, buf, encoding) => {...} // // 验证数据，如果无效就可以提前抛出错误信息
+}
+
+
+```
+
+关于extended参数，是指将（URL编码字符串形式的）表单数据解析为**简单对象**还是**深度嵌套对象**。设置 true / false 区别：
+
+假设表单里有嵌套对象和数组值的传输
+
+```sh
+x=1&x=2&user[uname]=evanp&user[passwd]=iloveu
+```
+
+当 extended 设为 false 时（默认值），源码实现上使用 querystring 库，解析得到的 req.body 数据结构如下：
+
+```js
+{
+  "user[uname]": "evanp",
+  "user[passwd]": "iloveu",
+  "x": [
+    "1",
+    "2"
+  ]
+}
+```
+
+当 extended 设为 true 时，源码实现上使用 qs 库，解析得到嵌套的 json 对象。推荐设置为 true
+
+> express 在内部解析 query 时使用的也是 qs 库。
+
+```js
+{
+  "user": {
+    "uname": "evanp",
+    "passwd": "iloveu"
+  },
+  "x": [
+    "1",
+    "2"
+  ]
 }
 ```
 
