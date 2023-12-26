@@ -6,7 +6,7 @@
 
 - [x] Hello World
 - [x] 热更新 nodemon
-- [ ] 请求 request
+- [x] 请求 request
   - [x] 查询参数 query
   - [x] 路径参数 params
   - [x] 请求体 body
@@ -17,11 +17,12 @@
   - [x] 请求头 headers
     - [x] authorization
     - [x] cookies
-  - [ ] 请求参数验证 zod
+  - [x] 请求参数验证 zod
 - [ ] 响应 response
   - [ ] res.json
   - [ ] res.sendFile 文件下载
   - [ ] res.download
+  - [ ] res.redirect
   - [ ] 响应数据序列化：是在网络响应中返回对象之前发生的过程
 - [ ] router 实现
 - [ ] mvc 逻辑分层
@@ -30,7 +31,7 @@
   - [ ] 模板组织：layout / partial / helper
 - [ ] 静态资源服务
 - [ ] 环境变量和配置参数
-- [ ] 错误处理 error
+- [ ] 错误处理 error 上传文件错误处理 MulterError nestjs-zod 错误 format
 - [ ] 数据持久化
   - [ ] mysql
   - [ ] mongoDB

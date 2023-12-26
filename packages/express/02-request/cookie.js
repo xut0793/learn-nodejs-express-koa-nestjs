@@ -6,17 +6,46 @@
  *                2. 设置时，express 提供了内置实现： res.cookie(key, value, options)
  *                3. res.cookie 设置某个cookie后，想清除，则可以调用 res.clearCookie(name, options)
  *
- * 中间件配置选项
+ * 一、中间件安装和注册
+ * pnpm add cookie-parser
+ *
+ * app.use(cookieParser(secret, options))
+ *
+ * 二、中间件配置选项
  * cookie-parser(options)
  * {
  *    secret: '',
  *    options: {
- *        decode: false, // 影响cooke获取的位置。当默认为 false 时，即已签名的cookie从req.signedCookies 上获取
- *                          当设置 true 时，则都在 req.cookies 上获取，但不是原始值，是签名的值。
- *                          所以这个属性有点反人性。
+ *        decode: false,
+ *       // 这个值的设置会影响cooke获取的位置。
+ *      // 当默认为 false 时，则已签名的cookie从req.signedCookies 上获取原始值，未设置签名的从 req.cookies 上获取
+ *      // 当设置 true 时，则所有cookies都在 req.cookies 上获取，但设置了签名的 cookie 不是原始值，是被签名的值。
+ *      // 所以这个属性有点反人性。
+ *    }
+ *
+ * 示例：
+ * app.use(cookieParser('__secret__', options))
+ * res.cookie("no-sign", "ninja")
+ * res.cookie("signed", "ninja", { signed: true })
+ *
+ * 1. 当 decode: false 时
+ * 客户端收到签名的 signed 值是 s:Aninja.3xZA%2BqZ6iXlD5UvE0O8Cjym3tcG21eM8sqPVEDra6Sk
+ * 此时服务端获取时分别通过 res.cookies['no-sign'] 和 res.signedCookies['signed] 获取，值都为原始值 ’ninja'
+ *
+ * 2. 当 decode: true 时，
+ * 客户端收到签名的 cookies 值仍是签名后的。但是服务端获取时就有所区别
+ * 此时 res.signedCookes 没会 signed 的值了。都要从 res.cookies 中获取。
+ * res.cookies = {
+ *    'no-sign': 'ninja',
+ *    'signed': 's:Aninja.3xZA%2BqZ6iXlD5UvE0O8Cjym3tcG21eM8sqPVEDra6Sk'
+ * }
  *    }
  * }
  *
+ * 另外，如果客户端浏览器篡改了已签名的 cookie，则服务端再次获取该 cookies 的值将为 false
+ * res.signedCookies['signed'] = false
+ *
+ * 三、设置响应的 cookie
  * res.cookie响应时设置 cookie 时选项
  *   domain	字符串	cookie 的域名。 默认为应用的域名。
  *   encode	函数	用于 cookie 值编码的同步函数。 默认为 encodeURIComponent。
