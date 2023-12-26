@@ -4,14 +4,13 @@
  * @Description  :
  */
 import { NestFactory } from '@nestjs/core';
+import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 
-if (import.meta.env.PROD) {
-  async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    await app.listen(3000);
-  }
-  bootstrap();
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.use(cookieParser('__secret__'));
+  await app.listen(9003);
+  console.log(`🚀 Server running at http://localhost:9003`);
 }
-
-export const viteNestjsApp = NestFactory.create(AppModule);
+bootstrap();
