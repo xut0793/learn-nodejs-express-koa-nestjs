@@ -71,7 +71,12 @@ app.get("/cookie/get", defaultCookieParser, (req, res) => {
 })
 
 app.get("/cookie/set", (req, res) => {
-  res.cookie("custom_cookie", "123", { path: "/", maxAge: 5000 })
+  res.cookie("custom_11", "1111", { path: "/", maxAge: 5000 })
+  res.cookie("custom_22", "222", {
+    path: "/",
+    expires: new Date(Date.now() + 5 * 60 * 1000),
+    httpOnly: true,
+  })
   res.send("set cookie")
 })
 

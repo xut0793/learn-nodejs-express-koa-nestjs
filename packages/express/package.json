@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./02-request/validation.js"
+    "dev": "nodemon ./02-request/index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

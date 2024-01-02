@@ -9,6 +9,10 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --config nodemon.json ./00-hello-world/index.js"
+    "dev": "nodemon --config nodemon.json ./02-request/validation.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "path-to-regexp": "^6.2.1"
   }
 }
