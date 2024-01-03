@@ -43,7 +43,7 @@ app.get("/header", (req, res) => {
   res.type("html")
   res.send("set header end")
 })
-app.get("/cookie-set", (req, res) => {
+app.get("/cookie/set", (req, res) => {
   res.cookie("custom_11", "1111", { path: "/", maxAge: 5000 })
   res.cookie("custom_22", "222", {
     path: "/",
