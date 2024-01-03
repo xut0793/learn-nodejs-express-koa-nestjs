@@ -33,11 +33,12 @@ export function urlParser(req) {
    * 如果省略host,且 IPv6 不可用时，将接受未指定的 IPv4 地址 (0.0.0.0) 上的连接，此时 address() 方法返回值为：{ port, family: 'IPv4', address: '127.0.0.1' }
    * 在大多数操作系统中，监听 未指定的 IPv6 地址 (::) 可能会导致 net.Server 也监听 未指定的 IPv4 地址 (0.0.0.0)。
    */
-  const address = req.socket.address()
-  const port = address.port
-  const hostname = address.address
+  // const address = req.socket.address()
+  // const port = address.port
+  // const hostname = address.address
   // const baseUrl = `${protocol}://${hostname}:${port}`
-  const baseUrl = `${protocol}://localhost:${port}`
+  const host = req.headers["host"]
+  const baseUrl = `${protocol}:${host}`
 
   /**************************************************
    * 一、获取路径信息, 利用 URL 和 Url 和 URLSearchParams 对象
@@ -55,6 +56,7 @@ export function urlParser(req) {
 
   return {
     ...urlOptions,
+    host,
     method: req.method.toLowerCase(),
   }
 }

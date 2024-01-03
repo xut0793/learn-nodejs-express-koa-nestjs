@@ -1,7 +1,29 @@
 /*
  * @Date         : 2023-12-27 10:54:36 星期3
  * @Author       : xut
- * @Description  :
+ * @Description  : HTTP 请求
+ *
+ * 一、请求报文示例
+ * POST /user HTTP/1.1                       // 请求行
+ * Host: www.user.com
+ * Content-Type: application/x-www-form-urlencoded
+ * Connection: Keep-Alive
+ * User-agent: Mozilla/5.0.                  // 以上是请求头
+ * （此处必须有一空行 |                         // 空行分割header和请求内容
+ * name=world                                // 请求体(可选，如get请求时可选)
+ *
+ * 二、请求解析
+ * - 请求参数，req.method / req.url / req.httpVersion
+ * - 查询参数，如 `/blog/list?id='sfd'&author='lisa'` 使用 URL 从 req.url 中解析得到
+ * - 路径参数，如 `/blog/detail/:id` 使用正则从 req.url 中解析得到
+ * - 请求体，根据请求体的类型，通过监听 data 和 end 事件
+ *   - `"Content-Type": "application/x-www-form-urlencoded"`
+ *   - `"Content-Type": "multipart/form-data"`
+ *   - `"Content-Type": "application/json"`
+ *   - `"Content-Type": "application/octet-stream"`
+ * - 请求头 `req.headers`
+ *   - req.headers.cookie
+ *   - req.headers.authorization
  */
 import { createServer } from "node:http"
 import {
@@ -13,7 +35,8 @@ import {
 import { bodyParser } from "../src/parser/body-parser.js"
 
 export const app = createServer((req, res) => {
-  const { search, pathname, method } = urlParser(req)
+  const resolvedUrl = urlParser(req)
+  const { search, pathname, method } = resolvedUrl
   queryParser(req, search)
   cookieParser(req)
 
@@ -25,14 +48,7 @@ export const app = createServer((req, res) => {
     res.end("Hello World By Node HTTP")
     return
   } else if (method === "get" && pathname === "/url") {
-    const resData = {
-      method: req.method, // 原生是大写 GET POST
-      url: req.url,
-      protocol: req.protocol,
-      hostname: req.hostname,
-      pathname: req.pathname,
-    }
-    res.end(JSON.stringify(resData))
+    res.end(JSON.stringify(resolvedUrl))
     return
   } else if (method === "get" && pathname === "/headers") {
     res.end(JSON.stringify(req.headers))
@@ -92,5 +108,5 @@ export const app = createServer((req, res) => {
 })
 
 app.listen(9000, "0.0.0.0", () => {
-  // console.log(`🚀 Server running at http://localhost:9000`)
+  console.log(`🚀 Server running at http://localhost:9000`)
 })
