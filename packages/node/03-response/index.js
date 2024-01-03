@@ -73,7 +73,10 @@ const server = createServer((req, res) => {
     res.end(STATUS_CODES[res.statusCode] + ". Redirecting to " + redirectUrl)
   } else if (method === "GET" && url === "/body/text") {
     res.writeHead(200, { "Content-Type": "text/plain" })
-    res.end("/body/text")
+    res.write("Hello ")
+    res.write("World ")
+    // res.end()
+    res.end("/body/text") // 最终响应内容会把 write 和 end 的数据进行合并
   } else if (method === "GET" && url === "/body/html") {
     res.writeHead(200, { "Content-Type": "text/html" })
     res.end("<h1>/body/html</h1>")
