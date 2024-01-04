@@ -1,4 +1,4 @@
-# 解析请求参数
+# Request 请求
 
 ## HTTP 请求的基本组成
 
@@ -17,12 +17,10 @@ id=123&author=lisi                        // 请求体(可选，如get/head/dele
 
 从请求报文中可获取的常见数据包括：
 
-```
-- method
-- url
-- headers
-- body
-```
+- method 请求方式
+- url 请求地址，从中解析出更多信息
+- header 请求头
+- body 请求体数据
 
 ## 请求 url 的组成
 
