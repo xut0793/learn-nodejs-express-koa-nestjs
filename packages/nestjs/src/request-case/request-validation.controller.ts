@@ -29,16 +29,13 @@ import { createZodDto, ZodValidationPipe } from 'nestjs-zod';
 
 /**********************************************************************************
  * 类型定义
- ********************************************************************************/
-
-/**
- * 针对 nestjs 提供了
+ * nestjs-zod 针对 nestjs 提供了
  * createZodDto 将一个 zod schema 转成 nestjs 风格的类声明
  * ZodValidationPipe 前置的请求校验的管道，可以作用于全局、控制器、或路由级别
  * ZodSerializerInterceptor 后置的响应拦截器校验，用于序列化响应数据
  * zodToOpenAPI 将 schema 转成符合 swagger 文档的类型定义
  * 扩展了 zod 的标准类型 ZodDateString ZodPassword
- */
+ ********************************************************************************/
 
 // 简单示例
 const QueryUserSchema = z.object({

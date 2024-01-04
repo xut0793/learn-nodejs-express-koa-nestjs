@@ -1,6 +1,68 @@
-# Node 服务端实践指北
+# Node 学习指北
 
-## 实践列表
+## 认识 node
+
+1. What: 介绍
+2. Why: 优势
+3. How: 安装与 Hello World
+
+## 内置模块
+
+- [ ] cli
+- [ ] repl
+- [ ] readline
+- [ ] console
+- [ ] package
+- [ ] module
+  - [ ] commonjs
+  - [ ] es module
+- [ ] corepack
+- [ ] global
+- [ ] os
+- [ ] v8
+- [ ] vm
+- [ ] tty
+- [ ] util
+- [ ] zlib
+- [ ] crypto
+- [ ] crypto/webcrypto
+- [ ] timer
+- [ ] events
+- [ ] diagnostis_channel
+- [ ] fs
+- [ ] path
+- [ ] url
+- [ ] querystring
+- [ ] buffer
+- [ ] stream
+- [ ] stream/web
+- [ ] string_decoder
+- [ ] http
+- [ ] http2
+- [ ] https
+- [ ] tls
+- [ ] net
+- [ ] dgram
+- [ ] dns
+- [ ] process
+- [ ] child_process
+- [ ] cluster
+- [ ] worker_threads
+- [ ] async_hooks/context
+- [ ] test
+- [ ] assert
+- [ ] error
+- [ ] debugger
+- [ ] inspector
+- [ ] perf_hooks
+- [ ] report
+- [ ] intl
+- [ ] wasi
+- [ ] c++
+- [ ] node-api
+- [ ] 废弃：async_hooks domain punycode
+
+## web 开发
 
 分别用原生 node、express、koa、nestjs 实现以下主题：
 
@@ -18,12 +80,16 @@
     - [x] authorization
     - [x] cookies
   - [x] 请求参数验证 zod
-- [ ] 响应 response
-  - [ ] res.json
-  - [ ] res.sendFile 文件下载
-  - [ ] res.download
-  - [ ] res.redirect
-  - [ ] 响应数据序列化：是在网络响应中返回对象之前发生的过程
+- [x] 响应 response
+  - [x] 响应状态码
+  - [x] 响应头
+    - [x] Set-Cookie
+  - [x] 响应体
+    - [x] text/plain text/html application/json
+    - [x] 文件下载 Content-Disposition
+    - [x] 流文件 application/octet-stream
+  - [x] 重定向 location
+  - [x] 响应数据序列化：是在网络响应中返回对象之前发生的过程
 - [ ] router 实现
 - [ ] mvc 逻辑分层
 - [ ] 视图模板
@@ -46,15 +112,15 @@
     - [ ] jwt
     - [ ] oauth2
 - [ ] openApi swagger 文档
-- [ ] 日志
-- [ ] 定时任务 crontab
-- [ ] 安全
+- [ ] 日志 log
+- [ ] 安全 security
   - [ ] 加密 crypto
   - [ ] cors 跨域
   - [ ] csrf
   - [ ] helmet 安全头字段
   - [ ] limit 限速
   - [ ] gzip 压缩
+- [ ] 定时任务 crontab
 - [ ] SSE server-send event
 - [ ] Websocket
 - [ ] GraphQL

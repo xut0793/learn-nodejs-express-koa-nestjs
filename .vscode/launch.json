@@ -5,7 +5,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch via NPM",
+      "name": "Nestjs Launch Program",
+      "program": "${workspaceFolder}/packages/nestjs/src/main.ts",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/packages/nestjs",
+      "type": "node"
+    },
+    {
+      "name": "debugger Nestjs",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "start:debug"],
+      "runtimeExecutable": "pnpm",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/packages/nestjs",
+      "type": "node"
+    },
+    {
+      "name": "debugger Node",
       "request": "launch",
       "runtimeArgs": ["run-script", "dev"],
       "runtimeExecutable": "pnpm",

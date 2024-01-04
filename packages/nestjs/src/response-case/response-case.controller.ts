@@ -24,7 +24,6 @@
  * 3. 如果是 buffer / stream, 需要返回 new StreamableFile(buffer | stream)，此时 Content-Type 默认为 application/octet-stream
  */
 import {
-  All,
   Controller,
   Get,
   Header,
@@ -196,11 +195,5 @@ export class ResponseCaseController {
     const filePath = resolve(process.cwd(), '../../public', filename);
     res.set('Content-Type', 'application/octet-stream'); // 这是返回 StreamableFile 的默认值
     return new StreamableFile(createReadStream(filePath));
-  }
-
-  @All('*')
-  @HttpCode(HttpStatus.NOT_FOUND)
-  notFound() {
-    return HttpStatus.NOT_FOUND;
   }
 }
