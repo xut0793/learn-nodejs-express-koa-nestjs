@@ -98,7 +98,8 @@ export const app = createServer((req, res) => {
     const result = querySchema.safeParse(req.query)
 
     if (result.success) {
-      res.end(JSON.stringify(req.query))
+      // res.end(JSON.stringify(req.query))
+      res.end(JSON.stringify(result))
     } else {
       res.statusCode = 400
       res.end(JSON.stringify(result.error))

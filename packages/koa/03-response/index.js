@@ -59,7 +59,7 @@ router.get("/cookie/sign-set", (ctx) => {
    * 如果改动了，ctx.cookies.get(name) 值为空。
    */
   ctx.cookies.set("password", "123", { signed: true })
-  ctx.body = "singed cookies"
+  ctx.body = "signed cookies"
 })
 
 router.get("/redirect", (ctx) => {
