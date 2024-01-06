@@ -6,9 +6,9 @@
  * - 请求参数 `ctx.method / ctx.protocol / ctx.originalUrl / ctx.url / ctx.path`
  * - 查询参数 query，这个可以直接通过 `ctx.query / ctx.ctx.query` 获取，因为 koa 内部通过 qs 依赖包完成了解析。
  * - 路径参数 params，动态路由需要安装 `@koa/router` 配置路由，然后通过 `ctx.params` 获取。
- * - 请求体 body，需要安装 `koa-body` 依赖包进行解析，然后通过 `ctx.ctx.body` 获取，
+ * - 请求体 body，需要安装 `koa-body` 依赖包进行解析，然后通过 `ctx.request.body` 获取，
  *               这个中间件会自动处理不同的 Content-Type 情况(`x-www-form-urlencoded / multipart/form-data / application/json / octet-stream`)，
- *               比较特殊的是，如果有上传文件的话 `multipart/form-data`，通过 `ctx.ctx.files` 获取，koa-body 内部依赖于 formidable 来解析 form-data 数据。
+ *               比较特殊的是，如果有上传文件的话 `multipart/form-data`，通过 `ctx.files` 获取，koa-body 内部依赖于 formidable 来解析 form-data 数据。
  * - 请求头 `ctx.headers`
  *   - cookie，通过 `ctx.cookies` 直接读写对象，内部通过 `cookies` 依赖包解析实现。
  *   - `ctx.headers.authorization`，或者 `ctx.get('authorization')`
