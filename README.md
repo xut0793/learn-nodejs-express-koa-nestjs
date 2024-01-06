@@ -92,7 +92,7 @@
   - [x] 响应数据序列化：是在网络响应中返回对象之前发生的过程
 - [x] router 实现
 - [x] middleware 中间件
-- [ ] mvc 逻辑分层
+- [x] mvc 逻辑分层
 - [ ] 视图模板
   - [ ] res.render
   - [ ] 模板组织：layout / partial / helper
