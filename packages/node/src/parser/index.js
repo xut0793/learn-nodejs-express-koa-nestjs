@@ -21,7 +21,7 @@ import { pathToRegexp } from "path-to-regexp"
  *     "searchParams": URLSearchParams
  * }
  */
-export function urlParser(req) {
+export function urlParser(req, res, next) {
   /**************************************************
    * 一、获取 server 信息
    ************************************************/
@@ -54,6 +54,9 @@ export function urlParser(req) {
   req.search = urlOptions.search
   req.originalUrl = urlOptions.href
 
+  if (next) {
+    return next()
+  }
   return {
     ...urlOptions,
     host,
@@ -68,14 +71,23 @@ export function urlParser(req) {
  * @param {string} search ?q=title&name=12
  * @returns
  */
-export function queryParser(req, search) {
-  if (typeof search !== "string") return {}
+export function queryParser(req, res, next) {
+  const search = req.search
+
+  if (typeof search !== "string") {
+    return next ? next() : {}
+  }
 
   if (search[0] === "?") {
     search = search.slice(1)
   }
   const query = querystring.parse(search) // 空字符串返回 {}
   req.query = query
+
+  if (next) {
+    return next()
+  }
+
   return query
 }
 
@@ -170,7 +182,7 @@ export function paramsParser(req, pathname, routePath) {
  *
  * @param {request} req
  */
-export function cookieParser(req) {
+export function cookieParser(req, res, next) {
   let cookieStr = req.headers.cookie
   let cookies = {}
 
@@ -243,5 +255,10 @@ export function cookieParser(req) {
   }
 
   req.cookies = cookies
+
+  if (next) {
+    return next()
+  }
+
   return cookies
 }

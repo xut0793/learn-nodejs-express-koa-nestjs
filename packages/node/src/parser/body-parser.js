@@ -260,7 +260,7 @@ class BodyParser {
     // Content-Type: application/json
     // Content-Type: application/json; charset=utf8
     // Content-Type: multipart/form-data; boundary=ZnGpDtePMx0KrHh_G0X99Yef9r8JZs
-    const contentType = req.headers["content-type"] // text/plain 或者 text/plain; charset=utf8
+    const contentType = req.headers["content-type"] ?? 'text/plain' // text/plain 或者 text/plain; charset=utf8
     const [type, rest] = contentType.split(";")
     this.options.type = type
     this.options.charset = rest

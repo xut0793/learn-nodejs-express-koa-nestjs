@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --config nodemon.json ./04-router/index.js",
+    "dev": "nodemon --config nodemon.json ./06-mvc/index.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "dependencies": {
