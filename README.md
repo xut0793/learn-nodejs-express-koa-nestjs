@@ -90,7 +90,8 @@
     - [x] 流文件 application/octet-stream
   - [x] 重定向 location
   - [x] 响应数据序列化：是在网络响应中返回对象之前发生的过程
-- [ ] router 实现
+- [x] router 实现
+- [x] middleware 中间件
 - [ ] mvc 逻辑分层
 - [ ] 视图模板
   - [ ] res.render

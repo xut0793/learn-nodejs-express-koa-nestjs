@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./03-response/serialization.js"
+    "dev": "nodemon ./04-router/index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

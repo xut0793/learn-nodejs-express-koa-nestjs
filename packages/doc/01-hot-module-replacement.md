@@ -89,9 +89,7 @@ nodemon 可以在命令行中添加参数以支持某种功能，也可以使用
 }
 ```
 
-## nestjs 内置了 watch 命令。
-
-### nestjs 内置的 watch 命令
+## nestjs 内置了 watch 命令
 
 ```json
 "script": {

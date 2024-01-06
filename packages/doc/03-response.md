@@ -1,6 +1,6 @@
 # Response 响应
 
-## HTTP 响应的基本组成
+## HTTP 响应报文的基本组成
 
 同请求报文一样，响应报文同样由响应行、响应头部、空行分隔和响应体数据组成。
 
@@ -25,13 +25,13 @@
 
 Node 中对响应数据设置方法：
 
-1. 状态码和状态文本 `res.statusCode / res.statusMessage`
+1. 状态码和消息 `res.statusCode / res.statusMessage`
 2. 响应头 `res.setHeader / res.getHeaders / res.hasHeader / res.removeHeader / res.writeHead`
 3. 响应体 `res.write / res.end`
 
 ### 响应状态码和响应消息
 
-1. `res.statusCode` 单独使用，缺省 `res.statusMessage` 时，则将使用状态码对应的标准消息。`HTTP.STATUS_CODES`
+1. `res.statusCode` 单独使用，缺省 `res.statusMessage` 时，则默认使用状态码对应的标准消息。可以从`HTTP.STATUS_CODES`中映射得到。
 2. `res.statusCode` 优先级低于 `res.writeHead(code, message, headers)`
 3. `res.writeHead(code, message, headers)` 虽然是最终生效的值，但此方法设置的 code 是直接写入网络通道，不会覆盖 statusCode 的值。
 
@@ -39,7 +39,7 @@ Node 中对响应数据设置方法：
 res.writeHead(200, STATUS_CODES["200"], { "content-type": "text/plain" })
 res.statusCode = 400
 
-// 最佳实践，不建立更改 statusMessage
+// 最佳实践，不建立更改 statusMessage，由默认返
 // res.statusMessage = "custom message"
 
 // 此时 res.statusCode 仍然是 400，但客户端响应是 200
@@ -50,7 +50,7 @@ res.end(STATUS_CODES[res.statusCode])
 
 1. 响应头的增删改查 `res.setHeader res.getHeader res.getHeaders res.hasHeader res.removeHeader`，不管是设置还是获取，都不区分大不写
 2. `res.writeHead(code, message, headers)` 设置的 header 会和 setHeader 设置的值进行合并，并以 writeHead 为准，此时调用 getHeaders 是合并后的值。但是如果之前没有调用过 setHeader 则调用 getHeaders 是空值，不会返回 writeHead 设置的值。这点很迷惑，注意区别。
-3. res.writeHead 设置之后不能再调用 setHeader 设置任何响应头，否则会报错 `[ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client`，这点与文档描述不符
+3. res.writeHead 仅能调用一次，并且设置之后不能再调用 setHeader 设置任何响应头，否则会报错 `[ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client`，这点与node文档中描述不符
 
 ```js
 res.setHeader("Content-Type", "text/html")
@@ -183,7 +183,7 @@ res.format({
 
 ## koa
 
-koa 响应数据设置方法，区别于 express 都是函数调用，koa 的很多设置方式都是等号直接赋值。
+koa 响应数据设置方法，区别于 express 都是函数调用，koa 的很多设置方式都是等号直接赋值，内部是通过对象的访问器属性 getter/setter 实现。
 
 1. 状态码和状态文本 `ctx.status / ctx.message`
 2. 响应头 `ctx.set(field, value) / ctx.set({field: value}) / ctx.remove(field) /  ctx.has(field) / ctx.type / ctx.attachment(filename, options) / ctx.cookies`
@@ -382,3 +382,5 @@ resRedirect(@Query('version') version: string) {
     return new StreamableFile(createReadStream(filePath));
   }
 ```
+
+

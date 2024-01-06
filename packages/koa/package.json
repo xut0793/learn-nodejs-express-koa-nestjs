@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./03-response/index.js"
+    "dev": "nodemon ./05-middleware/index.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",

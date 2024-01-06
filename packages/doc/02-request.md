@@ -1,8 +1,8 @@
 # Request 请求
 
-## HTTP 请求的基本组成
+## HTTP 请求报文的基本组成
 
-一个HTTP请求报文由请求行（request line） 、请求头部（header）、空行和请求数据4个部分组成。
+一个HTTP请求报文由请求行（request line） 、请求头部（header）、空行和请求数据（body）4个部分组成。
 
 ```
 POST /user HTTP/1.1                       // 请求行
@@ -26,10 +26,10 @@ id=123&author=lisi                        // 请求体(可选，如get/head/dele
 
 URL 字符串是结构化的字符串，包含多个含义不同的组成部分。 解析字符串后返回的 URL 对象，每个属性对应字符串的各个组成部分。
 
-提供了两套 API 来处理 URL：一个是旧版本遗留的 API，一个是实现了 WHATWG 标准的新 API。采用最新的 API，增加了`origin`字段，并且对查询参数部分实现了 URLSearchParams 类。
+node 提供了两套 API 来处理 URL：一个是旧版本遗留的 API，一个是实现了 WHATWG 标准的新 API。采用最新的 API，增加了`origin`字段，并且对查询参数部分实现了 URLSearchParams 类。
 
 ```
-┌─旧版本的url模块─────────────────────────────────────────────────────────────────────────────────┐
+┌─旧版本的url模块──────────────────────────────────────────────────────────────────────────────────┐
 │                                              href                                              │
 ├──────────┬──┬─────────────────────┬────────────────────────┬───────────────────────────┬───────┤
 │ protocol │  │        auth         │          host          │           path            │ hash  │
@@ -47,22 +47,22 @@ URL 字符串是结构化的字符串，包含多个含义不同的组成部分�
 │   origin    │                     │         origin         │ pathname │     search     │ hash  │
 ├─────────────┴─────────────────────┴────────────────────────┴──────────┴────────────────┴───────┤
 │                                              href                                              │
-└─新版本的 URL类实例，实现WHATWG标准───────────────────────────────────────────────────────────────┘
+└─新版本的 URL类实例，实现WHATWG标准─────────────────────────────────────────────────────────────────┘
 ```
 
 ### URL
 
-new URL()解析的必须是绝对 URL。
+new URL(url, base)解析的必须是绝对 URL。
 
 - 如果 input 是相对路径，则需要第二个参数 base。 如果 input 是绝对路径，则忽略 base。
 - 如果 input 是相对路径，又没有提供 base，则视为无效 URL，则将会抛出 TypeError。
 
 ```js
-const newURL = new URL(
+const urlObj = new URL(
   "https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash"
 )
-console.log(newURL)
-console.log(newURL.searchParams.get("query"))
+console.log(urlObj)
+console.log(urlObj.searchParams.get("query"))
 ```
 
 输出：
@@ -83,6 +83,7 @@ console.log(newURL.searchParams.get("query"))
     searchParams: URLSearchParams { 'query' => 'string' },
     hash: '#hash'
 }
+string
 ```
 
 ### URLSearchParams
@@ -137,30 +138,37 @@ HTTP 请求中，有几类参数需要获取，以便在业务逻辑中使用。
 
 - 查询参数（query 参数），如 `/blog/list?id='123'&author='lisi'` 中的 id 和 author 参数。
 - 路径参数（path 参数），如 `/blog/detail/:id` 中的 id
+- 请求头（headers），常见的请求头：cookie / Content-Type / Authorization 等
 - 请求体（body 参数），根据请求体的数据类型，常见的有以下子类型：
   - `"Content-Type": "application/x-www-form-urlencoded"`
   - `"Content-Type": "multipart/form-data"`
   - `"Content-Type": "application/json"`
-- 请求头（headers），常见的请求头：
-  - cookie
-  - authorization
 
 ## node
+
+除了 method 和 url 可以从 req 对象直接获取，其它需要自行处理。
+
+### 代码示例
+
+[url / query / params / cookie 解析](../node/src/parser/index.js)
+
+[body 解析](../node/src/parser/body-parser.js)
 
 ## express
 
 - 请求参数，`req.method / req.protocol / req.hostname / req.originalUrl / req.url / req.path`
 - 查询参数，如 `/blog/list?id='sfd'&author='lisa'`，通过 `req.query.id`获取，在 express 内部通过 qs 依赖包已实现，直接使用
 - 路径参数，如 `/blog/detail/:id`，通过 `req.params.id`，这个在 express 内部通过 path-to-regexp 依赖包已实现，直接使用
-- 请求体，根据请求体的类型，需要配置对应的中间件，通过 `req.body` 获取对象值：
+- 请求头 `req.headers`
+  - cookie，需要使用 `cookie-parser` 依赖包解析，然后通过 `req.cookies` 获取对象，如果 cookie 已签名，则通过 `req.signedCookies` 获取。如果设置，则调用内置的 1res.cookies(key,name,options) 方法。
+  - `req.headers.authorization`，或者 `req.get('authorization')`
+- 请求体，根据请求体的类型，需要配置对应的中间件，常用中间件 express 中集成的，配置后通过 `req.body` 获取请求体数据。
   - `"Content-Type": "application/x-www-form-urlencoded"`时，配置内置中间件 `express.urlencoded(options)`
   - `"Content-Type": "multipart/form-data"`时，可以使用外部中间件，比如 `multer`解析，如果采用 multer.single 解析，则通过 `res.file` 获取，如果采用 multer.array 或 multer.fields 解析，则通过 res.files 获取。
   - `"Content-Type": "application/json"`时，配置内置的中间件 `express.json(options)`
   - 获取请求体原始 buffer 字段流，配置内置中间件 `express.raw(options)`
-- 请求头 `req.headers`
-  - cookie，需要使用 `cookie-parser` 依赖包解析，然后通过 `req.cookies` 获取对象，如果 cookie 已签名，则通过 `req.signedCookies` 获取。如果设置，则调用内置的 1res.cookies(key,name,options) 方法。
-  - `req.headers.authorization`，或者 `req.get('authorization')`
-    实际上，express.json/urlencoded/raw 的解析中间件，内部都依赖于 `body-parser` 这个中间件。其中的 options 针对不同方法，可设置不同的参数。
+
+实际上，express.json/urlencoded/raw 的解析中间件，内部都依赖于 `body-parser` 这个中间件。其中的 options 针对不同方法，可设置不同的参数。
 
 ### 代码示例
 
@@ -189,6 +197,37 @@ koa 是一个比 express 更简洁的框架，并且将 request 和 response 对
 [koa cookie]('../koa/02-request/cookie.js')
 
 ## nestjs
+
+nestjs 内置了装饰器来获取请求参数，每个装饰器也可以传入key，获取特定的值。
+
+同时也为所有标准的 HTTP 方法提供装饰器： @Get()、@Post()、@Put()、@Delete()、@Patch()、@Options() 和 @Head()。 此外，@All() 定义了一个端点来处理所有这些。
+
+用 nestjs 和 express 进行类比，如下：
+
+```
+nestjs                  =>  express
+@Request() / @Req()     =>  req
+@Response() / @Res()    =>  res
+@Next()                 =>  next
+@Get()                  =>  app.get
+@Post()                 =>  app.post
+@Put()                  =>  app.put
+其它 delete / patch / all 等方法类似...
+
+@Param(key?: string)    =>  req.params / req.params[key]
+@Query(key?: string)    =>  req.query / req.query[key]
+@Query(key?: string)    =>  req.query / req.query[key]
+@Headers(name?: string) =>  req.headers / req.headers[name]
+@Ip()                   =>  req.ip
+@HostParam()            =>  req.hosts
+@Session()              =>  req.session
+```
+
+但是没有提供 @Cookie，需要自定义一个参数装饰器，见 request-cookie.controller.ts
+
+另外文件的上传，见 request-file.controller.ts
+
+
 
 ## 中间件配置
 
