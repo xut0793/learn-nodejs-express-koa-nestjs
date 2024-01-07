@@ -5,8 +5,9 @@ import { RequestCaseModule } from './request-case/request-case.module';
 import { ResponseCaseModule } from './response-case/response-case.module';
 // import { ZodSerializerInterceptor } from 'nestjs-zod';
 // import { APP_INTERCEPTOR } from '@nestjs/core';
+import { RenderCaseModule } from './render-case/render-case.module';
 @Module({
-  imports: [RequestCaseModule, ResponseCaseModule],
+  imports: [RequestCaseModule, ResponseCaseModule, RenderCaseModule],
   controllers: [AppController],
   providers: [
     AppService,
