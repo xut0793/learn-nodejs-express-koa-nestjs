@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./06-mvc/index.js"
+    "dev": "nodemon ./07-render/index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
