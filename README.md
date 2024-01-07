@@ -93,9 +93,9 @@
 - [x] router 实现
 - [x] middleware 中间件
 - [x] mvc 逻辑分层
-- [ ] 视图模板
-  - [ ] res.render
-  - [ ] 模板组织：layout / partial / helper
+- [x] 视图模板
+  - [x] res.render
+  - [x] 模板组织：layout / partial / helper
 - [ ] 静态资源服务
 - [ ] 环境变量和配置参数
 - [ ] 错误处理 error 上传文件错误处理 MulterError nestjs-zod 错误 format
@@ -121,6 +121,7 @@
   - [ ] helmet 安全头字段
   - [ ] limit 限速
   - [ ] gzip 压缩
+- [ ] 邮件 mail
 - [ ] 定时任务 crontab
 - [ ] SSE server-send event
 - [ ] Websocket
