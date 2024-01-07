@@ -1,0 +1,24 @@
+<table border style="border-collapse:collapse">
+  <tr>
+    <td>ID</td>
+    <td>标题</td>
+    <td>内容</td>
+    <td>作者</td>
+    <td>创建时间</td>
+  </tr>
+  {{#each list}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.title}}</td>
+      <td>{{this.content}}</td>
+      <td>{{this.author}}</td>
+      <td>{{this.createTime}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+{{#section "scripts"}}
+  <script>
+    console.log("🚀 ~ file: blogList.hbs:22 ~ script >>>")
+  </script>
+{{/section}}
