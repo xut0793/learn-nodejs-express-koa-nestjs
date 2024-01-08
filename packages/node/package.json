@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --config nodemon.json ./07-render/index.js",
+    "dev": "nodemon --config nodemon.json ./08-static/index.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "dependencies": {
