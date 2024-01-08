@@ -36,6 +36,13 @@ async function bootstrap() {
   app.setViewEngine('hbs');
   app.engine('hbs', hbs.engine);
 
+  /************************************************
+   * 配置 static server
+   ************************************************/
+  app.useStaticAssets(resolve(process.cwd(), 'public'), {
+    prefix: '/static/',
+  });
+
   await app.listen(9003);
   console.log(`🚀 Server running at http://localhost:9003`);
 }
