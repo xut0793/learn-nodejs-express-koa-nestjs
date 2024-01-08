@@ -9,12 +9,13 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./07-render/index.js"
+    "dev": "nodemon ./08-static/index.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
-    "koa-handlebars-next": "^2.0.1"
+    "koa-handlebars-next": "^2.0.1",
+    "koa-static-cache": "^5.1.4"
   }
 }
