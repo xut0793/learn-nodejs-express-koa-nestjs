@@ -97,7 +97,7 @@
   - [x] res.render
   - [x] 模板组织：layout / partial / helper
 - [x] 静态资源服务
-- [ ] 环境变量和配置参数
+- [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
 - [ ] 错误处理 error 上传文件错误处理 MulterError nestjs-zod 错误 format
 - [ ] 数据持久化
   - [ ] mysql

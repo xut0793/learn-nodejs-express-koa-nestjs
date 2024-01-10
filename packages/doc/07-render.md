@@ -414,6 +414,34 @@ app.engine("hbs", hbs.engine) // 默认情况下，express 会调用上面注册
 然后在 views 添加对应的模板文件，比如 `renderList.hbs`。
 然后在路由控制中调用时，直接传入文件名称和数据即可 `res.render("renderList", { list })`
 
+另外一点是 express 中应用级局变量 `app.locals` 和单次请求响应周期内的局部变量 `res.locals` 上设置的对象属性，在模板渲染时是可用的。源码实现上会跟用户从 `res.render(view, data)` 中的 data 合并。源码如下：
+
+```js
+// express => application.js => app.render
+
+// merge app.locals
+merge(renderOptions, this.locals)
+
+// merge options._locals
+if (opts._locals) {
+  merge(renderOptions, opts._locals)
+}
+
+// merge render data
+merge(renderOptions, opts)
+
+// render
+tryRender(view, renderOptions, done)
+
+function tryRender(view, options, callback) {
+  try {
+    view.render(options, callback)
+  } catch (err) {
+    callback(err)
+  }
+}
+```
+
 ## koa 集成
 
 koa 配置视图模板引擎，可以使用 koa-handlebars-next 中间件，再配合模板引擎一起使用，这里使用模板引擎 handlebars。
@@ -449,6 +477,44 @@ router.get("/render/list", async (ctx) => {
   // 必须使用 async / await
   await ctx.render("renderList", { list: mockList })
 })
+```
+
+同样的，koa 指定的变量空间 `ctx.state` 或 `ctx.locals` 数据也会在模板引擎中可用。
+
+源码实现
+
+```js
+// koa-handlebars-next => renderer.js
+Renderer.prototype.middleware = function () {
+  var self = this
+
+  return async function (ctx, next) {
+    // this also merges in ctx.state and ctx.locals (if available)
+    ctx.renderView = async function (view, locals, options) {
+      var l = extend(true, {}, ctx.state, ctx.locals, locals)
+      var o = extend(true, { data: {} }, options)
+      o.data.koa = ctx
+
+      try {
+        return await self.render(view, l, o)
+      } catch (err) {
+        debug("unable to render view %s", chalk.underline(view), err.stack)
+        ctx.throw(
+          500,
+          "unable to render view: " + view + " because " + err.message
+        )
+      }
+    }
+
+    // renders the template and automatically responds
+    ctx.render = async function (view, locals, options) {
+      ctx.type = "html"
+      ctx.body = await ctx.renderView(view, locals, options)
+    }
+
+    await next()
+  }
+}
 ```
 
 ## nestjs 集成
