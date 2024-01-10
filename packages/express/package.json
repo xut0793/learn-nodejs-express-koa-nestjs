@@ -9,7 +9,9 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./08-static/index.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./09-environment/index.js",
+    "sit": "cross-env NODE_ENV=sit nodemon ./09-environment/index.js",
+    "prod": "cross-env NODE_ENV=production nodemon ./09-environment/index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
