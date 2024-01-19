@@ -8,6 +8,8 @@
 
 ## 内置模块
 
+脚手架
+
 - [ ] cli
 - [ ] repl
 - [ ] readline
@@ -17,26 +19,32 @@
   - [ ] commonjs
   - [ ] es module
 - [ ] corepack
+      全局
 - [ ] global
 - [ ] os
 - [ ] v8
 - [ ] vm
 - [ ] tty
+      工具
 - [ ] util
 - [ ] zlib
 - [ ] crypto
 - [ ] crypto/webcrypto
 - [ ] timer
+      事件
 - [ ] events
 - [ ] diagnostis_channel
+      文件
 - [ ] fs
 - [ ] path
 - [ ] url
 - [ ] querystring
+      二进制和流
 - [ ] buffer
 - [ ] stream
 - [ ] stream/web
 - [ ] string_decoder
+      网络
 - [ ] http
 - [ ] http2
 - [ ] https
@@ -44,23 +52,31 @@
 - [ ] net
 - [ ] dgram
 - [ ] dns
+      进程和线程
 - [ ] process
 - [ ] child_process
 - [ ] cluster
 - [ ] worker_threads
 - [ ] async_hooks/context
+      测试
 - [ ] test
 - [ ] assert
+      调试
 - [ ] error
 - [ ] debugger
 - [ ] inspector
+      性能
 - [ ] perf_hooks
 - [ ] report
+      其它
 - [ ] intl
 - [ ] wasi
 - [ ] c++
 - [ ] node-api
-- [ ] 废弃：async_hooks domain punycode
+      废弃
+- [ ] async_hooks
+- [ ] domain
+- [ ] punycode
 
 ## web 开发
 
@@ -98,7 +114,11 @@
   - [x] 模板组织：layout / partial / helper
 - [x] 静态资源服务
 - [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
-- [ ] 错误处理 error 上传文件错误处理 MulterError nestjs-zod 错误 format
+- [x] 错误处理 error http-errors
+- [ ] 日志 log
+- [ ] 调试 debugger
+- [ ] 测试 test
+- [ ] openApi swagger 文档
 - [ ] 数据持久化
   - [ ] mysql
   - [ ] mongoDB
@@ -112,8 +132,6 @@
     - [ ] bearer
     - [ ] jwt
     - [ ] oauth2
-- [ ] openApi swagger 文档
-- [ ] 日志 log
 - [ ] 安全 security
   - [ ] 加密 crypto
   - [ ] cors 跨域
@@ -121,7 +139,7 @@
   - [ ] helmet 安全头字段
   - [ ] limit 限速
   - [ ] gzip 压缩
-- [ ] 邮件 mail
+- [ ] 邮件 nodemailer
 - [ ] 定时任务 crontab
 - [ ] SSE server-send event
 - [ ] Websocket
@@ -129,6 +147,13 @@
 - [ ] 微服务 microservices
   - [ ] Request-response 请求响应模式 @MessagePattern： gRPC
   - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ
+
+## node 深入
+
+- node 架构
+- node 事件循环
+- node 异步编程
+- 工程运维：性能监控、弹性扩容、日志分析、负载均衡、缓存、docker/k8s
 
 ## 入门后端学习
 

@@ -30,9 +30,11 @@ importers:
   packages/express:
     specifiers:
       cookie-parser: ^1.4.6
+      express-async-errors: ^3.1.1
       multer: 1.4.5-lts.1
     dependencies:
       cookie-parser: 1.4.6
+      express-async-errors: 3.1.1
       multer: 1.4.5-lts.1
 
   packages/koa:
@@ -3237,6 +3239,12 @@ packages:
       jest-message-util: 29.7.0
       jest-util: 29.7.0
     dev: true
+
+  /express-async-errors/3.1.1:
+    resolution: {integrity: sha512-h6aK1da4tpqWSbyCa3FxB/V6Ehd4EEB15zyQq9qe75OZBp0krinNKuH4rAY+S/U/2I36vdLAUFSjQJ+TFmODng==}
+    peerDependencies:
+      express: ^4.16.2
+    dev: false
 
   /express-handlebars/7.1.2:
     resolution: {integrity: sha512-ss9d3mBChOLTEtyfzXCsxlItUxpgS3i4cb/F70G6Q5ohQzmD12XB4x/Y9U6YboeeYBJZt7WQ5yUNu7ZSQ/EGyQ==}
