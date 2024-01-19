@@ -9,9 +9,8 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./09-environment/index.js",
-    "sit": "cross-env NODE_ENV=sit nodemon ./09-environment/index.js",
-    "prod": "cross-env NODE_ENV=production nodemon ./09-environment/index.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./10-error/index.js",
+    "test": "node ./10-error/test.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",
