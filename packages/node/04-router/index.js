@@ -33,6 +33,15 @@ router.get("/order/query", async (req, res, next) => {
   res.end("/order/query 测试 node 自定义 router 执行")
 })
 
+router.get("/error", () => {
+  throw new Error("throw error")
+})
+
+router.use((err, req, res, next) => {
+  console.log("🚀 ~ router.use ~ err:", err)
+  next(err)
+})
+
 const app = createServer(router)
 
 app.listen(9000, "0.0.0.0", () => {
