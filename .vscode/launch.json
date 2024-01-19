@@ -5,20 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debugger Nestjs",
-      "request": "launch",
-      "runtimeArgs": ["run-script", "start:debug"],
-      "runtimeExecutable": "pnpm",
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/nestjs",
-      "type": "node"
-    },
-    {
       "name": "debugger Node",
       "request": "launch",
       "runtimeArgs": ["run-script", "dev"],
       "runtimeExecutable": "pnpm",
       "cwd": "${workspaceFolder}/packages/node",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "debugger express",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "dev"],
+      "runtimeExecutable": "pnpm",
+      "cwd": "${workspaceFolder}/packages/express",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },
@@ -29,6 +29,15 @@
       "runtimeExecutable": "pnpm",
       "cwd": "${workspaceFolder}/packages/koa",
       "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "debugger Nestjs",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "start:debug"],
+      "runtimeExecutable": "pnpm",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/packages/nestjs",
       "type": "node"
     }
   ]

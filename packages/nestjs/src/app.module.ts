@@ -14,6 +14,7 @@ import { ResponseCaseModule } from './response-case/response-case.module';
 import { RenderCaseModule } from './render-case/render-case.module';
 import { EnvironmentCaseModule } from './environment-case/environment-case.module';
 import { envConfigValidate } from './common/config/env.validation';
+import { ErrorCaseModule } from './error-case/error-case.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { envConfigValidate } from './common/config/env.validation';
     ResponseCaseModule,
     RenderCaseModule,
     EnvironmentCaseModule,
+    ErrorCaseModule,
   ],
   controllers: [AppController],
   providers: [
