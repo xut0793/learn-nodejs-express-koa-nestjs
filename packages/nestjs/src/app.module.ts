@@ -3,7 +3,7 @@
  * @Author       : xut
  * @Description  :
  */
-import { Module } from '@nestjs/common';
+import { Global, Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,7 +15,11 @@ import { RenderCaseModule } from './render-case/render-case.module';
 import { EnvironmentCaseModule } from './environment-case/environment-case.module';
 import { envConfigValidate } from './common/config/env.validation';
 import { ErrorCaseModule } from './error-case/error-case.module';
+import { LogCaseModule } from './log-case/log-case.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
 
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -33,11 +37,18 @@ import { ErrorCaseModule } from './error-case/error-case.module';
     RenderCaseModule,
     EnvironmentCaseModule,
     ErrorCaseModule,
+    LogCaseModule,
   ],
   controllers: [AppController],
   providers: [
+    Logger,
     AppService,
     // { provide: APP_INTERCEPTOR, useClass: ZodSerializerInterceptor },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggerInterceptor,
+    },
   ],
+  exports: [Logger],
 })
 export class AppModule {}

@@ -5,14 +5,21 @@
  */
 import { resolve } from 'node:path';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import cookieParser from 'cookie-parser';
-import { AppModule } from './app.module';
 import { create } from 'express-handlebars';
 import { section } from './render-case/view/helper/index';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
+// import { CustomLogger } from './common/utils/custom-logger';
+import { WinstonModule } from 'nest-winston';
+import { winstonLogger } from './common/utils/winston-logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: WinstonModule.createLogger({ instance: winstonLogger }),
+    // logger: winstonLogger,
+    // logger: new CustomLogger(),
+  });
 
   /************************************************
    * 配置 cookie-parser
