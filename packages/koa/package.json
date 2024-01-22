@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./10-error/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./11-log/index.js",
     "test": "node ./10-error/test.js"
   },
   "dependencies": {
