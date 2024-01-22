@@ -115,7 +115,7 @@
 - [x] 静态资源服务
 - [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
 - [x] 错误处理 error http-errors
-- [ ] 日志 log
+- [x] 日志 log winston
 - [ ] 调试 debugger
 - [ ] 测试 test
 - [ ] openApi swagger 文档
