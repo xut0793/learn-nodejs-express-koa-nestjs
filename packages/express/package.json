@@ -9,7 +9,8 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./11-log/index.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./12-test/bin/www.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

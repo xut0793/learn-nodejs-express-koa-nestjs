@@ -68,7 +68,7 @@ if (NODE_ENV === "development") {
   )
 }
 
-export function loggerMiddleware(req, res) {
+export function loggerMiddleware(req, res, next) {
   const requestIdHeaderName = "X-Request-Id"
   const requestIdHeader = req.get(requestIdHeaderName)
   const reqId = requestIdHeader ? requestIdHeader : randomUUID() // 生成一个链接ID

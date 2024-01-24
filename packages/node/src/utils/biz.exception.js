@@ -50,7 +50,7 @@ export class BizException extends Error {
     this.data = null
 
     // 捕获构造点的堆栈跟踪，具体使用见 http://nodejs.cn/api/errors.html#errors_error_capturestacktrace_targetobject_constructoropt
-    Error.captureStackTrace(this)
+    // Error.captureStackTrace(this)
   }
 }
 
