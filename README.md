@@ -117,7 +117,7 @@
 - [x] 错误处理 error http-errors
 - [x] 日志 log winston
 - [x] 调试 debugger
-- [ ] 测试 test
+- [x]测试 test
 - [ ] openApi swagger 文档
 - [ ] 数据持久化
   - [ ] mysql
