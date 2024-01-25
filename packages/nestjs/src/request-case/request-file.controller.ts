@@ -82,7 +82,7 @@
     为了避免命名冲突，Multer 默认会修改上传的文件名为随机字符串，并且是没有扩展名的。
     如果要自定义，可以在 multerOptions 中的 storage.filename 字段上进行定义，它是函数，
  */
-import path from 'node:path';
+import * as path from 'node:path';
 import type { Express, Request } from 'express';
 import { diskStorage } from 'multer';
 import {

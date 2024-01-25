@@ -7,10 +7,10 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { BizCode, BizMsg } from './biz-status.enum';
 
 export class BizException extends HttpException {
-  constructor(code: BizCode, message: string) {
+  constructor(code: BizCode, msg: string) {
     const errorBody = HttpException.createBody({
       code,
-      message,
+      msg,
       data: null,
     });
     super(errorBody, HttpStatus.OK);

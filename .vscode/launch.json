@@ -34,7 +34,7 @@
     {
       "name": "debugger Nestjs",
       "request": "launch",
-      "runtimeArgs": ["run-script", "start:debug"],
+      "runtimeArgs": ["run-script", "dev"],
       "runtimeExecutable": "pnpm",
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceFolder}/packages/nestjs",

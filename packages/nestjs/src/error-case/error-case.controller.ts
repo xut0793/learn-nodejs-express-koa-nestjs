@@ -10,7 +10,7 @@ import {
   HttpStatus,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UserNotFoundBizException } from './biz.exception';
+import { UserNotFoundBizException } from '../common/exception/biz.exception';
 
 @Controller('error')
 export class ErrorCaseController {

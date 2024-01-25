@@ -16,8 +16,11 @@ import { EnvironmentCaseModule } from './environment-case/environment-case.modul
 import { envConfigValidate } from './common/config/env.validation';
 import { ErrorCaseModule } from './error-case/error-case.module';
 import { LogCaseModule } from './log-case/log-case.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
+import { TestCaseModule } from './test-case/test-case.module';
+import { ResponseInterceptor } from './common/interceptor/response.interceptor';
+import { AllExceptionFilter } from './common/filter/all-exception.filter';
 
 @Global()
 @Module({
@@ -38,6 +41,7 @@ import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
     EnvironmentCaseModule,
     ErrorCaseModule,
     LogCaseModule,
+    TestCaseModule,
   ],
   controllers: [AppController],
   providers: [
@@ -46,7 +50,15 @@ import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
     // { provide: APP_INTERCEPTOR, useClass: ZodSerializerInterceptor },
     {
       provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
       useClass: LoggerInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionFilter,
     },
   ],
   exports: [Logger],

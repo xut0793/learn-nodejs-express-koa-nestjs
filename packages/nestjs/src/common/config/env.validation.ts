@@ -15,7 +15,7 @@ const envConfigSchema = z.object({
   BAR: z.string(),
   FOO_BAR: z.string(),
   NODE_ENV: z
-    .enum(['development', 'production', 'staging'])
+    .enum(['development', 'production', 'test'])
     .default('development'),
 });
 
