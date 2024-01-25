@@ -10,7 +10,8 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./12-test/bin/www.js",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test:e2e": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --config ./jest.e2e.json"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

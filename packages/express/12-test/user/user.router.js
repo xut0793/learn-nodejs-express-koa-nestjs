@@ -10,13 +10,14 @@ import { userIdDto, createUserDto, updateUserDto } from "./user.validation.js"
 
 const router = Router()
 
-router.get("/", userController.queryUsers)
+router.get("/", userController.findAll)
+router.get("/query", userController.queryUsers)
 router.post(
   "/",
   zodValidationMiddleware.body(createUserDto),
   userController.createUser
 )
-router.put(
+router.patch(
   "/:userId",
   zodValidationMiddleware.params(userIdDto),
   zodValidationMiddleware.body(updateUserDto),

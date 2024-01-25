@@ -1,0 +1,6 @@
+{
+  "rootDir": "./12-test",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.js$",
+  "transform": {}
+}

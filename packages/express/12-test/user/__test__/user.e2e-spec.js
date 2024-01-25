@@ -20,13 +20,12 @@ describe("user CURD", () => {
 
     expect(res.status).toEqual(200)
     expect(res.body).toHaveProperty("code", 10000)
-    expect(res.body.data).toHaveProperty("total", 2)
-    expect(res.body.data.list).toHaveLength(2)
+    expect(res.body.data).toHaveLength(2)
   })
 
-  it("Get /user?pageSize=1&pageNum=1", async () => {
+  it("Get /user/query?pageSize=1&pageNum=1", async () => {
     const res = await request
-      .get("/user")
+      .get("/user/query")
       .query({ pageSize: 1 })
       .query({ pageNum: 1 })
     expect(res.status).toEqual(200)
@@ -61,7 +60,7 @@ describe("user CURD", () => {
   })
 
   it("Put /user/:userId userId = 10 not exist", async () => {
-    const res = await request.put("/user/10").send({ name: "LiLei" })
+    const res = await request.patch("/user/10").send({ name: "LiLei" })
 
     expect(res.ok).toBeTruthy()
     expect(res.body.data).toBeNull()
@@ -69,7 +68,7 @@ describe("user CURD", () => {
   })
 
   it("Put /user/:userId userId = 2 exist", async () => {
-    const res = await request.put("/user/2").send({ name: "LiLei" })
+    const res = await request.patch("/user/2").send({ name: "LiLei" })
 
     expect(res.ok).toBeTruthy()
     expect(res.body).toBeDefined()
@@ -86,7 +85,7 @@ describe("user CURD", () => {
   })
 
   it("Delete /user/:userId userId = 2 exist", async () => {
-    const res = await request.put("/user/2")
+    const res = await request.delete("/user/2")
 
     expect(res.ok).toBeTruthy()
     expect(res.body).toBeDefined()

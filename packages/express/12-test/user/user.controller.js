@@ -6,6 +6,10 @@
 import { userService } from "./user.service.js"
 
 export const userController = {
+  findAll(req, res) {
+    const result = userService.findAll()
+    res.json(result)
+  },
   queryUsers(req, res) {
     const queryUserDto = req.query
     const result = userService.queryUsers(queryUserDto)

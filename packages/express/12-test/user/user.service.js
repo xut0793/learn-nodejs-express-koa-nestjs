@@ -8,15 +8,11 @@ import { userModel } from "./user.model.js"
 import { UserNotFoundBizException } from "../../../node/src/utils/biz.exception.js"
 
 export const userService = {
+  findAll() {
+    const users = userModel.query()
+    return users
+  },
   queryUsers(queryUserDto) {
-    if (Object.keys(queryUserDto).length === 0) {
-      const users = userModel.query()
-      return {
-        total: users.length,
-        list: users,
-      }
-    }
-
     const { pageSize = 2, pageNum = 1 } = queryUserDto
     const start = (pageNum - 1) * pageSize
     const end = pageNum * pageSize
