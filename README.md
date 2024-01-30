@@ -4,12 +4,11 @@
 
 1. What: 介绍
 2. Why: 优势
-3. How: 安装与 Hello World
+3. How: 应用
 
 ## 内置模块
 
-脚手架
-
+- 脚手架
 - [ ] cli
 - [ ] repl
 - [ ] readline
@@ -19,32 +18,32 @@
   - [ ] commonjs
   - [ ] es module
 - [ ] corepack
-      全局
+- 全局
 - [ ] global
 - [ ] os
 - [ ] v8
 - [ ] vm
 - [ ] tty
-      工具
+- 工具
 - [ ] util
 - [ ] zlib
 - [ ] crypto
 - [ ] crypto/webcrypto
 - [ ] timer
-      事件
+- 事件
 - [ ] events
 - [ ] diagnostis_channel
-      文件
+- 文件
 - [ ] fs
 - [ ] path
 - [ ] url
 - [ ] querystring
-      二进制和流
+- 二进制和流
 - [ ] buffer
 - [ ] stream
 - [ ] stream/web
 - [ ] string_decoder
-      网络
+- 网络
 - [ ] http
 - [ ] http2
 - [ ] https
@@ -52,28 +51,28 @@
 - [ ] net
 - [ ] dgram
 - [ ] dns
-      进程和线程
+- 进程和线程
 - [ ] process
 - [ ] child_process
 - [ ] cluster
 - [ ] worker_threads
 - [ ] async_hooks/context
-      测试
+- 测试
 - [ ] test
 - [ ] assert
-      调试
+- 调试
 - [ ] error
 - [ ] debugger
 - [ ] inspector
-      性能
+- 性能
 - [ ] perf_hooks
 - [ ] report
-      其它
+- 其它
 - [ ] intl
 - [ ] wasi
 - [ ] c++
 - [ ] node-api
-      废弃
+- 废弃
 - [ ] async_hooks
 - [ ] domain
 - [ ] punycode
@@ -117,7 +116,7 @@
 - [x] 错误处理 error http-errors
 - [x] 日志 log winston
 - [x] 调试 debugger
-- [x]测试 test
+- [x] 测试 test
 - [x] openApi swagger 文档
 - [ ] 数据持久化
   - [ ] mysql
