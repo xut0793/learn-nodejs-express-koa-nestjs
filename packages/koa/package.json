@@ -9,8 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./11-log/index.js",
-    "test": "node ./10-error/test.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./14-swagger/index.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",
@@ -18,5 +17,8 @@
     "koa-body": "^6.0.1",
     "koa-handlebars-next": "^2.0.1",
     "koa-static-cache": "^5.1.4"
+  },
+  "devDependencies": {
+    "koa2-swagger-ui": "^5.10.0"
   }
 }
