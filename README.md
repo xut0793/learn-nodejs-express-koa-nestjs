@@ -118,7 +118,7 @@
 - [x] 日志 log winston
 - [x] 调试 debugger
 - [x]测试 test
-- [ ] openApi swagger 文档
+- [x] openApi swagger 文档
 - [ ] 数据持久化
   - [ ] mysql
   - [ ] mongoDB
