@@ -19,8 +19,18 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { QueryUserDto } from './dto/query-user.dto';
 import { ZodValidationPipe } from 'nestjs-zod';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { UserModel } from './entities/user.entity';
 
 @Controller('/user')
+@ApiTags('User 用户模块')
 @UsePipes(ZodValidationPipe)
 export class TestCaseController {
   constructor(private readonly testCaseService: TestCaseService) {}
@@ -46,6 +56,24 @@ export class TestCaseController {
   }
 
   @Patch('/:id')
+  @ApiOperation({ summary: '更新用户' })
+  @ApiBearerAuth()
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: '用户ID，必填',
+    type: String,
+  })
+  @ApiBody({ type: UpdateUserDto })
+  @ApiResponse({
+    status: 200,
+    description: 'user id 存在时，更新成功',
+    type: UserModel,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'user id 不存在时',
+  })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.testCaseService.update(+id, updateUserDto);
   }

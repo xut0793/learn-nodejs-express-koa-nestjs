@@ -13,6 +13,7 @@ import { AppModule } from './app.module';
 // import { CustomLogger } from './common/utils/custom-logger';
 import { WinstonModule } from 'nest-winston';
 import { winstonLogger } from './common/utils/winston-logger';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -20,6 +21,22 @@ async function bootstrap() {
     // logger: winstonLogger,
     // logger: new CustomLogger(),
   });
+
+  /************************************************
+   * 配置 swagger
+   ************************************************/
+  const swaggerDocumentConfig = new DocumentBuilder()
+    .setTitle('learn nestjs')
+    .setDescription(
+      'This is a simple CRUD API application made with Koa and documented with Swagger',
+    )
+    .setVersion('0.0.1')
+    .addTag('API')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, swaggerDocumentConfig);
+  SwaggerModule.setup('/api/docs', app, document);
 
   /************************************************
    * 配置 cookie-parser
