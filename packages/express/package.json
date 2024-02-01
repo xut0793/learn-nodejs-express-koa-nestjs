@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./14-swagger/index.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./15-prisma/index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
