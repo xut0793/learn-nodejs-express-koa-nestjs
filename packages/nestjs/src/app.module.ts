@@ -21,6 +21,7 @@ import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
 import { TestCaseModule } from './test-case/test-case.module';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import { AllExceptionFilter } from './common/filter/all-exception.filter';
+import { PrismaModule } from './prisma-case/prisma.module';
 
 @Global()
 @Module({
@@ -42,6 +43,7 @@ import { AllExceptionFilter } from './common/filter/all-exception.filter';
     ErrorCaseModule,
     LogCaseModule,
     TestCaseModule,
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [
