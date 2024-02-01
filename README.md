@@ -13,10 +13,10 @@
 - [ ] repl
 - [ ] readline
 - [ ] console
-- [ ] package
 - [ ] module
   - [ ] commonjs
   - [ ] es module
+  - [ ] package
 - [ ] corepack
 - 全局
 - [ ] global
@@ -33,7 +33,7 @@
 - 事件
 - [ ] events
 - [ ] diagnostis_channel
-- 文件
+- 文件和路径
 - [ ] fs
 - [ ] path
 - [ ] url
@@ -60,11 +60,11 @@
 - 测试
 - [ ] test
 - [ ] assert
-- 调试
+- 错误和调试
 - [ ] error
 - [ ] debugger
 - [ ] inspector
-- 性能
+- 性能和报告
 - [ ] perf_hooks
 - [ ] report
 - 其它
@@ -117,10 +117,10 @@
 - [x] 日志 log winston
 - [x] 调试 debugger
 - [x] 测试 test
-- [x] openApi swagger 文档
+- [x] 文档 swagger openapi
 - [ ] 数据持久化
-  - [ ] mysql
-  - [ ] mongoDB
+  - [x] mysql prisma
+  - [ ] mongoDB mongoose
   - [ ] redis
 - [ ] 访问控制
   - [ ] cookie
@@ -132,7 +132,7 @@
     - [ ] jwt
     - [ ] oauth2
 - [ ] 安全 security
-  - [ ] 加密 crypto
+  - [ ] crypto 加密
   - [ ] cors 跨域
   - [ ] csrf
   - [ ] helmet 安全头字段
