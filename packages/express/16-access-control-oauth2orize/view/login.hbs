@@ -1,0 +1,28 @@
+<h1>OAuth2 Demo</h1>
+<div style="margin-bottom: 20px;">Router: POST {{api}}</div>
+<form action="/login" method="post">
+  <section>
+    <label for="username">Username</label>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      autocomplete="username"
+      required
+      autofocus
+    />
+  </section>
+  <section>
+    <label for="current-password">Password</label>
+    <input
+      id="current-password"
+      name="password"
+      type="password"
+      autocomplete="current-password"
+      required
+    />
+  </section>
+  <button type="submit" style="margin-top: 20px;">提交</button>
+
+  <div id="resp"></div>
+</form>

@@ -1,0 +1,641 @@
+<mxfile host="Electron" modified="2024-03-12T15:02:12.156Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="Jk2KO_5duGLDMd_9h8YQ" version="24.0.4" type="device">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="893" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aM9ryv3xv72pqoxQDRHE-1" value="Broswer" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="120" y="40" width="80" height="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="aM9ryv3xv72pqoxQDRHE-2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fontSize=10;" parent="aM9ryv3xv72pqoxQDRHE-1" vertex="1">
+          <mxGeometry x="35" y="70" width="10" height="530" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-40" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-1" vertex="1">
+          <mxGeometry x="35" y="704" width="10" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-63" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-1" vertex="1">
+          <mxGeometry x="35" y="1108" width="10" height="452" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-98" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-1" vertex="1">
+          <mxGeometry x="35" y="1650" width="10" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="aM9ryv3xv72pqoxQDRHE-5" value="application-a" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fontSize=10;spacingTop=0;" parent="1" vertex="1">
+          <mxGeometry x="240" y="40" width="80" height="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-6" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="35" y="70" width="10" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-8" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.局部会话&amp;nbsp;Cookie 是否存在？&lt;br&gt;2.是否携带票据&amp;nbsp;ST ?&lt;br&gt;3.都没有，重定向到&amp;nbsp;CAS&amp;nbsp;登录页&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="aM9ryv3xv72pqoxQDRHE-5" source="lPcqbIbVfgLRjTaIF4DF-6" target="lPcqbIbVfgLRjTaIF4DF-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="80" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="70" y="80" />
+              <mxPoint x="70" y="110" />
+            </Array>
+            <mxPoint x="55" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-28" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="35" y="350" width="10" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-31" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询参数中获取 ticket&lt;br&gt;向&amp;nbsp;cas&amp;nbsp;问询票据是否合法&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="aM9ryv3xv72pqoxQDRHE-5" source="lPcqbIbVfgLRjTaIF4DF-28" target="lPcqbIbVfgLRjTaIF4DF-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="44.97000000000003" y="370" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="370" />
+              <mxPoint x="80" y="400" />
+            </Array>
+            <mxPoint x="44.97000000000003" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-36" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;生成局部会话，SESSIONID=st_id&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="aM9ryv3xv72pqoxQDRHE-5" source="lPcqbIbVfgLRjTaIF4DF-28" target="lPcqbIbVfgLRjTaIF4DF-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="44.97000000000003" y="490" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="490" />
+              <mxPoint x="80" y="510" />
+            </Array>
+            <mxPoint x="44.97000000000003" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-41" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="35" y="704" width="10" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-47" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="-84.97" y="859" width="10" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-48" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="35.03" y="859" width="10" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-50" value="www.a.com&lt;br&gt;Cookie:SESSION=st_id" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;entryPerimeter=0;" parent="aM9ryv3xv72pqoxQDRHE-5" source="lPcqbIbVfgLRjTaIF4DF-47" target="lPcqbIbVfgLRjTaIF4DF-48" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-69.97" y="869" as="sourcePoint" />
+            <mxPoint x="40.02999999999997" y="869" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-49" value="www.a.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;exitX=0.5;exitY=0.599;exitDx=0;exitDy=0;exitPerimeter=0;" parent="aM9ryv3xv72pqoxQDRHE-5" target="lPcqbIbVfgLRjTaIF4DF-47" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="-159.97" y="864.04" as="sourcePoint" />
+            <mxPoint x="-84.97" y="869" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-51" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询&amp;nbsp;ST&lt;br&gt;局部会话失效&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="aM9ryv3xv72pqoxQDRHE-5" edge="1">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="45" y="879" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="879" />
+              <mxPoint x="80" y="899" />
+            </Array>
+            <mxPoint x="45" y="899" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-80" value="GET www.b.com?ticket=st_id" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;" parent="aM9ryv3xv72pqoxQDRHE-5" target="lPcqbIbVfgLRjTaIF4DF-76" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-74.81" y="1293" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-84" value="display page" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;fontSize=8;verticalAlign=bottom;spacing=0;spacingTop=0;" parent="aM9ryv3xv72pqoxQDRHE-5" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-84.81" y="1538" as="sourcePoint" />
+            <mxPoint x="-159.99965517241395" y="1538" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-102" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="aM9ryv3xv72pqoxQDRHE-5" vertex="1">
+          <mxGeometry x="35.03" y="1870" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-106" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;删除 ST，注销局部会话&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="aM9ryv3xv72pqoxQDRHE-5" source="lPcqbIbVfgLRjTaIF4DF-102" target="lPcqbIbVfgLRjTaIF4DF-102" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="1880" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="65" y="1880" />
+              <mxPoint x="65" y="1900" />
+            </Array>
+            <mxPoint x="50" y="1900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-1" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="70" y="40" width="20" height="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-23" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-1" vertex="1">
+          <mxGeometry x="5" y="200" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-2" value="application-b" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="380" y="40" width="80" height="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-64" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-2" vertex="1">
+          <mxGeometry x="35" y="1108" width="10" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-67" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.局部会话&amp;nbsp;Cookie 是否存在？&lt;br&gt;2.是否携带票据&amp;nbsp;ST ?&lt;br&gt;3.都没有，重定向到&amp;nbsp;CAS&amp;nbsp;登录页&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-2" source="lPcqbIbVfgLRjTaIF4DF-64" target="lPcqbIbVfgLRjTaIF4DF-64" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="1118.03" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="75" y="1118" />
+              <mxPoint x="75" y="1148" />
+            </Array>
+            <mxPoint x="50" y="1148.03" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-76" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-2" vertex="1">
+          <mxGeometry x="35" y="1288" width="10" height="272" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-77" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询参数中获取 ticket&lt;br&gt;向&amp;nbsp;cas&amp;nbsp;问询票据是否合法&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45.00000000000023" y="1306.9655172413793" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="1307" />
+              <mxPoint x="80" y="1337" />
+            </Array>
+            <mxPoint x="45.00000000000023" y="1336.9655172413793" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-78" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;生成局部会话，&lt;br&gt;SESSIONID=st_id&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-2" source="lPcqbIbVfgLRjTaIF4DF-76" target="lPcqbIbVfgLRjTaIF4DF-76" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="44.97000000000003" y="1428" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="1428" />
+              <mxPoint x="80" y="1448" />
+            </Array>
+            <mxPoint x="44.97000000000003" y="1458" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-81" value="GET www.cas.com/check_ticket?&lt;br&gt;ticket=st_tid&amp;amp;service=www.b.com" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;spacing=0;" parent="lPcqbIbVfgLRjTaIF4DF-2" target="lPcqbIbVfgLRjTaIF4DF-87" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="45" y="1355" as="sourcePoint" />
+            <mxPoint x="315.00000000000006" y="1355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-82" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="lPcqbIbVfgLRjTaIF4DF-2" source="lPcqbIbVfgLRjTaIF4DF-87" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="315.00000000000006" y="1408" as="sourcePoint" />
+            <mxPoint x="45" y="1408" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-99" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-2" vertex="1">
+          <mxGeometry x="35" y="1800" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-8" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询&amp;nbsp;ST&lt;br&gt;局部会话有效&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" edge="1" parent="lPcqbIbVfgLRjTaIF4DF-2" source="lPcqbIbVfgLRjTaIF4DF-76" target="lPcqbIbVfgLRjTaIF4DF-76">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="46.00000000000006" y="1510" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="81" y="1510" />
+              <mxPoint x="81" y="1530" />
+            </Array>
+            <mxPoint x="46.00000000000006" y="1530" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-3" value="sso/cas" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="520" y="40" width="80" height="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-14" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-3" vertex="1">
+          <mxGeometry x="35" y="150" width="10" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-16" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;全局会话&amp;nbsp;Cookie&amp;nbsp;的 TGC 是否存在？&lt;br&gt;不存在直接返回登录页&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-3" source="lPcqbIbVfgLRjTaIF4DF-14" target="lPcqbIbVfgLRjTaIF4DF-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="170" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="170" />
+              <mxPoint x="80" y="200" />
+            </Array>
+            <mxPoint x="50" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-26" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.用户认证&amp;nbsp;username password&lt;br&gt;2.校验&amp;nbsp;service&amp;nbsp;是否已注册&lt;br&gt;3.建立全局会话，生成&amp;nbsp;TGT&lt;br&gt;4.生成服务票据&amp;nbsp;ST，对应&amp;nbsp;TGT&amp;nbsp;和 servce&lt;br&gt;5.Set-Cookie=CASTCG=tgtId，并重定向&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-3" source="lPcqbIbVfgLRjTaIF4DF-14" target="lPcqbIbVfgLRjTaIF4DF-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="260" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="250" />
+              <mxPoint x="80" y="290" />
+            </Array>
+            <mxPoint x="50" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-34" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.校验&amp;nbsp;ST&amp;nbsp;和&amp;nbsp;service&amp;nbsp;是否有效&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;2.校验成功后，使&amp;nbsp;ST&amp;nbsp;失效，保证&amp;nbsp;ST&amp;nbsp;只允许用一次&lt;br&gt;3.保存当前登录的服务，记录服务登出地址&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-3" source="lPcqbIbVfgLRjTaIF4DF-85" target="lPcqbIbVfgLRjTaIF4DF-85" edge="1">
+          <mxGeometry x="0.0054" relative="1" as="geometry">
+            <mxPoint x="44.97000000000003" y="440" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="430" />
+              <mxPoint x="80" y="460" />
+            </Array>
+            <mxPoint x="44.97000000000003" y="470" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-55" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-3" vertex="1">
+          <mxGeometry x="35" y="909" width="10" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-56" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.校验ST / service / TGT&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-3" source="lPcqbIbVfgLRjTaIF4DF-55" target="lPcqbIbVfgLRjTaIF4DF-55" edge="1">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="44.97000000000003" y="929.03" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="929" />
+              <mxPoint x="80" y="949" />
+            </Array>
+            <mxPoint x="44.97000000000003" y="949.03" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-73" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-3" vertex="1">
+          <mxGeometry x="35" y="1194" width="10" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-85" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-3" vertex="1">
+          <mxGeometry x="35" y="410" width="10" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-87" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="lPcqbIbVfgLRjTaIF4DF-3" vertex="1">
+          <mxGeometry x="35" y="1348" width="10" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-79" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.校验&amp;nbsp;ST&amp;nbsp;和&amp;nbsp;service&amp;nbsp;是否有效&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;2.校验成功后，使&amp;nbsp;ST&amp;nbsp;失效，保证&amp;nbsp;ST&amp;nbsp;只允许用一次&lt;br&gt;3.保存当前登录的服务，记录服务登出地址&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="lPcqbIbVfgLRjTaIF4DF-3" source="lPcqbIbVfgLRjTaIF4DF-87" target="lPcqbIbVfgLRjTaIF4DF-87" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="1363" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="75" y="1363" />
+              <mxPoint x="75" y="1393" />
+            </Array>
+            <mxPoint x="40" y="1393" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-4" value="www.a.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;" parent="1" target="aM9ryv3xv72pqoxQDRHE-2" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="80" y="110" as="sourcePoint" />
+            <mxPoint x="160" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-5" value="GET www.a.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;fontSize=8;" parent="1" source="aM9ryv3xv72pqoxQDRHE-2" target="lPcqbIbVfgLRjTaIF4DF-6" edge="1">
+          <mxGeometry x="0.0043" width="80" relative="1" as="geometry">
+            <mxPoint x="165.00000000000006" y="120" as="sourcePoint" />
+            <mxPoint x="275" y="120" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-10" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.cas.com/login?&lt;br style=&quot;font-size: 8px;&quot;&gt;service=www.a.com&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" source="lPcqbIbVfgLRjTaIF4DF-6" target="aM9ryv3xv72pqoxQDRHE-2" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="275" y="160" as="sourcePoint" />
+            <mxPoint x="160.02380952380952" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-15" value="GET www.cas.com/login?service=www.a.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="165" y="201" as="sourcePoint" />
+            <mxPoint x="555" y="201" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-18" value="login form" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=0;spacingTop=0;spacing=0;verticalAlign=bottom;" parent="1" target="aM9ryv3xv72pqoxQDRHE-2" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="250" as="sourcePoint" />
+            <mxPoint x="159.92857142857144" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-22" value="login form" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;fontSize=8;verticalAlign=bottom;spacing=0;entryX=1;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="155" y="250" as="sourcePoint" />
+            <mxPoint x="85" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-24" value="submit form" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;fontSize=8;spacing=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="85" y="280" as="sourcePoint" />
+            <mxPoint x="155" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-25" value="POST www.cas.com/login&lt;br&gt;&lt;br&gt;{username, password, service}" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="165" y="280" as="sourcePoint" />
+            <mxPoint x="555" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-27" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.a.com?ticket=st_id&lt;br style=&quot;font-size: 8px;&quot;&gt;Set-Cookie:CASTGC=tgt_id&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="350" as="sourcePoint" />
+            <mxPoint x="165" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-29" value="GET www.a.com?ticket=st_id" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="165.00000000000006" y="400" as="sourcePoint" />
+            <mxPoint x="275" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-33" value="GET www.cas.com/check_ticket?&lt;br&gt;&lt;br&gt;ticket=st_tid&amp;amp;service=www.a.com" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="285" y="457" as="sourcePoint" />
+            <mxPoint x="555" y="457" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-35" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="509.99999999999994" as="sourcePoint" />
+            <mxPoint x="285" y="509.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-37" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.a.com&lt;br&gt;Set-Cookie:SESSION=st_id&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="275" y="560" as="sourcePoint" />
+            <mxPoint x="165" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-38" value="display page" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;fontSize=8;verticalAlign=bottom;spacing=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="155" y="628" as="sourcePoint" />
+            <mxPoint x="79.81034482758605" y="628" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-39" value="www.a.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;exitX=0.5;exitY=0.599;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" target="lPcqbIbVfgLRjTaIF4DF-40" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="80" y="749.04" as="sourcePoint" />
+            <mxPoint x="155" y="754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-42" value="www.a.com&lt;br&gt;Cookie:SESSION=st_id" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;entryPerimeter=0;" parent="1" source="lPcqbIbVfgLRjTaIF4DF-40" target="lPcqbIbVfgLRjTaIF4DF-41" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="754" as="sourcePoint" />
+            <mxPoint x="280" y="754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-43" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询&amp;nbsp;ST&lt;br&gt;局部会话有效&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="284.97" y="764" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="319.97" y="764" />
+              <mxPoint x="319.97" y="784" />
+            </Array>
+            <mxPoint x="284.97" y="784" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-44" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="275" y="804" as="sourcePoint" />
+            <mxPoint x="165" y="804" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-45" value="display page" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="1" source="lPcqbIbVfgLRjTaIF4DF-40" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="190" y="804" as="sourcePoint" />
+            <mxPoint x="80" y="804" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-46" value="局部会话有效" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="10" y="719" width="790" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-54" value="GET www.cas.com/check_ticket?&lt;br&gt;&lt;br&gt;ticket=st_tid&amp;amp;service=www.a.com" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;" parent="1" target="lPcqbIbVfgLRjTaIF4DF-55" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="285" y="959" as="sourcePoint" />
+            <mxPoint x="555" y="959" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-57" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="999" as="sourcePoint" />
+            <mxPoint x="285" y="999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-58" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.当前ST仍有效，重新生成局部会话&lt;br&gt;2.重新设置&amp;nbsp;Set-Cookie:SESSION=st_id&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="285" y="1029" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="320" y="1029" />
+              <mxPoint x="320" y="1049" />
+            </Array>
+            <mxPoint x="285" y="1049" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-60" value="display page" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="155" y="1059" as="sourcePoint" />
+            <mxPoint x="80" y="1059" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-59" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;Set-Cookie:SESSION=st_id&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="275.0300000000001" y="1059" as="sourcePoint" />
+            <mxPoint x="165.02999999999997" y="1059" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-61" value="局部会话失效" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="10" y="879" width="790" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-62" value="www.b.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;exitX=0.5;exitY=0.599;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="80" y="1148.04" as="sourcePoint" />
+            <mxPoint x="154.97" y="1148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-65" value="GET www.b.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="165" y="1148" as="sourcePoint" />
+            <mxPoint x="415" y="1148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-68" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.cas.com/login?&lt;br style=&quot;font-size: 8px;&quot;&gt;service=www.b.com&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" target="lPcqbIbVfgLRjTaIF4DF-63" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="414" y="1198" as="sourcePoint" />
+            <mxPoint x="304" y="1198" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-69" value="GET www.cas.com/login?service=www.b.com&lt;br&gt;Cookie:CASTGC=tgt_id" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" parent="1" source="lPcqbIbVfgLRjTaIF4DF-63" target="lPcqbIbVfgLRjTaIF4DF-73" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="170" y="1239" as="sourcePoint" />
+            <mxPoint x="547" y="1238" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-74" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.全局会话&amp;nbsp;Cookie&amp;nbsp;的 TGC 是否存在？&lt;br&gt;2.校验&amp;nbsp;service&amp;nbsp;是否已注册？&lt;br&gt;3.生成服务票据&amp;nbsp;ST，对应&amp;nbsp;TGT&amp;nbsp;和 servce&lt;br&gt;4.Set-Cookie=CASTCG=tgtId，并重定向&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry x="0.0051" relative="1" as="geometry">
+            <mxPoint x="565" y="1248" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="600" y="1248" />
+              <mxPoint x="600" y="1278" />
+            </Array>
+            <mxPoint x="565" y="1278" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-75" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.b.com?ticket=st_id&lt;br style=&quot;font-size: 8px;&quot;&gt;Set-Cookie:CASTGC=tgt_id&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="1298" as="sourcePoint" />
+            <mxPoint x="165" y="1298" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-88" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;直接访问应用&amp;nbsp;b&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
+          <mxGeometry x="10" y="1118" width="790" height="502" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-89" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="415" y="1690" width="10" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-91" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="555" y="1776" width="10" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-92" value="登出" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;exitX=0.5;exitY=0.599;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="80" y="1690.04" as="sourcePoint" />
+            <mxPoint x="154.97" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-93" value="GET www.b.com/logout&lt;br&gt;Cookie:SESSION=tg_id" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry x="0.0011" width="80" relative="1" as="geometry">
+            <mxPoint x="165" y="1690" as="sourcePoint" />
+            <mxPoint x="415" y="1690" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-94" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.cas.com/logout?&lt;br style=&quot;font-size: 8px;&quot;&gt;service=www.b.com&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="414" y="1740" as="sourcePoint" />
+            <mxPoint x="165" y="1740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-95" value="GET www.cas.com/logout?service=www.b.com&lt;br&gt;Cookie:CASTGC=tgt_id" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" parent="1" source="lPcqbIbVfgLRjTaIF4DF-98" target="lPcqbIbVfgLRjTaIF4DF-91" edge="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="157" y="1780" as="sourcePoint" />
+            <mxPoint x="547" y="1780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-96" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;1.全局会话&amp;nbsp;Cookie&amp;nbsp;的 TGC 是否存在？&lt;br&gt;2.设置&amp;nbsp;TGC&amp;nbsp;失效（Set-Cookie&amp;nbsp;过期时间设为过去式）&lt;br&gt;3.根据&amp;nbsp;TGT&amp;nbsp;拿到当前已登录的所有服务，并调用它们的&amp;nbsp;logout&amp;nbsp;接口&lt;br&gt;4.判断当前是否携带&amp;nbsp;service，跳转登录页&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry x="0.0051" relative="1" as="geometry">
+            <mxPoint x="565" y="1790" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="600" y="1790" />
+              <mxPoint x="600" y="1820" />
+            </Array>
+            <mxPoint x="565" y="1820" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-97" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.cas.com/login?service=www.b.com&lt;br style=&quot;font-size: 8px;&quot;&gt;Set-Cookie:CASTGC=null&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;entryX=1;entryY=1;entryDx=0;entryDy=-5;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="1987" as="sourcePoint" />
+            <mxPoint x="165" y="1987" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-100" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;POST www.b.com/logout?ticket=st_id&lt;/span&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" target="lPcqbIbVfgLRjTaIF4DF-99" edge="1">
+          <mxGeometry x="0.0022" width="80" relative="1" as="geometry">
+            <mxPoint x="555" y="1840" as="sourcePoint" />
+            <mxPoint x="460" y="1840" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-101" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;/font&gt;" style="endArrow=open;endSize=8;dashed=1;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;jumpSize=6;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="425" y="1880" as="sourcePoint" />
+            <mxPoint x="555" y="1880" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-103" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;POST www.b.com/logout?ticket=st_id&lt;/span&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" target="lPcqbIbVfgLRjTaIF4DF-102" edge="1">
+          <mxGeometry x="0.0022" width="80" relative="1" as="geometry">
+            <mxPoint x="555" y="1910" as="sourcePoint" />
+            <mxPoint x="425" y="1910" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-104" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;/font&gt;" style="endArrow=open;endSize=8;dashed=1;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;jumpSize=6;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="285.0300000000001" y="1950" as="sourcePoint" />
+            <mxPoint x="555" y="1950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-105" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;删除&amp;nbsp;ST，注销局部会话&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="1850" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="440" y="1850" />
+              <mxPoint x="440" y="1870" />
+            </Array>
+            <mxPoint x="425" y="1870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-107" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;登出&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
+          <mxGeometry x="10" y="1660" width="790" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-108" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;登录&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
+          <mxGeometry x="10" y="90" width="790" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-109" value="一处登出，全部登出" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="10" y="1690" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lPcqbIbVfgLRjTaIF4DF-110" value="一处登录，全部登录" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="10" y="120" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-1" value="GET www.a.com&lt;div&gt;Cookie: SESSION=st_id&lt;/div&gt;" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="164.00000000000006" y="590" as="sourcePoint" />
+            <mxPoint x="274" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-2" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;查询&amp;nbsp;ST&lt;br&gt;局部会话有效&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" edge="1" parent="1">
+          <mxGeometry x="-0.0037" relative="1" as="geometry">
+            <mxPoint x="285.02000000000004" y="600" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="320.02000000000004" y="600" />
+              <mxPoint x="320.02000000000004" y="620" />
+            </Array>
+            <mxPoint x="285.02000000000004" y="620" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-3" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="275" y="628" as="sourcePoint" />
+            <mxPoint x="165" y="628" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-4" value="这里重定向一次，第二次 url&amp;nbsp;没有 ticket，避免&amp;nbsp;ST&amp;nbsp;长时间暴露在地址栏中" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=6;" vertex="1" parent="1">
+          <mxGeometry x="286" y="558" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-5" value="这里表单提交需要保证请求为 “简单请求”，不然后续的 302&amp;nbsp;接口重定向会引发浏览器&amp;nbsp;CORS&amp;nbsp;限制，导致预检请求报错。简单请求两种方式：&lt;div&gt;1.&amp;nbsp;使用&amp;nbsp;web&amp;nbsp;form&amp;nbsp;默认行为发起请求，成功后刷新页面，不自定义&amp;nbsp;js&amp;nbsp;逻辑&lt;/div&gt;&lt;div&gt;2.如果自定义表单的&amp;nbsp;js&amp;nbsp;逻辑，则不应该阻止表单默认行为&amp;nbsp;e.preventDefault()，并且设置&amp;nbsp;Content-Type=application/x-www-form-urlencoded&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="285" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-6" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;302&amp;nbsp;www.b.com&lt;br&gt;Set-Cookie:SESSION=st_id&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;" edge="1" parent="1" target="lPcqbIbVfgLRjTaIF4DF-63">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="415" y="1500" as="sourcePoint" />
+            <mxPoint x="301" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-7" value="GET www.b.com&lt;div&gt;Cookie: SESSION=st_id&lt;/div&gt;" style="html=1;verticalAlign=middle;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;spacing=2;spacingRight=5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="165" y="1535" as="sourcePoint" />
+            <mxPoint x="415" y="1535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-9" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="415" y="1578" as="sourcePoint" />
+            <mxPoint x="165" y="1578" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-10" value="这里重定向一次，第二次 url&amp;nbsp;没有 ticket，避免&amp;nbsp;ST&amp;nbsp;长时间暴露在地址栏中" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=6;" vertex="1" parent="1">
+          <mxGeometry x="426" y="1510" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-11" value="GET www.cas.com/logout?service=www.b.com" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=8;labelBackgroundColor=none;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="165" y="2020" as="sourcePoint" />
+            <mxPoint x="555" y="2020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-12" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;全局会话&amp;nbsp;Cookie&amp;nbsp;的 TGC&amp;nbsp;不存在，直接响应登录页&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;fontSize=8;" edge="1" parent="1">
+          <mxGeometry x="0.0051" relative="1" as="geometry">
+            <mxPoint x="565" y="2030" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="600" y="2030" />
+              <mxPoint x="600" y="2050" />
+            </Array>
+            <mxPoint x="565" y="2050" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-13" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;200&amp;nbsp;login form&lt;br&gt;&lt;/font&gt;" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;labelBackgroundColor=none;fontSize=8;align=center;spacingRight=0;spacingLeft=9;spacingTop=-2;verticalAlign=bottom;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="555" y="2059" as="sourcePoint" />
+            <mxPoint x="165" y="2059" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GD6M8uoX7fctuPZ7SVa4-14" value="login form" style="endArrow=open;endSize=9;dashed=1;html=1;rounded=0;fontSize=8;verticalAlign=bottom;spacing=0;spacingTop=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="155.19" y="2059" as="sourcePoint" />
+            <mxPoint x="80.00034482758605" y="2059" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

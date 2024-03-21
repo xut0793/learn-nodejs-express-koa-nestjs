@@ -9,7 +9,9 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./15-prisma/index.js"
+    "dev:pwd": "nodemon ./16-access-control-sso/passport.js",
+    "dev:a": "cross-env PORT=8081 SERVICE_NAME=a nodemon ./16-access-control-sso/service.js",
+    "dev:b": "cross-env PORT=8082 SERVICE_NAME=b nodemon ./16-access-control-sso/service.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",

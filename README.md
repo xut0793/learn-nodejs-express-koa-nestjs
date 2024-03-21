@@ -30,14 +30,14 @@
 - [ ] crypto
 - [ ] crypto/webcrypto
 - [ ] timer
-- 事件
-- [ ] events
-- [ ] diagnostis_channel
 - 文件和路径
 - [ ] fs
 - [ ] path
 - [ ] url
 - [ ] querystring
+- 事件
+- [ ] events
+- [ ] diagnostis_channel
 - 二进制和流
 - [ ] buffer
 - [ ] stream
@@ -119,26 +119,67 @@
 - [x] 测试 test
 - [x] 文档 swagger openapi
 - [ ] 数据持久化
-  - [x] mysql prisma
+  - [ ] mysql
+    - [x] prisma
   - [ ] mongoDB mongoose
   - [ ] redis
-- [ ] 访问控制
-  - [ ] cookie
-  - [ ] session
-  - [ ] authorization
-    - [ ] basic
-    - [ ] digest
-    - [ ] bearer
-    - [ ] jwt
-    - [ ] oauth2
+- [x] 访问控制
+  - [x] 注册
+    - [x] 账号+密码
+    - [x] 邮箱验证码+密码 nodemailer
+    - [x] 手机短信验证+密码 阿里云短信服务
+  - [x] 登录
+    - [x] 账号+密码
+    - [x] 邮箱+密码
+    - [x] 手机+密码
+    - [x] 第三方授权登录
+    - [x] 单点登录 SSO: 一处登录多处同时登录
+      - [x] 概念
+      - [x] SSO 代码示例
+      - [x] cas 代码实现 jscas
+  - [x] 认证 Authentication
+    - [x] cookie
+    - [x] session
+    - [x] HTTP Authentication
+      - [x] basic
+      - [x] digest
+      - [x] bearer
+        - [x] jwt 概念、示例、源码实现
+    - [ ] OIDC: OpenID Connect 联合身份认证
+    - [x] OAuth2: 访问授权，一处注册多处使用
+      - [x] 概念
+      - [x] 第三方授权登录客户端示例 gitee
+      - [x] oauth2 client 代码实现
+      - [x] oauth2 server 代码实现 oAuth2orize / node-oauth2-server
+    - [x] passport.js 使用
+      - [x] passport-local
+      - [x] passport-http
+      - [x] passport-jwt
+      - [x] passport-oauth2
+  - [x] 授权 Authorization 与鉴权 Audit (审计)
+    - [x] 概念
+      - [x] 访问控制列表 (Access Control List, ACL)，比如小红编辑博客内容
+      - [x] 自主访问控制 (Discretionary Access Control, DAC)，比如小红授权小明也能编辑博客内容
+      - [x] 强制访问控制 (Mandatory Access Control, MAC)，运营实习生只能对草稿状态的博客进行编辑
+      - [x] 基于角色的访问控制 (Role-Based Access Control, RBAC)
+        - [x] RBAC0，运营人员可以编辑博客内容
+        - [x] RBAC1，运营主管拥有运营人员的权限
+        - [x] RBAC2，在运营场景中拥有运营经理权限，但不能同时行使财务经理权限。
+        - [x] RBAC3=RBAC1+RBAC2，既引入了角色间的继承关系，又引入了角色限制关系。
+      - [x] 基于属性的访问控制 (Attribute-Based Access Control, ABAC)，比如运营人员只能在上午9点到12点之间在公司内网中可以编辑博客内容
+    - [ ] 代码实践
+      - [ ] 本地实现
+      - [ ] 集成 Casbin
+        - [ ] 客户端 casbin.js
+        - [x] 服务端 node-casbin / nest-authz 使用
 - [ ] 安全 security
+  - [ ] helmet 安全头字段
+    - [ ] xss 跨站脚本攻击
+    - [ ] csrf 跨站请求伪造
   - [ ] crypto 加密
   - [ ] cors 跨域
-  - [ ] csrf
-  - [ ] helmet 安全头字段
   - [ ] limit 限速
   - [ ] gzip 压缩
-- [ ] 邮件 nodemailer
 - [ ] 定时任务 crontab
 - [ ] SSE server-send event
 - [ ] Websocket

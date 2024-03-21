@@ -1,0 +1,18 @@
+<p><b>{{client.name}}</b>
+  is requesting
+  <b>full access</b>
+  to your information.</p>
+<ul>
+  {{#each scope}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+<p>Do you approve?</p>
+
+<form action="/approve" method="post">
+  <input name="req_id" type="hidden" value="<%= reqId %>" />
+  <div>
+    <input type="submit" value="Allow" id="allow" />
+    <input type="submit" value="Deny" name="cancel" id="deny" />
+  </div>
+</form>

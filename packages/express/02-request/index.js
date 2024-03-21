@@ -31,7 +31,7 @@
 // express.urlencoded(options) / body-parser.urlencoded(options)
 {
   // 默认 true, 指定解析URL-encode数据的方法，true的话使用qs库来解析，false的话使用 querystring 库去解决
-  // 由于 express 内部使用了 qs 库实现了 req.query 的解析，所以这里默认 true，基本不改。
+  // 默认为true，但已弃用默认值。请研究一下qs和querystring的区别，并选择合适的设置。
   "extended": true,
   "inflate": true, // 默认 true，是否开启压缩体解析
   "limit": "100kb", // 默认 100kb，最大请求数据，传入数字默认单位是bytes，传入字符串要带上单位
@@ -101,3 +101,41 @@ app.post("/headers/type", (req, res) => {
 app.listen(9001, () => {
   console.log(`🚀 Server running at http://localhost:9001`)
 })
+
+/**
+ * querystring， query-string 和 qs 对比
+ *
+ *
+ * 共同点：都是用来对字符串和对象进行转化的，都提供了 parse 和 stringify 方法，基本功能都类似。
+ * 区别：
+ * querystring是node内置核心模块
+ * query-string 第三方依赖包，突出特点是增加了数组如何解析的选项 arrayFormat: none / bracket / index / comma / separator，但不支持嵌套对象
+ * qs 最早是由TJ大神编写的，突出特点除了支持数组项解析的特点外，还支持嵌套的查询字符串解析，而 querystring 则不行。所以说 qs 是 querystring 的增强版。
+ *
+ * parse 示例
+ * querystring.parse(str[, sep[, eq[, options]]])
+ * query-string.parse(string, options?)
+ * qs.parse(string, [options])
+ *
+ *
+ * querystring.parse('?name: jim) // {name:'jim'}
+ * query-string.parse('?name: jim) // {name:'jim'}
+ * qs.parse('?name=jim') // {?name:'jim'}
+ * qs.parse('?name=jim', {ignoreQueryPrefix: true}) // {name:'jim'}
+ *
+ * querystring.parse('abc=xyz&abc=123') // {abc: ['xyz', '123]}
+ * query-string.parse('abc=xyz&abc=123') // {abc: ['xyz', '123]}
+ * queryString.parse('foo[]=1&foo[]=2&foo[]=3', {arrayFormat: 'bracket'}); // 原生 querystring 则不行
+ * qs.parse('foo[]=1&foo[]=2&foo[]=3', {arrayFormat: 'bracket'});
+ *
+ * let str = 'person[name][age]=22'
+ * querystring.parse(str) // {'person[name][age]':'22'}
+ * query-string.parse(str) // {'person[name][age]':'22'}
+ * qs.parse(str) // {person: {name: {age: 22}}}
+ *
+ *
+ * stringify 示例同上面反例
+ * querystring.stringify(obj[, sep[, eq[, options]]])
+ * query-string.parse(obj, options?)
+ * qs.parse(obj, [options])
+ */

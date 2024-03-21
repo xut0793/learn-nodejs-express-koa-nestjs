@@ -1,0 +1,7 @@
+p, admin, /api/book, get
+p, admin, /api/book, post
+p, admin, /api/book, delete
+p, user,  /api/book, get
+p, user,  /api/book/:id, get
+g, tom, user
+g, root, admin

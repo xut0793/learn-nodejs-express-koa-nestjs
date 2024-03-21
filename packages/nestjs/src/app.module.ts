@@ -22,6 +22,9 @@ import { TestCaseModule } from './test-case/test-case.module';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import { AllExceptionFilter } from './common/filter/all-exception.filter';
 import { PrismaModule } from './prisma-case/prisma.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { AuthZModule } from 'nest-authz';
 
 @Global()
 @Module({
@@ -44,6 +47,16 @@ import { PrismaModule } from './prisma-case/prisma.module';
     LogCaseModule,
     TestCaseModule,
     PrismaModule,
+    AuthModule,
+    UserModule,
+    AuthZModule.register({
+      model: 'rbac.model.conf',
+      policy: 'rbac.policy.csv',
+      usernameFromContext: (ctx) => {
+        const req = ctx.switchToHttp().getRequest();
+        return req.user && req.user.uid;
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [

@@ -1,0 +1,134 @@
+<!--
+ * @Date         : 2024-01-08 20:21:29 星期1
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="Shortcut Icon"
+      href="/static/image/favicon.ico"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>不同的认证方案</title>
+  </head>
+  <body class="h-screen bg-gray-100 flex flex-col">
+    <header class="shadow">
+      <div class="bg-gray-800 px-4 py-6">
+        <h1 class="text-white text-3xl font-bold tracking-tight">
+          不同的认证方案
+        </h1>
+      </div>
+    </header>
+    <main class="grow p-4 flex gap-4">
+      <div class="bg-white p-4 rounded shadow grow max-w-4xl">
+        <h2 class="font-bold text-gray-900 mb-4">登录</h2>
+        <form
+          name="login-form"
+          class="space-y-6"
+          action="/api/authentication"
+          method="POST"
+        >
+          <div>
+            <label
+              for="account"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >账号</label
+            >
+            <div class="mt-2 w-80">
+              <input
+                id="login-account"
+                name="account"
+                type="text"
+                autocomplete="off"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2 w-80">
+              <input
+                id="login-account-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div
+            id="submit-tabs"
+            class="bg-white p-4 h-16 flex items-baseline space-x-4"
+          >
+            <button
+              data-authn="cookie"
+              class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Cookie
+            </button>
+            <button
+              data-authn="session"
+              class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Session
+            </button>
+            <button
+              data-authn="basic"
+              class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              http Basic
+            </button>
+            <button
+              data-authn="digest"
+              class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              http Digest
+            </button>
+            <button
+              data-authn="bearer"
+              class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              http bearer jwt
+            </button>
+          </div>
+        </form>
+        <!--end 登录 login-account 账号+密码 -->
+        <div id="login-message"></div>
+      </div>
+      <div class="bg-white p-4 rounded shadow grow w-80">
+        <h2 class="font-bold text-gray-900 mb-4">资源访问</h2>
+        <button
+          id="request-user-btn"
+          class="rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          获取用户信息
+        </button>
+        <ul id="user-info"></ul>
+      </div>
+    </main>
+    <footer
+      class="bg-neutral-200 text-xs text-gray-400 h-[90px] flex items-center justify-center"
+    >
+      <div class="text-center leading-loose">
+        <p>2023-present&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp©xut</p>
+        <p>
+          常见的认证方式：cookie / session / http basic / http digest / http
+          bearer jwt
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script src="/static/js/authentication.js"></script>
+</html>

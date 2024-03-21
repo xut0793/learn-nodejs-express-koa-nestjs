@@ -1,0 +1,42 @@
+<!--
+ * @Date         : 2024-03-07 16:57:24 星期4
+ * @Author       : xut
+ * @Description  : 
+-->
+<h1>单点登录，应用 B</h1>
+<button id="req-btn">获取动物列表</button>
+<ul id="list-box"></ul>
+
+<script>
+  const reqBtnEl = document.querySelector("#req-btn")
+  const listBoxEl = document.querySelector("#list-box")
+
+  reqBtnEl
+    .addEventListener("click", (evt) => {
+      evt.preventDefault()
+
+      fetch("/api/animal")
+        .then((res) => res.json())
+        .then((resData) => {
+          const list = resData.data
+
+          if (Array.isArray(list) && list.length) {
+            let content = ""
+
+            list.forEach((item, index) => {
+              content += `<li>${index + 1}: ${
+                item.account || item.mail || item.phone
+              } ${item.password}</li>`
+            })
+
+            listBoxEl.innerHTML = content
+          } else {
+            listBoxEl.textContent = "暂无数据"
+          }
+        })
+    })
+    .catch((err) => {
+      console.error(err)
+      listBoxEl.textContent = err.message
+    })
+</script>

@@ -1,0 +1,486 @@
+<!--
+ * @Date         : 2024-01-08 20:21:29 星期1
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="Shortcut Icon"
+      href="/static/image/favicon.ico"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>注册-登录</title>
+  </head>
+  <body class="h-screen bg-gray-100 flex flex-col">
+    <header class="shadow">
+      <div class="bg-gray-800 px-4 py-6">
+        <h1 class="text-white text-3xl font-bold tracking-tight">
+          不同方式注册和登录
+        </h1>
+      </div>
+      <nav
+        id="nav-tabs"
+        class="bg-white p-4 h-16 flex items-baseline space-x-4"
+      >
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300" -->
+        <a
+          href="#account"
+          class="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium"
+          aria-current="page"
+          >账号+密码</a
+        >
+        <a
+          href="#mail"
+          class="text-gray-500 rounded px-3 py-2 text-sm font-medium"
+          >邮箱验证+密码</a
+        >
+        <a
+          href="#phone"
+          class="text-gray-500 rounded px-3 py-2 text-sm font-medium"
+          >手机号验证+密码</a
+        >
+        <a
+          href="#oauth"
+          class="text-gray-500 rounded px-3 py-2 text-sm font-medium"
+          >第三方授权登录-github</a
+        >
+      </nav>
+    </header>
+    <main class="grow flex gap-4 p-4">
+      <div class="bg-white p-4 rounded shadow grow">
+        <h2 class="font-bold text-gray-900 mb-4">注册</h2>
+        <!--start register-account 账号密码注册 -->
+        <form
+          name="register-account"
+          class="space-y-6 w-80"
+          action="/api/account/register"
+          method="POST"
+        >
+          <div>
+            <label
+              for="regitser-account"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >账号</label
+            >
+            <div class="mt-2">
+              <input
+                id="account"
+                name="account"
+                type="text"
+                autocomplete="off"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="register-account-password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              注 册
+            </button>
+          </div>
+        </form>
+        <!--end register-account 账号密码注册  -->
+
+        <!--start register-mail 邮箱+验证+密码注册 -->
+        <form
+          name="register-mail"
+          class="space-y-6 w-80 hidden"
+          action="/api/mail/register"
+          method="POST"
+        >
+          <div>
+            <label
+              for="mail"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >邮箱</label
+            >
+            <div class="mt-2">
+              <input
+                id="register-mail"
+                name="mail"
+                type="mail"
+                autocomplete="mail"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="mailCode"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >通过验证码校验邮箱合法性</label
+            >
+            <div class="mt-2 flex">
+              <input
+                id="mail-code"
+                name="mailCode"
+                type="text"
+                autocomplete="off"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+              <div
+                id="mail-code-btn"
+                class="w-48 ml-2 rounded bg-indigo-600 px-3 py-1.5 text-sm cursor-pointer select-none leading-6 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                获取验证码
+              </div>
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="register-mail-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              注 册
+            </button>
+          </div>
+        </form>
+        <!--end register-mail 邮箱+验证+密码注册 -->
+
+        <!--start register-phone 电话+验证+密码注册 -->
+        <form
+          name="register-phone"
+          class="space-y-6 w-80 hidden"
+          action="/api/phone/register"
+          method="POST"
+        >
+          <div>
+            <label
+              for="phone"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >手机号</label
+            >
+            <div class="mt-2">
+              <input
+                id="register-phone"
+                name="phone"
+                type="phone"
+                autocomplete="phone"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="phone-code"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >通过验证码校验手机有效性</label
+            >
+            <div class="mt-2 flex">
+              <input
+                id="phone-code"
+                name="phoneCode"
+                type="text"
+                autocomplete="off"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+              <div
+                id="phone-code-btn"
+                class="w-48 ml-2 rounded bg-indigo-600 px-3 py-1.5 text-sm cursor-pointer select-none leading-6 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                获取验证码
+              </div>
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="register-phone-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              注 册
+            </button>
+          </div>
+        </form>
+        <!--end register-mail 邮箱+验证+密码注册 -->
+        <form name="register-oauth" class="hidden">
+          <div>第三方授权登录无需注册</div>
+        </form>
+
+        <div id="register-message"></div>
+      </div>
+      <div class="bg-white p-4 rounded shadow grow">
+        <h2 class="font-bold text-gray-900 mb-4">登录</h2>
+        <!--start 登录 login-account 账号+密码 -->
+        <form
+          name="login-account"
+          class="space-y-6 w-80"
+          action="/api/account/login"
+          method="POST"
+        >
+          <div>
+            <label
+              for="account"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >账号</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-account"
+                name="account"
+                type="text"
+                autocomplete="off"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-account-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              登 录
+            </button>
+          </div>
+        </form>
+        <!--end 登录 login-account 账号+密码 -->
+
+        <!--start 登录 login-mail 邮箱+密码 -->
+        <form
+          name="login-mail"
+          class="space-y-6 w-80 hidden"
+          action="/api/mail/login"
+          method="POST"
+        >
+          <div>
+            <label
+              for="mail"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >邮箱</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-mail"
+                name="mail"
+                type="mail"
+                autocomplete="mail"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-mail-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              登 录
+            </button>
+          </div>
+        </form>
+        <!--end 登录 login-mail 邮箱+密码 -->
+
+        <!--start 登录 login-phone 手机号+密码 -->
+        <form
+          name="login-phone"
+          class="space-y-6 w-80 hidden"
+          action="/api/phone/login"
+          method="POST"
+        >
+          <div>
+            <label
+              for="phone"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >手机号</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-phone"
+                name="phone"
+                type="phone"
+                autocomplete="phone"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >密码</label
+            >
+            <div class="mt-2">
+              <input
+                id="login-phone-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full rounded border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              登 录
+            </button>
+          </div>
+        </form>
+        <!--end 登录 login-phone 手机号+密码 -->
+
+        <!--start 登录 login-github 第三方授权登录 -->
+        <form id="login-oauth" class="hidden">
+          <div>
+            <div>页面跳转第三方应用授权页面</div>
+            <div>适用于授权接口不提供跨域访问的认证，如 gitee / github 等</div>
+            <div>
+              需要新开窗口跳转到定制的授权页面，这种情况下授权成功后需要重定向web页面把登录状态返回
+            </div>
+            <ul class="flex justify-center">
+              <li
+                class="cursor-pointer p-4 border border-solid rounded border-transparen hover:border-gray-400"
+              >
+                <a
+                  href="https://gitee.com/oauth/authorize?client_id=150be2cc0fe88fa75e2eca6d3aa292a87d867a6b7c7c4c61fde958fb66295e4d&redirect_uri=http://localhost:8080/api/oauth/redirect/gitee&response_type=code"
+                  target="_blank"
+                >
+                  <span>gitee</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div>接口直接调用</div>
+            <span
+              >适用于提供跨域接口可以通过js直接访问，不需要跳转页面授权，比如微信网页授权的接口</span
+            >
+            <button
+              id="oauth-btn"
+              class="flex w-40 justify-center rounded bg-indigo-600 mt-4 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              api 调用授权登录
+            </button>
+          </div>
+        </form>
+
+        <div id="login-message"></div>
+      </div>
+      <div class="bg-white p-4 rounded shadow grow w-80">
+        <button
+          id="request-users-btn"
+          class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          显示用户列表
+        </button>
+        <ul id="user-list"></ul>
+      </div>
+    </main>
+    <footer
+      class="bg-neutral-200 text-xs text-gray-400 h-[90px] flex items-center justify-center"
+    >
+      <div class="text-center leading-loose">
+        <p>2023-present&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp©xut</p>
+        <p>常见的登录验证方式：账号+密码、邮箱验证、手机号验证、第三方登录</p>
+      </div>
+    </footer>
+  </body>
+  <script src="/static/js/nav.js"></script>
+  <script src="/static/js/ajax.js"></script>
+</html>

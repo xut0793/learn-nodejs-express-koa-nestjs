@@ -25,7 +25,7 @@
     {
       "name": "debugger Koa",
       "request": "launch",
-      "runtimeArgs": ["run-script", "dev"],
+      "runtimeArgs": ["run-script", "dev:pwd"],
       "runtimeExecutable": "pnpm",
       "cwd": "${workspaceFolder}/packages/koa",
       "skipFiles": ["<node_internals>/**"],

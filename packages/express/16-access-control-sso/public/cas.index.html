@@ -1,0 +1,79 @@
+<!--
+ * @Date         : 2024-03-07 16:48:31 星期4
+ * @Author       : xut
+ * @Description  : [MDN CORS 简单请求](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82)
+ * 关键点：
+ * 浏览器页面能显示重定向子服务的页面的关键在于，表单登录页面提交表单必须保持 HTTP “简单请求”，不然重定向会触发 CORS 跨域访问限制，导致发起预检请求 option 报错，所以表单提交页面可选方式：
+ * - 使用 web form 表单默认提交行为，即按钮（type=submit)触发表单自动提交，不用自己定义 script 中的脚本。
+ * - 如果需要使用 js 代码提交表单，则 Post 方式中，设置 Content-Type=application/x-www-form-urlencoded，并且不能阻止表单的默认页面跳转行为 evt.preventDefault() 
+-->
+<h1>单点登录，认证中心服务 CAS</h1>
+
+<form name="login-cas" method="POST">
+  <h2>一处登录，全部登录</h2>
+  <label for="username">
+    <span>账号</span>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      autocomplete="off"
+      required
+    />
+  </label>
+  <label for="password">
+    <span>密码</span>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      required
+    />
+  </label>
+
+  <div style="margin-top: 20px">
+    <button type="submit">登 录</button>
+  </div>
+  <div id="login-message"></div>
+</form>
+
+<script>
+  const loginForm = document.forms["login-cas"]
+  const loginMessageEl = document.querySelector("#login-message")
+  loginForm.addEventListener("submit", (evt) => {
+    // 这里手动提交，不能增加 evt.preventDefault() ，就是要复用表单提交后跳转新窗口，才能显示服务端重定向的 a 应用页面
+    // evt.preventDefault()
+
+    const formData = new FormData(loginForm)
+    let data = ""
+
+    const url = new URL(location.href)
+    let service = url.searchParams.get("service")
+
+    if (service) {
+      data += `service=${service}&`
+    }
+
+    for (const [k, v] of formData.entries()) {
+      data += `${k}=${v}&`
+    }
+
+    data = data.slice(0, -1)
+
+    fetch(loginForm.action, {
+      method: loginForm.method.toUpperCase(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        loginMessageEl.textContent = JSON.stringify(data)
+      })
+      .catch((err) => {
+        loginMessageEl.textContent = JSON.stringify(err)
+      })
+  })
+</script>
