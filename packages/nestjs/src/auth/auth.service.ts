@@ -1,6 +1,11 @@
+/*
+ * @Date         : 2024-03-17 12:20:40 星期0
+ * @Author       : xut
+ * @Description  :
+ */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserService } from 'src/user/user.service';
+import { User, UserService } from '../user/user.service';
 
 export type SafeUser = Omit<User, 'password'>;
 

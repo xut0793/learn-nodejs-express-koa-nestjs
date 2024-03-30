@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSE</title>
+  </head>
+  <body>
+    <h1>Event Source</h1>
+
+    <ul id="global-msg"></ul>
+
+    <button id="start-interval">连接定时流</button>
+    <button id="start-emit">连接事件触发推送</button>
+    <button id="emit">触发事件</button>
+    <button id="stop">全部停止</button>
+
+    <h1>接收来自服务端的消息</h1>
+    <ul id="received-msg"></ul>
+
+    <script src="/static/js/event-source.js"></script>
+  </body>
+</html>

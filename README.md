@@ -172,6 +172,13 @@
       - [ ] 集成 Casbin
         - [ ] 客户端 casbin.js
         - [x] 服务端 node-casbin / nest-authz 使用
+- [x] 定时任务 cron jobs
+- [x] SSE server-send event
+- [ ] Websocket
+- [ ] GraphQL
+- [ ] 微服务 microservices
+  - [ ] Request-response 请求响应模式 @MessagePattern： gRPC
+  - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ
 - [ ] 安全 security
   - [ ] helmet 安全头字段
     - [ ] xss 跨站脚本攻击
@@ -180,13 +187,6 @@
   - [ ] cors 跨域
   - [ ] limit 限速
   - [ ] gzip 压缩
-- [ ] 定时任务 crontab
-- [ ] SSE server-send event
-- [ ] Websocket
-- [ ] GraphQL
-- [ ] 微服务 microservices
-  - [ ] Request-response 请求响应模式 @MessagePattern： gRPC
-  - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ
 
 ## node 深入
 

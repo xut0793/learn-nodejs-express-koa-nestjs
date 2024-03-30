@@ -17,7 +17,7 @@ import { envConfigValidate } from './common/config/env.validation';
 import { ErrorCaseModule } from './error-case/error-case.module';
 import { LogCaseModule } from './log-case/log-case.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
+// import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
 import { TestCaseModule } from './test-case/test-case.module';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import { AllExceptionFilter } from './common/filter/all-exception.filter';
@@ -25,6 +25,7 @@ import { PrismaModule } from './prisma-case/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { AuthZModule } from 'nest-authz';
+import { SseModule } from './sse-case/sse.module';
 
 @Global()
 @Module({
@@ -57,6 +58,7 @@ import { AuthZModule } from 'nest-authz';
         return req.user && req.user.uid;
       },
     }),
+    SseModule,
   ],
   controllers: [AppController],
   providers: [
@@ -67,10 +69,11 @@ import { AuthZModule } from 'nest-authz';
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: LoggerInterceptor,
-    },
+    // 与 @Sse 冲突，会报错 ERR: Cannot set headers after they are sent to the client
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: LoggerInterceptor,
+    // },
     {
       provide: APP_FILTER,
       useClass: AllExceptionFilter,

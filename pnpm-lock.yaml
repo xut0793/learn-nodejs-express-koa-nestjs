@@ -8,6 +8,7 @@ importers:
       '@prisma/client': ^5.9.0
       casbin: ^5.28.0
       cors: ^2.8.5
+      cron: ^3.1.6
       cross-env: ^7.0.3
       dayjs: ^1.11.10
       dotenv: ^16.3.1
@@ -39,6 +40,7 @@ importers:
       '@prisma/client': 5.9.0_prisma@5.9.0
       casbin: 5.28.0
       cors: 2.8.5
+      cron: 3.1.6
       dayjs: 1.11.10
       dotenv: 16.3.1
       dotenv-expand: 10.0.0
@@ -102,6 +104,7 @@ importers:
       '@nestjs/common': ^10.0.0
       '@nestjs/config': ^3.1.1
       '@nestjs/core': ^10.0.0
+      '@nestjs/event-emitter': ^2.0.4
       '@nestjs/jwt': ^10.2.0
       '@nestjs/mapped-types': '*'
       '@nestjs/passport': ^10.0.3
@@ -143,6 +146,7 @@ importers:
       '@nestjs/common': 10.3.0_rcbhqa4so6dtcde4mhxkgzk6je
       '@nestjs/config': 3.1.1_galj44mg52lxsifypqnqsf3lmu
       '@nestjs/core': 10.3.0_ti5phmpc6dupjzhqk2m4uyikty
+      '@nestjs/event-emitter': 2.0.4_3rapiyhwjmezpbsl5hhpinbhca
       '@nestjs/jwt': 10.2.0_@nestjs+common@10.3.0
       '@nestjs/mapped-types': 2.0.4_galj44mg52lxsifypqnqsf3lmu
       '@nestjs/passport': 10.0.3_@nestjs+common@10.3.0
@@ -1208,6 +1212,17 @@ packages:
     transitivePeerDependencies:
       - encoding
 
+  /@nestjs/event-emitter/2.0.4_3rapiyhwjmezpbsl5hhpinbhca:
+    resolution: {integrity: sha512-quMiw8yOwoSul0pp3mOonGz8EyXWHSBTqBy8B0TbYYgpnG1Ix2wGUnuTksLWaaBiiOTDhciaZ41Y5fJZsSJE1Q==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      '@nestjs/core': ^8.0.0 || ^9.0.0 || ^10.0.0
+    dependencies:
+      '@nestjs/common': 10.3.0_rcbhqa4so6dtcde4mhxkgzk6je
+      '@nestjs/core': 10.3.0_ti5phmpc6dupjzhqk2m4uyikty
+      eventemitter2: 6.4.9
+    dev: false
+
   /@nestjs/jwt/10.2.0_@nestjs+common@10.3.0:
     resolution: {integrity: sha512-x8cG90SURkEiLOehNaN2aRlotxT0KZESUliOPKKnjWiyJOcWurkF3w345WOX0P4MgFzUjGoZ1Sy0aZnxeihT0g==}
     peerDependencies:
@@ -1826,6 +1841,10 @@ packages:
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
       '@types/node': 20.10.5
+    dev: false
+
+  /@types/luxon/3.3.8:
+    resolution: {integrity: sha512-jYvz8UMLDgy3a5SkGJne8H7VA7zPV2Lwohjx0V8V31+SqAjNmurWMkk9cQhfvlcnXWudBpK9xPM1n4rljOcHYQ==}
     dev: false
 
   /@types/methods/1.1.4:
@@ -3070,6 +3089,13 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
+  /cron/3.1.6:
+    resolution: {integrity: sha512-cvFiQCeVzsA+QPM6fhjBtlKGij7tLLISnTSvFxVdnFGLdz+ZdXN37kNe0i2gefmdD17XuZA6n2uPVwzl4FxW/w==}
+    dependencies:
+      '@types/luxon': 3.3.8
+      luxon: 3.4.4
+    dev: false
+
   /cross-env/7.0.3:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
     engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
@@ -3534,6 +3560,10 @@ packages:
   /etag/1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  /eventemitter2/6.4.9:
+    resolution: {integrity: sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==}
+    dev: false
 
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
@@ -5545,6 +5575,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /luxon/3.4.4:
+    resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /macos-release/2.5.1:
     resolution: {integrity: sha512-DXqXhEM7gW59OjZO8NIjBCz9AQ1BEMrfiOAl4AYByHCtVHRF4KoGNO8mqQeM8lRCtQe/UnJ4imO/d2HdkKsd+A==}
