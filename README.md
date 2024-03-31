@@ -174,10 +174,10 @@
         - [x] 服务端 node-casbin / nest-authz 使用
 - [x] 定时任务 cron jobs
 - [x] SSE server-send event
-- [ ] Websocket
+- [x] Websocket
 - [ ] GraphQL
 - [ ] 微服务 microservices
-  - [ ] Request-response 请求响应模式 @MessagePattern： gRPC
+  - [ ] Request-response 请求响应模式 @MessagePattern： gRPC protobuff
   - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ
 - [ ] 安全 security
   - [ ] helmet 安全头字段

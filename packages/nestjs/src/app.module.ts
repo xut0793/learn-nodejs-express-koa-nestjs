@@ -26,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { AuthZModule } from 'nest-authz';
 import { SseModule } from './sse-case/sse.module';
+import { WsCaseModule } from './ws-case/ws-case.module';
 
 @Global()
 @Module({
@@ -59,6 +60,7 @@ import { SseModule } from './sse-case/sse.module';
       },
     }),
     SseModule,
+    WsCaseModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,0 +1,39 @@
+<!--
+ * @Date         : 2024-03-31 18:34:31 星期0
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket</title>
+  </head>
+  <body>
+    <h1>WebSocket</h1>
+
+    <button id="connect">连接</button>
+    <button id="stop">停止</button>
+    <button id="emit">推送</button>
+    <button id="login">登录</button>
+    <button id="logout">登出</button>
+
+    <section>
+      <input id="input" type="textarea" row="4" />
+      <label for="event-select">Choose a pet:</label>
+      <select name="event-select" id="event-select">
+        <option value="message">message</option>
+        <option value="WebSocketServer">WebSocketServer</option>
+        <option value="params_client">params_client</option>
+        <option value="browser_client">browser_client</option>
+      </select>
+      <button id="send">发送</button>
+    </section>
+
+    <h1>接收来自服务端的消息</h1>
+    <ul id="received-msg"></ul>
+
+    <script src="/static/js/websocket.js"></script>
+  </body>
+</html>

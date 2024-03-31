@@ -14,6 +14,7 @@ import { AppModule } from './app.module';
 import { WinstonModule } from 'nest-winston';
 import { winstonLogger } from './common/utils/winston-logger';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -66,6 +67,11 @@ async function bootstrap() {
   app.useStaticAssets(resolve(process.cwd(), 'public'), {
     prefix: '/static/',
   });
+
+  /**
+   * 注册 websocket
+   */
+  app.useWebSocketAdapter(new WsAdapter(app));
 
   await app.listen(9003);
   console.log(`🚀 Server running at http://localhost:9003`);
