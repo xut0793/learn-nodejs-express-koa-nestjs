@@ -175,7 +175,7 @@
 - [x] 定时任务 cron jobs
 - [x] SSE server-send event
 - [x] Websocket
-- [ ] GraphQL
+- [x] GraphQL
 - [ ] 微服务 microservices
   - [ ] Request-response 请求响应模式 @MessagePattern： gRPC protobuff
   - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ

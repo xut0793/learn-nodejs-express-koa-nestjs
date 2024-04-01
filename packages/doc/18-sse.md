@@ -1098,3 +1098,7 @@ export class SseService {
   }
 }
 ```
+
+## 参考链接
+
+[server send event 规范](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events)

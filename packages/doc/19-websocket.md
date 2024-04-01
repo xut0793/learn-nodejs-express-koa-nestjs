@@ -19,7 +19,7 @@ WebSocket 为 C/S 架构的客户端和服务端提供了实时交互通信的�
 
 于是 websocket 便诞生了，它不仅节省资源和带宽，更是能实现长连接作用，只需客户端主动与服务端握手一次，即可进行实时通信，实现推送技术。
 
-WebSocket 在2008年被提出，其通信协议于2011被制定为标准。[websocket RFC6455][https://datatracker.ietf.org/doc/html/rfc6455]
+WebSocket 在2008年被提出，其通信协议于2011被制定为标准。[websocket RFC6455][https://datatracker.ietf.org/doc/html/rfc6455]，[websocket 协议规范中文](https://websocket.xiniushu.com/)
 
 ## How
 
@@ -823,3 +823,15 @@ export class UserController {
   }
 }
 ```
+
+## 参考链接
+
+[websocket 协议规范](https://websockets.spec.whatwg.org/#the-websocket-interface)
+[websocket 协议规范中文](https://websocket.xiniushu.com/)
+[ws](https://github.com/websockets/ws/blob/HEAD/doc/ws.md)
+[Socket.IO](https://socket.io/zh-CN/)
+[CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
+[verifyClient 的方式已不被推荐，讨论见 issue#337](https://github.com/websockets/ws/issues/377#issuecomment-462152231)
+[学习WebSocket协议—从顶层到底层的实现原理（修订版）](https://github.com/abbshr/abbshr.github.io/issues/22)
+[WebSocket原理及简单实现](https://github.com/DAC-hahaha/Frontend-LT/issues/13)
+[MDN 编写 WebSocket 服务器](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSockets_API/Writing_WebSocket_servers)
