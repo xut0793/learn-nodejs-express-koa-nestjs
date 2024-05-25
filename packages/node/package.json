@@ -13,6 +13,9 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.10.7",
+    "@grpc/proto-loader": "^0.7.13",
+    "grpc-tools": "^1.12.4",
     "path-to-regexp": "^6.2.1"
   }
 }

@@ -1,0 +1,41 @@
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORS</title>
+  </head>
+  <body>
+    <h1>CORS 跨域请求示例</h1>
+    <p>当前域：http://localhost:9001</p>
+    <p>资源请求的域：http://locahost:9002</p>
+    <hr />
+    <h2>情景一：前端什么都不做，服务端也什么都不做，浏览器报错 CORS</h2>
+    <button id="send-xhr-nothing">xhr 请求</button>
+    <button id="send-fetch-nothing">fetch 请求</button>
+
+    <hr />
+    <h2>情景二：简单请求</h2>
+    <button id="send-xhr-simple">xhr 请求: simple</button>
+    <button id="send-fetch-simple">fetch 请求: simple</button>
+
+    <hr />
+    <h2>情景三：设置 CORS: Access-Control-Allow-Origin="*"</h2>
+    <button id="send-xhr-allow">xhr 请求: allow</button>
+    <button id="send-fetch-allow">fetch 请求: allow</button>
+
+    <hr />
+    <h2>情景四：触发预检请求 preflight option</h2>
+    <button id="send-xhr-preflight">xhr 请求: preflight</button>
+    <button id="send-fetch-preflight">fetch 请求: preflight</button>
+    <hr />
+    <h2>情景五：携带认证凭证的跨域请求 credentials</h2>
+    <button id="cookie">设置 cookie</button>
+    <button id="send-xhr-withCredentials">xhr 请求: withCredentials</button>
+    <button id="send-fetch-credentials">fetch 请求: credentials</button>
+
+    <hr />
+    <h2>情景六：jsonp 跨域</h2>
+    <button id="jsonp">JSONP</button>
+  </body>
+  <script src="/static/js/ajax.js"></script>
+</html>

@@ -233,5 +233,4 @@ DEBUG日志和INFO日志的一个重要的区别是，INFO日志用于记录常�
 
 ## 深入内容
 
-- ELK Stack (ElasticSearch, LogStash, Kibana ) 技术栈接入
-- 日志监控系统，比如日志的可视化、发送告警消息（邮件、短信、钉钉）等。
+- ELK Stack (ElasticSearch, LogStash, Kibana ) 技术栈接入，实现日志监控系统，可以对日志进行可视化、发送告警消息（邮件、短信、钉钉）等。

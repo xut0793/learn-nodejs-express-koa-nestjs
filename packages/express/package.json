@@ -9,7 +9,8 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./19-websocket/index.js"
+    "dev:client": "nodemon ./22-security-cors/client.js",
+    "dev:server": "nodemon ./22-security-cors/server.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

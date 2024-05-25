@@ -11,13 +11,14 @@
 - 脚手架
 - [ ] cli
 - [ ] repl
-- [ ] readline
-- [ ] console
+- [ ] corepack
 - [ ] module
   - [ ] commonjs
   - [ ] es module
   - [ ] package
-- [ ] corepack
+- IO
+- [ ] readline
+- [ ] console
 - 全局
 - [ ] global
 - [ ] os
@@ -114,7 +115,10 @@
 - [x] 静态资源服务
 - [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
 - [x] 错误处理 error http-errors
-- [x] 日志 log winston
+  - [x] 错误介绍和捕获
+- [x] 日志 log
+  - [x] 日志介绍
+  - [x] 日志集成 winston
 - [x] 调试 debugger
 - [x] 测试 test
 - [x] 文档 swagger openapi
@@ -176,19 +180,36 @@
 - [x] SSE server-send event
 - [x] Websocket
 - [x] GraphQL
-- [ ] 微服务 microservices
-  - [ ] Request-response 请求响应模式 @MessagePattern： gRPC protobuff
-  - [ ] Event-based 基于事件模式 @EventPattern：Redis MQTT NATS Kafka RabbitMQ
-- [ ] 安全 security
-  - [ ] helmet 安全头字段
-    - [ ] xss 跨站脚本攻击
-    - [ ] csrf 跨站请求伪造
-  - [ ] crypto 加密
-  - [ ] cors 跨域
-  - [ ] limit 限速
-  - [ ] gzip 压缩
+- [x] 微服务 microservices
+  - [x] 微服务架构
+  - [x] RPC: Remote Procedure Call
+  - [x] Protocol Buffer: proto 规范
+  - [x] gRPC node 实践
+  - [x] gRPC nestjs 实践
+- [x] 安全 security
+  - [x] xss 跨站脚本攻击
+  - [x] csrf 跨站请求伪造
+  - [x] interface hijacking 界面劫持
+  - [x] helmet 是一些较小的中间件函数的集合，设置一些与安全有关的 HTTP 标头来保护应用 XSS/csrf/hijacking 漏洞的侵害
+  - [x] cors 跨域资源共享
+  - [x] rate limit 限流保护后端API免受恶意攻击，通过限制入站流量保证就行安全和稳定。比如 express-rate-limit 和 @nestjs/throttler 包
+- [ ] 构建 build
+- [ ] 部署 deploy
+  - [ ] pm2
+  - [ ] docker
+  - [ ] nginx 负载均衡
+  - [ ] cluster 应用集群
+- [ ] 发布 release
+  - [ ] 灰度发布
+  - [ ] 健康检查 health check
+- [ ] 运维 operation
+  - [ ] 优雅启动 graceful start
+  - [ ] 优雅退出 graceful exit
+  - [ ] 应用性能监控 APM (Application Performance Management)
+  - [ ] 错误监控和预警 sentry
+  - [ ] 日志监控 ELK (ElasticSearch / LogStash / Kibana)
 
-## node 深入
+## node 原理
 
 - node 架构
 - node 事件循环
