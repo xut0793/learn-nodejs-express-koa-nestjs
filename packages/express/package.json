@@ -9,10 +9,10 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev:client": "nodemon ./22-security-cors/client.js",
-    "dev:server": "nodemon ./22-security-cors/server.js"
+    "dev": "node ./25-health-check/index.js"
   },
   "dependencies": {
+    "@godaddy/terminus": "^4.12.1",
     "cookie-parser": "^1.4.6",
     "express-async-errors": "^3.1.1",
     "express-session": "^1.18.0",

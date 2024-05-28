@@ -8,6 +8,7 @@
   "author": "xut0793",
   "license": "ISC",
   "type": "module",
+  "packageManager": "pnpm@6.14.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json ./19-websocket/http-ws.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"

@@ -9,13 +9,13 @@
 ## 内置模块
 
 - 脚手架
-- [ ] cli
-- [ ] repl
-- [ ] corepack
+- [x] cli
+- [x] repl
+- [x] corepack
 - [ ] module
+  - [ ] package.json
   - [ ] commonjs
   - [ ] es module
-  - [ ] package
 - IO
 - [ ] readline
 - [ ] console
@@ -194,32 +194,33 @@
   - [x] cors 跨域资源共享
   - [x] rate limit 限流保护后端API免受恶意攻击，通过限制入站流量保证就行安全和稳定。比如 express-rate-limit 和 @nestjs/throttler 包
 - [ ] 构建 build
+  - [x] 正常构建
+  - [ ] 镜像构建
 - [ ] 部署 deploy
-  - [ ] pm2
+  - [x] pm2
   - [ ] docker
-  - [ ] nginx 负载均衡
-  - [ ] cluster 应用集群
 - [ ] 发布 release
-  - [ ] 灰度发布
-  - [ ] 健康检查 health check
+  - [x] graceful start 优雅启动
+  - [x] graceful exit 优雅退出
+  - [ ] nginx 负载均衡
+  - [x] release policy 发布策略 金丝雀发布 灰度发布 蓝绿发布 AB Testing 功能开关
+  - [x] health check 健康检查
 - [ ] 运维 operation
-  - [ ] 优雅启动 graceful start
-  - [ ] 优雅退出 graceful exit
-  - [ ] 应用性能监控 APM (Application Performance Management)
+  - [ ] 内存泄漏
   - [ ] 错误监控和预警 sentry
   - [ ] 日志监控 ELK (ElasticSearch / LogStash / Kibana)
+  - [ ] 应用性能监控 APM (Application Performance Management)
 
 ## node 原理
 
 - node 架构
 - node 事件循环
 - node 异步编程
-- 工程运维：性能监控、弹性扩容、日志分析、负载均衡、缓存、docker/k8s
 
 ## 入门后端学习
 
 - 数据库设计（可扩展、高性能），SQL 语言（不要因为有 orm 就不学 sql）
-- 基础组件（注意这里说的不是前端的组件）的应用和原理，比如 MySQL、Redis、Kafka 等
+- 基础组件（注意这里说的不是前端的组件）的应用和原理，比如 Nginx、Docker、MySQL、Redis、Kafka 等
 - 服务运维意识和手段的培养（监控、报警、日志、流量治理等）
 - 架构设计（微服务架构、分布式架构、分布式事务、高可用高性能设计等）
 - 算法&数据结构（后端开发可能不会直接手写算法，但要了解这些算法和数据结构，比如 LRU、LFU、LSM-Tree、RingBuffer）
