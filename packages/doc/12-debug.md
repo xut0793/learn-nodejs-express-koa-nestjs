@@ -107,10 +107,10 @@ node --inspec-brkt=[host:port] index.js     # 自定义监听的主机和端口
 
 此时 Node 已经开启了调试模式，监听调试端口的信号。我们有以下几种方式来打开一个 `DevTools` 调试器终端。
 
-- 打开 Chrome 浏览器，输入 `chrome://inspect/#devices` 地址后回车，弹出的页面中点击显示远程目标（remote target) 下的 inspect 文字按钮。（首次使用时需要勾选 Discover network targets ，然后点击 Configure 设置地址和端口，添加默认使用的 9229 端口，然后点击完成），切换到 sources 面板，首次时需要点击 `+ Add folder to workspace` 授权浏览器读取本地文件，将调试文件加载进来。
+- 打开 Chrome 浏览器，输入 `chrome://inspect/#devices` 地址后回车，弹出的页面中点击显示远程目标（remote target） 下的 inspect 文字按钮。（首次使用时需要勾选 Discover network targets ，然后点击 Configure 设置地址和端口，添加默认使用的 9229 端口，然后点击完成），切换到 sources 面板，首次时需要点击 `+ Add folder to workspace` 授权浏览器读取本地文件，将调试文件加载进来。
 - 打开 Chrome 浏览器，f12 打开 `Chrome DevToo` 控制台，看到一个 NODE 图标，点击打开对接 node 调试器的调试容器。
 
-### 已运行的 node 程序附加调试
+### 已运行的 node 程序附加调试 process.\_debugProcess
 
 如果 Node.js 程序在启动的时候没有带 `--inspect / --inspect-brk` 参数，默认情况下 Node.js 的 Debugger 模块是不会启动的，这种情况下并非就不能调试了，我们可以手动来启动调试模块：
 

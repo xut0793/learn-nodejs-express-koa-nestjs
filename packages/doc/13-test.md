@@ -538,3 +538,106 @@ module.exports = {
   watchman: true,
 }
 ```
+
+## 接口压力测试
+
+可用工具库 [autocannon](https://github.com/mcollina/autocannon#readme)
+
+## 命令行请求库 curl
+
+curl 是常用的命令行工具，用来请求 Web 服务器的接口。它的名字就是命令行（commandline）的 URL 工具的意思，它非常强大，拥有很多参数，能够实现各种功能，可以这么说，postman 能做到的，curl也能做到。
+
+这个一般操作系统都会自带，比如 window 系统中，打开 cmd 或者 gitbash 中，输入 `curl --version` 查看是否已安装。
+
+基本格式：
+
+```sh
+curl [options] [URL...]
+```
+
+其中，options是一系列选项，用于配置curl的行为，URL是目标资源的地址。
+
+常见的选项包括：
+
+> 引用 [curl命令详解](https://www.cnblogs.com/aftree/p/9293071.html)
+
+```sh
+# 在以下选项中，(H) 表示仅适用 HTTP/HTTPS ，(F) 表示仅适用于 FTP
+
+# 调试类
+-v, --verbose                          输出信息
+-q, --disable                          在第一个参数位置设置后 .curlrc 的设置直接失效，这个参数会影响到 -K, --config -A, --user-agent -e, --referer
+-K, --config FILE                      指定配置文件
+-L, --location                         跟踪重定向 (H)
+
+# CLI显示设置
+-s, --silent                           Silent模式。不输出任务内容
+-S, --show-error                       显示错误. 在选项 -s 中，当 curl 出现错误时将显示
+-f, --fail                             不显示 连接失败时HTTP错误信息
+-i, --include                          显示 response的header (H/F)
+-I, --head                             仅显示 响应文档头
+-l, --list-only                        只列出FTP目录的名称 (F)
+-#, --progress-bar                     以进度条 显示传输进度
+
+# 数据传输类
+-X, --request [GET|POST|PUT|DELETE|…]  设定的请求方法，默认 GET， 例如 -X POST
+-H, --header <header>                  设定请求头字段， 例如 -H "Content-Type: application/json"
+-e, --referer                          设定请求引用源 referer (H)
+-d, --data <data>                      添加请求体数据，默认使用 content-type application/x-www-form-urlencoded (H)
+    --data-raw <data>                  ASCII 编码 HTTP POST 数据 (H)
+    --data-binary <data>               binary 编码 HTTP POST 数据 (H)
+    --data-urlencode <data>            url 编码 HTTP POST 数据 (H)
+-G, --get                              使用 HTTP GET 方法发送 -d 数据 (H)
+-F, --form <name=string>               模拟 HTTP 表单数据提交 multipart POST (H)
+    --form-string <name=string>        模拟 HTTP 表单数据提交 (H)
+-u, --user <user:password>             使用帐户，密码 例如 admin:password
+-b, --cookie <data>                    cookie 文件 (H)
+-j, --junk-session-cookies             读取文件中但忽略会话cookie (H)
+-A, --user-agent                       user-agent设置 (H)
+
+# 传输设置
+-C, --continue-at OFFSET               断点续转
+-x, --proxy [PROTOCOL://]HOST[:PORT]   在指定的端口上使用代理
+-U, --proxy-user USER[:PASSWORD]       代理用户名及密码
+
+# 文件操作
+-T, --upload-file <file>               上传文件
+-a, --append                           添加要上传的文件 (F/SFTP)
+
+# 输出设置
+-o, --output <file>                    将输出写入文件，而非 stdout
+-O, --remote-name                      将输出写入远程文件
+-D, --dump-header <file>               将头信息写入指定的文件
+-c, --cookie-jar <file>                操作结束后，要写入 Cookies 的文件位置
+```
+
+常见示例：
+
+```sh
+# GET 请求
+curl http://www.yahoo.com/login.cgi?user=nickname&password=12345
+
+# POST 请求
+curl -X POST -d "user=nickname&password=12345" http://www.yahoo.com/login.cgi
+
+# 发送表单数据
+curl -F "pic=@logo.png" -F "site=aiezu"  http://aiezu.com/
+
+# 设置请求头
+curl -H "Cache-Control:no-cache"  http://aiezu.com
+
+# 发送 cookie
+curl -b "domain=aiezu.com"  http://aiezu.com
+
+# 使用 cookie 文件
+curl -b cookie001.txt  http://aiezu.com
+
+# 模拟浏览器请求
+#告诉爱E族，我是GOOGLE爬虫蜘蛛（其实我是curl命令）
+curl -A " Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" http://aiezu.com
+
+# 伪造请求来源，
+#告诉爱E族，我是从百度来的
+curl -e http://baidu.com http://aiezu.com
+
+```

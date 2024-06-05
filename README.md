@@ -116,11 +116,16 @@
 - [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
 - [x] 错误处理 error http-errors
   - [x] 错误介绍和捕获
+  - [ ] 错误监控和预警 sentry
 - [x] 日志 log
   - [x] 日志介绍
   - [x] 日志集成 winston
+  - [x] 日志监控 ELK (ElasticSearch / LogStash / Kibana)
 - [x] 调试 debugger
 - [x] 测试 test
+  - [x] 单元测试 jest
+  - [x] 接口测试 cURL
+  - [x] 压测工具 autocannon
 - [x] 文档 swagger openapi
 - [ ] 数据持久化
   - [ ] mysql
@@ -206,10 +211,11 @@
   - [x] release policy 发布策略 金丝雀发布 灰度发布 蓝绿发布 AB Testing 功能开关
   - [x] health check 健康检查
 - [ ] 运维 operation
-  - [ ] 内存泄漏
-  - [ ] 错误监控和预警 sentry
-  - [ ] 日志监控 ELK (ElasticSearch / LogStash / Kibana)
+  - [x] 内存泄漏
+  - [ ] 火焰图查看
   - [ ] 应用性能监控 APM (Application Performance Management)
+    - [ ] Grafana + Prometheus
+    - [ ] alinode
 
 ## node 原理
 

@@ -9,7 +9,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "node ./25-health-check/index.js"
+    "dev": "node ./26-memory-leak/stress-testing.js"
   },
   "dependencies": {
     "@godaddy/terminus": "^4.12.1",

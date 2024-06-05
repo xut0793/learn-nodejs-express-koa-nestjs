@@ -1,10 +1,8 @@
 # 日志的认识
 
-[最佳日志实践（v2.0）](https://zhuanlan.zhihu.com/p/27363484)
-[大搜车 NodeJS 日志规范化与分析监控](https://juejin.cn/post/6844903439500050440)
-[Node 框架接入 ELK 实践总结](https://cloud.tencent.com/developer/article/1363118)
-
-服务端日志有点像前端的埋点数据
+- [最佳日志实践（v2.0）](https://zhuanlan.zhihu.com/p/27363484)
+- [大搜车 NodeJS 日志规范化与分析监控](https://juejin.cn/post/6844903439500050440)
+- [Node 框架接入 ELK 实践总结](https://cloud.tencent.com/developer/article/1363118)
 
 2WHD
 
@@ -14,7 +12,9 @@
 
 ## What 什么是日志
 
-日志是用来记录应用程序运行信息的，包括但不限于异常报错信息，性能统计信息等，持久化的形式可以是写入到硬盘的文本格式的日志文件，或者是存入数据库的日志记录。
+日志是用来记录应用程序运行信息的，包括但不限于异常报错信息，性能统计信息等。
+
+日志持久化的形式可以是写入到硬盘的文本格式的日志文件，或者是存入数据库的日志记录。
 
 > 日志就是程序的脉象，通过日志能及时了解程序的健康程度，对程序的各项指标能进行有效的量化诊断，优化和改进。
 
@@ -52,7 +52,7 @@
   - 异常堆栈信息
   - ......
 - 需要统计分析，及时发现性能瓶颈，异常告警等，称为统计日志，通常需要记录
-  - 用户访问情况：请求耗时
+  - 用户行为分析：访问行为、操作、请求耗时等
   - 资源消耗情况，比如磁盘占用，或网络流量消耗等
   - .......
 
@@ -216,9 +216,141 @@ DEBUG日志和INFO日志的一个重要的区别是，INFO日志用于记录常�
 - 做好日志同步和上传
   对接入了监控系统或其它日志分析系统的服务，需要做好日志的定时同步和上传，一般在凌晨，流量最小，对服务器压力较小。
 
+## console
+
+在代码开发阶段，通常使用 `console.log / console.error` 来打印记录。那当我们使用 console 的时候，发生了什么？
+
+`console.log` 实现类似于下面代码：
+
+```js
+Console.prototype.log = function () {
+  this._stdout.write(util.format.apply(this, arguments) + "\n")
+}
+```
+
+Console 对象的源码实现是调用了 process 对象的标准输出流对象 `process.stdout.write  / process.stderr.write`。
+
+> 程序的标准输入和输入流包括三个 IO 流：标准输入流 stdin、标准输出流 stdout、标准错误输出流 stderr。
+
+## 日志输出到文件
+
+要将数据写入文件，我们首先会想到 `fs.writeFile` 方法，但它的问题是每次写入都是重新写入，就是会覆盖之前写入数据。
+
+### fs.writeFile
+
+一种解决办法是每次读出之前的文件数据，再将新数据附加后，重新写入。
+
+```js
+const newLogMessage = `${Date.now()}: new Logs`
+
+fs.readFile("log.txt", { encoding: "utf8" }, (err, data) => {
+  const newData = data + newLogMessage + "\n"
+  fs.writeFile("log.txt", newData, "utf8", callback)
+})
+```
+
+这种方法会将文件数据先全部加载到内存中，然后再打开文件并写入数据，如果大文件的情况下，占用过多内存，甚至造成内存泄漏。
+
+### fs.appendFile
+
+此时，你可能会想到使用 `fs.appendFile()` 方法来直接追加文件内容。
+
+```js
+async function appendFile(path, data, options) {
+  options = getOptions(options, { encoding: "utf8", mode: 0o666, flag: "a" })
+  options = copyObject(options)
+  options.flag = options.flag || "a"
+  return writeFile(path, data, options)
+}
+
+async function writeFile(path, data, options) {
+  options = getOptions(options, {
+    encoding: "utf8",
+    mode: 0o666,
+    flag: "w",
+    flush: false,
+  })
+  const flag = options.flag || "w"
+  const flush = options.flush ?? false
+
+  validateBoolean(flush, "options.flush")
+
+  if (!isArrayBufferView(data) && !isCustomIterable(data)) {
+    validateStringAfterArrayBufferView(data, "data")
+    data = Buffer.from(data, options.encoding || "utf8")
+  }
+
+  validateAbortSignal(options.signal)
+  if (path instanceof FileHandle)
+    return writeFileHandle(path, data, options.signal, options.encoding)
+
+  checkAborted(options.signal)
+
+  // fd 即为文件句柄
+  const fd = await open(path, flag, options.mode)
+  let writeOp = writeFileHandle(fd, data, options.signal, options.encoding)
+
+  if (flush) {
+    writeOp = handleFdSync(writeOp, fd)
+  }
+
+  return handleFdClose(writeOp, fd.close)
+}
+```
+
+但是通过 appendFile 的源码可以知道，调用该方法，每次打开一个文件，需要缓存一个文件句柄（fd）。但是系统对同时打开的文件句柄的缓存数量是有限制的，如果在高并发的情况下会发生 EMFILE 错误，因为并发的大量 I/O 对文件系统进行大量并发调用，操作系统的文件描述符数量会瞬间用光。
+
+> [什么是文件句柄]()
+
+### fs.createWriteStream
+
+将数据追加到文件，最佳做法是使用流的方式追加数据。
+
+```js
+const log = fs.createWriteStream("log.txt", { flags: "a" })
+
+log.write("new log \n")
+
+log.end()
+```
+
+这样不会将文件数据加载到内存中，也不会在每次需要写入时，重新打开一个文件，缓存文件句柄，避免了 EMFILE 错误。
+
+## 日志切割方式 create / copytruncate
+
+在项目持续运行过程中，不可能一直将数据写入到同一个文件，不然这个文件会非常庞大。所以通常我们会划分日志类型存入不同的日志文件中，比如访问日志 access.log.txt，错误日志 error.log.txt 等，并且对同一个日志文件，也会定期进行备份、压缩或删除日志文件，防止磁盘空间的不合理使用。
+
+日志备份通常有两种模式：
+
+- create 新建模式：先把当前使用的日志文件重命名后存档，比如按约定的日志重命名等，然后再创建一个新的日志文件继续用于记录；大致步骤如下：
+  1. 重命名下在用的日志文件，只修改目录以及文件的名称，此时进程操作文件使用的 inode 不变，并不影响原程序继续输入日志。
+  2. 创建新的日志文件，虽然文件名一样，但此时新文件的 inode 编码不同，日志程序仍然使用原文件的 inode 写入日志。
+  3. 完成创建之后，系统会通知程序，重新打开日志文件。由于重新打开日志文件会用到文件路径而非 inode 编号，所以打开的是新的日志文件，也就是此时日志程序写入内容到新的日志文件了。
+- copytruncate 复制模式：一直使用当前的日志文件，每次滚动时将历史信息剪切到一个新的日志文件中（存档），使得当前的日志文件只保留最新的日志信息。通常来说，清空操作比较快，但如果日志文件太大，那么复制就会比较耗时，在这段时间内可以有新的日志内容添加进来，当复制完成后，清空原文件内容时，就会导致复制期间写入的日志内容丢失。
+
+这两种模式是互斥的，主要区别就是对当前日志的切换处理，第一种需要切换到新的日志文件继续写入，第二种一直在向同一个日志文件写入，因此不涉及切换日志的问题。
+
+- 性能方面，如果每天生成的日志非常大，那么肯定第一种性能更好，否则影响不大。
+- 可靠性方面，由于复制模式在实际操作时有丢失部分数据的风险，因此应优先使用默认的 create 模式。
+
+比如 pm2 的 logrotate 使用的是 copytruncate 模式，egg 的 logrotate 使用的 create 模式。
+
+## 个性化的终端输出
+
+可以使用特定的依赖包：
+
+- chalk 彩色输出，内部会通过 `process.stdout.isTTY` 来判断，只在终端上输出颜色，在写入文件时就不会添加颜色输出
+- processBar 进度条输出，原理是当前行输出后 `process.stdout.write(log)`，再清理掉当前行 `process.stdout.clearLine(1)`，控制光标在当前行 `process.stdout.cursorTo(0)`，然后重复。
+- blessed-contrib 命令行中输出图表
+- inquirer.js 命令行问答式交互
+- commander.js 命令行基础库
+- cfonts 命令行输出大 logo
+
+更多命令行工具可以参考 [awesome-nodejs#command-line-utilities](https://github.com/sindresorhus/awesome-nodejs#command-line-utilities)
+
 ## 日志集成
 
-选择一个合适的日志库，在 Node.js 生态系统中，有几个流行的选项可供选择。它们中的大多数都提供类似的功能，但它们也有各自的区别。因此，您必须亲自试用它们，看看哪一个最适合您：
+在实际项目开发中，通常会选择一个合适的日志库，在 Node.js 生态系统中，有几个流行的选项可供选择。它们中的大多数都提供类似的功能，但它们也有各自的区别。因此，您必须亲自试用它们，看看哪一个最适合您：
 
 - Winston：最流行的日志库，支持多种传输方式。这让你可以轻松配置自己喜欢的日志存储位置。
 - Pino：最大的吸引力在于它的速度和免配置。在许多情况下，它声称比其他产品快五倍。
@@ -231,6 +363,58 @@ DEBUG日志和INFO日志的一个重要的区别是，INFO日志用于记录常�
 [11-log-winston]('./11-log-winston.md')
 [11-log-integration]('./11-log-integration.md')
 
-## 深入内容
+## ELK
 
-- ELK Stack (ElasticSearch, LogStash, Kibana ) 技术栈接入，实现日志监控系统，可以对日志进行可视化、发送告警消息（邮件、短信、钉钉）等。
+ELK 是三个日志相关的开源项目的统称，是日志系统广泛使用技术栈组合，实现日志监控系统，可以对日志进行可视化、发送告警消息（邮件、短信、钉钉）等。
+
+- ElasticSearch 是一个搜索和分析引擎。
+- LogStash 是服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送特定的存储库中，比如配合 ElasticSearch。
+- Kibana 是一个图形可视化库，可以将 ElasticSearch 存储的数据使用图形或图表，进行可视化展示。
+
+基本流程是 LogStash 进行数据加工清冼处理，ElasticSearch 进行数据存储，Kibana 进行数据可视化。
+
+接入流程：
+
+1. 克隆这个仓库 [https://github.com/deviantony/docker-elk.git](https://github.com/deviantony/docker-elk.git)，里面已经配置好了 ELK 三个库相关的配置，并编写好了 docker-compose.yml。
+2. 在上述仓库根目录下，启动容器服务 `docker-compose up -d`
+3. 应用程序集成的日志库，配置将日志输出到 elk 服务中。比如下面 log4js 的配置。
+
+```js
+import express from "express";
+import log4js from "log4js";
+import * as homeController from "./controllers/home";
+
+const app = express();
+
+const PORT: number = app.get("port") || 3000;
+const ENV: string = app.get("env");
+
+log4js.configure({
+  appenders: {
+    console: { type: "console" },
+    // file: { type: "file", filename: "all-the-logs.log" },
+    // https://github.com/Aigent/log4js-logstash-tcp
+    elk_learn: {
+      type: "log4js-logstash-tcp",
+      host: "127.0.0.1",
+      port: 5000
+    }
+  },
+  categories: {
+    default: { appenders: ["elk_learn"], level: "debug" }
+  }
+});
+
+const logger = log4js.getLogger("default");
+logger.level = "debug";
+
+app.get("/index", homeController.index);
+
+const server = app.listen(PORT, () => {
+  logger.info("App is running at http://localhost:%d in %s mode", PORT, ENV);
+  logger.info("Press CTRL-C to stop\n");
+});
+
+export default server;
+
+```
