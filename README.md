@@ -9,16 +9,16 @@
 ## 内置模块
 
 - 脚手架
-- [x] cli
-- [x] repl
-- [x] corepack
-- [ ] module
-  - [ ] package.json
+- [x] cli 命令行
+- [x] repl Read-Eval-Print-Loop 交互式解释器
+- [x] corepack 统一包管理器
+- [ ] module 模块
+  - [ ] package.json 项目描述文件
   - [ ] commonjs
   - [ ] es module
-- IO
-- [ ] readline
-- [ ] console
+- I/O
+- [x] console 输出：打印到终端
+- [x] readline 输入：从终端逐行读取
 - 全局
 - [ ] global
 - [ ] os

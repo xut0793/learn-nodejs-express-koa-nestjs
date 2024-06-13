@@ -191,7 +191,7 @@ HTML5提供了 WebSocket 对象用于创建和管理 websocket 连接。
 
 - ws.url
 - ws.protocol
-- ws.readState：当前连接状态 0 CONNECTING / 1 OPEN / 2 CLOSING / 3 CLOSED。
+- ws.readyState：当前连接状态 0 CONNECTING / 1 OPEN / 2 CLOSING / 3 CLOSED。
 
 方法
 
