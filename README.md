@@ -6,7 +6,7 @@
 2. Why: 优势
 3. How: 应用
 
-## 内置模块
+## 内置模块 API
 
 - 脚手架
 - [x] cli 命令行
@@ -20,31 +20,40 @@
 - [x] console 输出：打印到终端
 - [x] readline 输入：从终端逐行读取
 - 全局
-- [ ] global
-- [ ] os
-- [ ] v8
-- [ ] vm
-- [ ] tty
+- [x] global/globalThis
+- [x] os 系统信息
+- [x] v8 内存堆栈信息、promise hook、数据序列化和反序列化
+- [x] vm 沙箱内执行代码字符、函数、模块
+- [x] tty 命令行终端输入和输出
 - 工具
-- [ ] util
-- [ ] zlib
-- [ ] crypto
-- [ ] crypto/webcrypto
-- [ ] timer
+- [x] util callbackify 和 promisify，格式化输出 format / inspect，解析 MIME type，数据编码和解码 TextEncoder / TextDecoder
+- [x] timer 定时器
+- [x] zlib 压缩和解压 gzip/gunzip, deflate/inflate, brotliCompress/brotliDecompress
+- [x] crypto 哈希、加密解密、签名验证
+- [x] web crypto 遵循 web crypto 接口设计
+- 事件
+- [x] events 事件触发器
+  - [x] EventEmitter
+  - [x] EventTarget
+- [x] diagnostis_channel 发布/订阅
+- 二进制和流
+- [ ] buffer
+- [ ] string_decoder 将 buffer 解码为字符串
+- [ ] TextEncoder / TextDecoder 将字符串与 buffer 之间互转
+- [ ] stream
+- [ ] stream/web
 - 文件和路径
 - [ ] fs
 - [ ] path
-- [ ] url
-- [ ] querystring
-- 事件
-- [ ] events
-- [ ] diagnostis_channel
-- 二进制和流
-- [ ] buffer
-- [ ] stream
-- [ ] stream/web
-- [ ] string_decoder
+- 进程和线程
+- [ ] process
+- [ ] child_process
+- [ ] cluster
+- [ ] worker_threads
+- [ ] async_hooks/context
 - 网络
+- [ ] url / URL
+- [ ] querystring / URLSearchParams
 - [ ] http
 - [ ] http2
 - [ ] https
@@ -52,12 +61,6 @@
 - [ ] net
 - [ ] dgram
 - [ ] dns
-- 进程和线程
-- [ ] process
-- [ ] child_process
-- [ ] cluster
-- [ ] worker_threads
-- [ ] async_hooks/context
 - 测试
 - [ ] test
 - [ ] assert
@@ -68,6 +71,7 @@
 - 性能和报告
 - [ ] perf_hooks
 - [ ] report
+- [ ] trace_events
 - 其它
 - [ ] intl
 - [ ] wasi
@@ -218,6 +222,8 @@
     - [ ] alinode
 
 ## node 原理
+
+> [Node.js 源码剖析](https://theanarkh.github.io/understand-nodejs)
 
 - node 架构
 - node 事件循环
