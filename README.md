@@ -37,9 +37,12 @@
   - [x] EventTarget
 - [x] diagnostis_channel 发布/订阅
 - 二进制和流
-- [ ] buffer
-- [ ] string_decoder 将 buffer 解码为字符串
-- [ ] TextEncoder / TextDecoder 将字符串与 buffer 之间互转
+- [x] buffer
+  - [x] ArrayBuffer / TypedArray / DataView
+  - [x] TextEncoder / TextDecoder 将字符串与 buffer 之间互转
+  - [x] string_decoder 将 buffer 解码为字符串，省略任何不完整的多字节
+  - [x] Blob
+  - [x] File
 - [ ] stream
 - [ ] stream/web
 - 文件和路径
@@ -48,9 +51,8 @@
 - 进程和线程
 - [ ] process
 - [ ] child_process
-- [ ] cluster
 - [ ] worker_threads
-- [ ] async_hooks/context
+- [ ] cluster
 - 网络
 - [ ] url / URL
 - [ ] querystring / URLSearchParams
@@ -72,7 +74,7 @@
 - [ ] perf_hooks
 - [ ] report
 - [ ] trace_events
-- 其它
+- 扩展
 - [ ] intl
 - [ ] wasi
 - [ ] c++
@@ -225,7 +227,7 @@
 
 > [Node.js 源码剖析](https://theanarkh.github.io/understand-nodejs)
 
-- node 架构
+- node 架构 [Nodejs 架构体系](https://www.jianshu.com/p/a8f5a8cdc6ab)
 - node 事件循环
 - node 异步编程
 

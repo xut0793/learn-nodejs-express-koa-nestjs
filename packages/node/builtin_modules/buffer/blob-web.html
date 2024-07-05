@@ -1,0 +1,45 @@
+<!--
+ * @Date         : 2024-07-04 14:39:10 星期4
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blob 请求示例</title>
+  </head>
+  <body>
+    <button id="btn">请求图片</button>
+    <div id="image-box"></div>
+  </body>
+  <script>
+    const btn = document.querySelector("#btn")
+    const imageBox = document.querySelector("#image-box")
+    const url = "http://localhost:3000/download"
+
+    btn.addEventListener("click", async () => {
+      try {
+        const res = await fetch(url)
+
+        if (res.ok) {
+          const blob = await res.blob()
+          const imageUrl = URL.createObjectURL(blob)
+
+          const img = new Image(400) // width=400px
+          // img.addEventListener("load", () => {
+          //   URL.revokeObjectURL(imageUrl)
+          // })
+
+          img.src = imageUrl
+          imageBox.appendChild(img)
+        } else {
+          imageBox.textContent = `Response status: ${res.status}`
+        }
+      } catch (error) {
+        imageBox.textContent = `Request error: ${error.message}`
+      }
+    })
+  </script>
+</html>

@@ -1,0 +1,92 @@
+<!--
+ * @Date         : 2024-07-05 07:55:29 星期5
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Drag File</title>
+    <style>
+      #dragTarget {
+        border: solid black 2px;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #dragTarget.active {
+        border: solid red 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="dragTarget">将文件拖放到此处</div>
+    </div>
+  </body>
+  <script>
+    //禁用浏览器默认打开事件
+    document.addEventListener(
+      "drop",
+      function (e) {
+        e.preventDefault()
+      },
+      false
+    )
+    document.addEventListener(
+      "dragover",
+      function (e) {
+        e.preventDefault()
+      },
+      false
+    )
+    let dragTarget = document.getElementById("dragTarget")
+    dragTarget.ondragenter = function (e) {
+      let types = e.dataTransfer.types
+      //判断是否是文件类型
+      if (
+        !types ||
+        (types.contains && types.contains("Files")) ||
+        (types.indexOf && types.indexOf("Files") != -1)
+      ) {
+        //触发高亮
+        dragTarget.classList.add("active")
+        dragTarget.textContent = "松手显示图片"
+        return false
+      }
+    }
+    dragTarget.ondragleave = function () {
+      dragTarget.classList.remove("active")
+      dragTarget.textContent = "将文件拖放到此处"
+    }
+    dragTarget.ondragover = function () {
+      return false
+    }
+    dragTarget.ondrop = function (e) {
+      let files = e.dataTransfer.files
+      //遍历插入图片
+      Array.prototype.forEach.call(files, (file) => {
+        let type = file.type
+        //判断是否是图片类型
+        if (type.indexOf("image/") != -1) {
+          let img = document.createElement("img")
+          img.onload = function () {
+            this.width = 100
+            this.height = 100
+            document.body.append(this)
+            // 释放 Blob URL 引用
+            URL.revokeObjectURL(file)
+          }
+          img.src = URL.createObjectURL(file)
+        }
+      })
+      //完成操作，移除高亮样式
+      dragTarget.classList.remove("active")
+      dragTarget.textContent = "将文件拖放到此处"
+      return false
+    }
+  </script>
+</html>

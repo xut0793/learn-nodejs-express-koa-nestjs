@@ -1,0 +1,59 @@
+<!--
+ * @Date         : 2024-07-05 08:01:47 星期5
+ * @Author       : xut
+ * @Description  : 
+-->
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>File System</title>
+  </head>
+  <body>
+    <button id="btn">选择图片</button>
+    <div id="output"></div>
+  </body>
+  <script>
+    const btn = document.querySelector("#btn")
+    const output = document.querySelector("#output")
+
+    btn.addEventListener("click", async () => {
+      const file = await getTheFile()
+      console.log("🚀 ~ btn.addEventListener ~ file:", file)
+      if (file) {
+        try {
+          const imageUrl = URL.createObjectURL(file)
+          const img = new Image(400) // width=400px
+          img.addEventListener("load", () => {
+            // 释放对象 URL 的引用
+            URL.revokeObjectURL(imageUrl)
+          })
+          img.src = imageUrl
+          output.appendChild(img)
+        } catch (error) {
+          output.textContent = `image read error: ${error.message}`
+        }
+      }
+    })
+    async function getTheFile() {
+      const pickerOpts = {
+        types: [
+          {
+            description: "Images",
+            accept: {
+              "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+            },
+          },
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false,
+      }
+
+      // 打开文件选择器
+      const [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+      // 获取文件内容
+      const fileData = await fileHandle.getFile()
+      return fileData
+    }
+  </script>
+</html>
