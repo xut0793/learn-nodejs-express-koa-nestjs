@@ -43,8 +43,8 @@
   - [x] string_decoder 将 buffer 解码为字符串，省略任何不完整的多字节
   - [x] Blob
   - [x] File
-- [ ] stream
-- [ ] stream/web
+- [x] stream
+- [x] stream/web
 - 文件和路径
 - [ ] fs
 - [ ] path

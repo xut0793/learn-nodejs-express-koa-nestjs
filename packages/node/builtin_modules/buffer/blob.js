@@ -43,6 +43,11 @@ const indexPath = join(__dirname, "./blob-web.html")
 const mimeType = "image/png"
 
 const server = createServer()
+server.listen(3000, () => {
+  console.log("Server running at http://localhost:3000/")
+})
+handle()
+
 async function handle() {
   for await (const [req, res] of on(server, "request")) {
     const url = req.url
@@ -65,7 +70,10 @@ async function handle() {
         })
 
         // Fix: 管道操作报错？？ imageBlob 属于 Web 标准的 ReadableStream 与  res 属性 Nodejs 标准 WritableStream 不能兼容？？
+        // 桥接 Node.js 的 Streams 和 Web Streams API 之间的差异方法 fromWeb / toWEb
         // imageBlob.pipeTo(res)
+        // const nodeReadableStream =  Readable.fromWeb(imageBlob.stream())
+        // nodeReadableStream.pipe(res)
 
         const arrayBuffer = await imageBlob.arrayBuffer()
         const buffer = Buffer.from(arrayBuffer)
@@ -77,8 +85,3 @@ async function handle() {
     }
   }
 }
-
-handle()
-server.listen(3000, () => {
-  console.log("Server running at http://localhost:3000/")
-})
