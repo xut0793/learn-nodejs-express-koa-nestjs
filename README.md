@@ -46,11 +46,11 @@
 - [x] stream
 - [x] stream/web
 - 文件和路径
-- [ ] fs
-- [ ] path
+- [x] path
+- [x] fs
 - 进程和线程
 - [ ] process
-- [ ] child_process
+- [ ] child_process: exec / execFile / fork / spawn
 - [ ] worker_threads
 - [ ] cluster
 - 网络
