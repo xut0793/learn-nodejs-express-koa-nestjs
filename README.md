@@ -28,7 +28,7 @@
 - 工具
 - [x] util callbackify 和 promisify，格式化输出 format / inspect，解析 MIME type，数据编码和解码 TextEncoder / TextDecoder
 - [x] timer 定时器
-- [x] zlib 压缩和解压 gzip/gunzip, deflate/inflate, brotliCompress/brotliDecompress
+- [x] zlib 压缩和解压 gzip / gunzip, deflate / inflate, brotliCompress / brotliDecompress
 - [x] crypto 哈希、加密解密、签名验证
 - [x] web crypto 遵循 web crypto 接口设计
 - 事件
@@ -49,13 +49,16 @@
 - [x] path
 - [x] fs
 - 进程和线程
-- [ ] process
-- [ ] child_process: exec / execFile / fork / spawn
-- [ ] worker_threads
-- [ ] cluster
+- [ ] 程序、进程、线程、协程、阻塞I/O、非阻塞I/O、同步、异步、并发、单核、多核
+- [x] process 进程
+- [x] child_process 子进程 spawn / exec / execFile / fork
+- [x] worker_threads 线程
+- [x] web worker
+- [ ] service worker
+- [x] cluster 集群
 - 网络
-- [ ] url / URL
-- [ ] querystring / URLSearchParams
+- [x] url / URL
+- [x] querystring / URLSearchParams
 - [ ] http
 - [ ] http2
 - [ ] https
