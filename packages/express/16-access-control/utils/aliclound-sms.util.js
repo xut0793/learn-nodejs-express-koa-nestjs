@@ -7,10 +7,6 @@
 import Core from "@alicloud/pop-core"
 
 // 实际业务中可以设置环境变量 ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-const ALICLOUD_ACCESS_KEY = {
-  ACCESS_KEY_ID: "LTAI5tBCob71J23qYyJsHtGi",
-  ACCESS_KEY_SECRET: "bF4d0hEd7NkBjD9JcPHcXeIAlW6iOR",
-}
 
 // 【阿里云短信测试】 您的验证码为：${code}，请勿泄露于他人！
 const ALICLOUD_SMS_CONFIG = {
@@ -35,8 +31,8 @@ const codeInfoList = {
 }
 
 const client = new Core({
-  accessKeyId: ALICLOUD_ACCESS_KEY["ACCESS_KEY_ID"],
-  accessKeySecret: ALICLOUD_ACCESS_KEY["ACCESS_KEY_SECRET"],
+  accessKeyId: process.env["ALIBABA_CLOUD_ACCESS_KEY_ID"],
+  accessKeySecret: process.env["ALIBABA_CLOUD_ACCESS_KEY_SECRET。"],
   // securityToken: process.env['ALIBABA_CLOUD_SECURITY_TOKEN'], // use STS Token
   endpoint: "https://dysmsapi.aliyuncs.com",
   apiVersion: "2017-05-25",
@@ -63,7 +59,7 @@ export function sendSms(PhoneNumbers, TemplateParam) {
       },
       (err) => {
         reject(err)
-      }
+      },
     )
 
     /**
