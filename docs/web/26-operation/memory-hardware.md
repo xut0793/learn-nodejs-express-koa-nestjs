@@ -30,7 +30,7 @@
 2. 存储程序： 一个计算机程序，不可能只有一条指令，而是由成千上万条指令组成的。指令和数据均存储在存储器中，而不是早期的插线板中，计算机按需从存储器中取指令和取数据；
 3. 计算机由 5 个硬件组成： 运算器、控制器、存储器、输入设备和输出设备。
 
-![Von Neumann Architecture](../image/von-neumann-architecture.png)
+![Von Neumann Architecture](../../public/images/von-neumann-architecture.png)
 
 > 如果说图灵机描述的是计算机的抽象模型，那么冯·诺依曼架构则是对图灵机这个抽象模型的实现架构。 冯诺依曼架构确立了现代电子计算机的基础和结构，学习计算机组成原理，其实就是学习和拆解冯诺依曼架构。
 
@@ -44,7 +44,7 @@
 
 ## 现代存储器层次结构 L5-L0
 
-![storage_hierarchy](../image/storage_hierarchy.jpg)
+![storage_hierarchy](../../public/images/storage_hierarchy.jpg)
 
 存储器按照访问速度、容量、成本和持久性等因素，可以分为多个层次：
 
@@ -63,7 +63,7 @@
 
 另外，存储器按照存储数据的持久性，可以分为易失性存储器和非易失存储器。
 
-![memory type](../image/memory_type.png)
+![memory type](../../public/images/memory_type.png)
 
 - SRAM (Static RAM) 静态 RAM：速度非常快，是目前读写最快的存储设备了，但是它也非常昂贵，所以只在要求很苛刻的地方使用，譬如CPU的一级缓冲，二级缓冲。
 - DRAM (Dynamic RAM) 动态 RAM：保留数据的时间很短，速度也比 SRAM 慢，不过它还是比任何的 ROM 都要快，但从价格上来说 DRAM 相比 SRAM 要便宜很多，计算机内存就是DRAM的。 DRAM分为很多种，常见的主要有FPRAM/FastPage、EDORAM、SDRAM、DDR RAM、RDRAM、SGRAM以及WRAM等。
@@ -81,9 +81,9 @@
 - Disk 磁盘：是指利用电磁记录技术存储数据的存储器。早期计算机使用的磁盘是软磁盘（Floppy Disk，简称软盘），如今常用的磁盘是硬磁盘（Hard disk，简称硬盘）。
 
 <div>
-<img src="../image/floppy_disk.png" alt="floppy disk" style="height: 120px" />
-<img src="../image/hard_disk.jpg" alt="hard disk" style="height: 120px" />
-<img src="../image/ssd.png" alt="solid state disk" style="height: 120px" />
+<img src="../../public/images/floppy_disk.png" alt="floppy disk" style="height: 120px" />
+<img src="../../public/images/hard_disk.jpg" alt="hard disk" style="height: 120px" />
+<img src="../../public/images/ssd.png" alt="solid state disk" style="height: 120px" />
 </div>
 
 ## 延伸知识

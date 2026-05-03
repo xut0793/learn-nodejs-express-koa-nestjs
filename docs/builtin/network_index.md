@@ -79,12 +79,12 @@ Internet 的迅速崛起、引起了全世界的瞩目，我国也非常重视�
 - TCP/IP模型：源于ARPANET（互联网前身）的实际项目，注重实用性和灵活性。它是在实践中发展起来的，而非先设计理论，因其高效和稳健，最终成为互联网的事实标准。是当今互联网和绝大多数现代网络实际运行的基础。我们日常使用的网页、邮件、文件传输等服务都构建在TCP/IP协议族之上。
 - OSI模型：由国际标准化组织（ISO）制定，旨在成为一个普适的、严格分层的理论框架，强调功能的清晰划分和标准化。要用于教学、学习和网络故障排查。它的七层结构逻辑清晰，是理解网络通信原理的绝佳工具。
 
-![OSI七层模型和TCP/IP四层模型](../doc/image/osi_tcp_ip模型对比.png)
+![OSI七层模型和TCP/IP四层模型](../public/images/osi_tcp_ip模型对比.png)
 
 更形象的图示：
 
-![OSI模型](../doc/image/tcp-udp.png)
+![OSI模型](../public/images/tcp-udp.png)
 
 各层具体的协议
 
-![tcp/ip协议簇](../doc/image/tcp_ip_osi.png)
+![tcp/ip协议簇](../public/images/tcp_ip_osi.png)

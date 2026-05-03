@@ -64,7 +64,7 @@ JavaScript 中所有数字都是浮点数，整数是没有小数部分的浮点
   - （1-1022），即参与计算的exponent值为（-1022到-1），则为小数
   - （1023-2046），即参与计算的exponent值为（0-1023），则为整数。
 
-![number](../image/number.png)
+![number](../../public/images/number.png)
 
 ### Number 常量属性
 
@@ -83,12 +83,12 @@ JavaScript 中所有数字都是浮点数，整数是没有小数部分的浮点
 - 最大数 `Number.MAX_VALUE`
 
 当指数位除去最大值2047（全为1时约定有特殊意义，表示正负无穷大和NaN), 能到达约定的最大值2046，此时参与计算的exponent=1023，然后小数位fraction全为1时，就是最大数`Number.MAX_VALUE`，即1.111（重复52个）×2<sup>1023</sup>
-![max_value.png](../image/max_value.png)
+![max_value.png](../../public/images/max_value.png)
 
 - 最小数数 `Number.MIN_VALUE`
 
 当默认整数位为0，且小数位fraction最后一位为1，指数位除去约定的0，能到达约定的最小值1，此时参与计算的exponent=-1022，就是最小负数`Number.MIN_VALUE`，即0.000（重复51个0）1 × 2<sup>-1022</sup>，十进制数表示5 × 10<sup>-324</sup>
-![min_value.png](../image/min_value.png)
+![min_value.png](../../public/images/min_value.png)
 
 ```js
 Number.MAX_VALUE // 1.7976931348623157e+308
@@ -96,7 +96,7 @@ Number.MIN_VALUE // 5e-324
 ```
 
 - 最接近1的浮点数与1的差值 `Number.EPSILON`，就是上面约定规则第一条第二点。
-  ![epsilon.png](../image/epsilon.png)
+  ![epsilon.png](../../public/images/epsilon.png)
 
 ### 浮点数精度丢失问题
 
@@ -123,7 +123,7 @@ Number.MIN_VALUE // 5e-324
 ```
 
 最终，“0.1 + 0.2” 在计算机里的计算过程如下：
-![calc.png](../image/calc.png)
+![calc.png](../../public/images/calc.png)
 
 ```js
 // 经过上面的计算过程，0.1 + 0.2 得到的结果也可以表示为：

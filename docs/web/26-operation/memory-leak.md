@@ -80,7 +80,7 @@ const print = function () {
       heapTotal: format(memoryUsage.heapTotal),
       heapUsed: format(memoryUsage.heapUsed),
       external: format(memoryUsage.external),
-    })
+    }),
   )
 }
 
@@ -261,7 +261,7 @@ var elements = {
   text: document.getElementById("text"),
 }
 function doStuff() {
-  image.src = "http://some.url/image"
+  image.src = "http://some.url/public/images"
   button.click()
   console.log(text.innerHTML)
   // 更多逻辑

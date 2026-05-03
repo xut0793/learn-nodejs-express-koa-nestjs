@@ -37,7 +37,7 @@ readStream.pipe(writeStream)
 
 可以把可读流(Readable Stream)，可以把它比喻成一个水龙头的入口水流：
 
-<img src="../doc/image/faucet.jpg" width=50 />
+<img src="../public/images/faucet.jpg" width=50 />
 
 水龙头的水来自哪里，需要具体的 Readable Stream 类实现 `_read` 方法来指定。比如 `fs.createReadStream` 创建的 Readable Stream 水源来自文件数据，`process.stdin` 水源来自终端输入。
 
@@ -49,7 +49,7 @@ const readStream = fs.createReadStream("./file")
 console.log(
   "readStream flowing: %s, paused: %s",
   readStream.readableFlowing,
-  readStream.isPaused()
+  readStream.isPaused(),
 ) // null true
 ```
 
@@ -67,13 +67,13 @@ readStream.on("data", (chunk) => {
 console.log(
   "readStream flowing: %s, paused: %s",
   readStream.readableFlowing,
-  readStream.isPaused()
+  readStream.isPaused(),
 ) // true false
 ```
 
 这样就打开了水龙头开关，通知水源地往龙头灌水了，水就流到了 data 事件的回调函数中进行处理。
 
-![readable Stream](../doc/image/readable_stream.jpg)
+![readable Stream](../public/images/readable_stream.jpg)
 
 也可以先通过 resume 方法来手动开启水龙头，不过要小心，有可能导致水丢失，这就好比先把水龙头打开了，然后再去放桶，肯定会漏掉一些水。
 
@@ -100,7 +100,7 @@ readStream.once("data", (chunk) => {
 - 第一种：接水桶满了要换桶时，关闭水龙头的同时，通知上游，比如自来水厂停止供水。那这样的话，第二桶打开水龙头开始接水时，同样还要通知上游水厂开始供水，交互流程明显变长了，而且多方参与，还要设置沟通机制。
 - 第二种：在供水过程中设置一个储水池作为缓冲，当需要换桶时，关闭接水侧的水龙头即可。此时不需要停止供水，多余水的可以存储在作为缓冲的储水池中，只要及时换好水桶，打开开关就可以继续接收，此时会先消耗掉暂停期间 buffer 中的水，然后再从源头读取。
 
-![readable Stream Buffer](../doc/image/readable_stream_buffer.jpg)
+![readable Stream Buffer](../public/images/readable_stream_buffer.jpg)
 
 ```js
 const readStream = fs.createReadStream("./big.file")
@@ -188,7 +188,7 @@ readStream.on("readable", () => {
   console.log("Stream is readable (new data received in buffer)")
   console.log(
     readStream._readableState.highWaterMark, // 65536
-    readStream._readableState.length
+    readStream._readableState.length,
   )
   // Use a loop to make sure we read all currently available data
   while (null !== (chunk = readStream.read(65537))) {
@@ -217,7 +217,7 @@ Stream is readable (new data received in buffer)
 
 分析这个日志，我们发现第一次 readable 事件并没有进入 while 循环，且第一次之后 highWaterMark 的值增加了。经过调试后，得到结论，图示如下：
 
-![readable stream beyond](../doc/image/readable_stream_beyond.png)
+![readable stream beyond](../public/images/readable_stream_beyond.png)
 
 基本过程如下：
 
@@ -247,7 +247,7 @@ Stream is readable (new data received in buffer)
 
 可以把 Writable Stream 同样比喻成一个水龙头，但不同于 Readable Stream 关注水龙头接水口（入口），Writable Stream 是关注水龙的的出水口。
 
-![Writable Stream](../doc/image/writable_stream.jpg)
+![Writable Stream](../public/images/writable_stream.jpg)
 
 水流向哪里，需要具体的 Writable Stream 实例实现 `_write` 方法。比如 `fs.createWriteStream` 创建 Writable Stream 流向目标文件，`process.stdout` 流向终端输出显示。
 

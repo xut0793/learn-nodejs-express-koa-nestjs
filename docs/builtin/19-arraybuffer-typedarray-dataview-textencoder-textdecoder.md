@@ -307,8 +307,8 @@ DataView 的作用同 TypedArray 基本一样，为 ArrayBuffer 数据建立数�
 > 记忆方式：端理解为写入内存开始的一端，是写入的是高位字节还是低是字节。大端序的意思是开头端写入高位字节（大），小端序的意思是开头端写入低位字节（大）。
 > 所以写入的内存地址是由低到高，小端序写入顺序也是先低位字节，再高位字节，顺序保持一致，更符合直觉。
 
-![be.png](../doc/image/be.png)
-![le.png](../doc/image/le.png)
+![be.png](../public/images/be.png)
+![le.png](../public/images/le.png)
 
 那为什么 UTF-8 编码规则不需要 BOM 呢？
 

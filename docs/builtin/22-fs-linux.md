@@ -122,7 +122,7 @@ Linux 的文件是没有所谓的扩展名的，一个 Linux文件能不能被�
 
 实现文件系统的程序很多，而操作系统希望对用户提供一个统一的接口，于是在用户层与文件系统层引入了中间层，这个中间层就称为虚拟文件系统（Virtual File System，VFS）。VFS 定义了一组所有文件系统都要支持的数据结构和标准接口，这样程序员不需要了解文件系统的工作原理，只需要了解 VFS 提供的统一接口即可。
 
-![virtual file system](../doc/image/virtual_file_system.png)
+![virtual file system](../public/images/virtual_file_system.png)
 
 ## 硬盘分区
 
@@ -152,7 +152,7 @@ Linux 文件系统初始化的第一步是对硬盘（disk）进行分区（part
 
 从硬盘分区到文件系统格式化，整个区块划分如下图：
 
-![file system block](../doc/image/file_system_block.png)
+![file system block](../public/images/file_system_block.png)
 
 一个块组 block group 包含以下几部分：
 
@@ -310,7 +310,7 @@ ls 1> list.txt 2> error.log
 - 打开文件表：表里每条记录就是一个 file 对象，也称为一个打开文件句柄（open file handle）
 - inode 表：表里每条记录维护着一个 inode 信息，包括指向锁列表、文件相关属性（大小、访问权限等）
 
-![virtual file fd](../doc/image/virtual_file_fd.png)
+![virtual file fd](../public/images/virtual_file_fd.png)
 
 ## 文件描述符标志
 
@@ -460,7 +460,7 @@ $ ls -lhi
 
 系统读到这个软链接文件，会根据文件类型 `l`，作特殊处理，让数据的读取指向这个地址的那个文件。这个原理本质上同Windows的快捷方式文件是一样的。
 
-<img src='../doc/image/file_symbolic_link.webp' width='300px' />
+<img src='../public/images/file_symbolic_link.webp' width='300px' />
 
 ### 硬链接 Hard Link
 
@@ -475,7 +475,7 @@ cd /home/jay
 ln /home/xiaolin/file hard     # 创建一个硬连接文件 hard
 ```
 
-<img src='../doc/image/file_hard_link.webp' width='300px' />
+<img src='../public/images/file_hard_link.webp' width='300px' />
 
 ### 区别
 

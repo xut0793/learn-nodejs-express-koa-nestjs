@@ -93,7 +93,7 @@ upstream  lb_servers{
 
 > 黑与白中间颜色即为灰。互联网产品的灰度测试，在一开始，不去定义这个产品是黑，还是白，让它有一个灰度的周期。在这个灰度周期里，让用户的口碑决定它是生是死，是白还是黑。
 
-![Gray Release]('./image/gray_release.webp')
+![Gray Release](../public/images/gray_release.webp)
 
 灰度发布的具体步骤：
 

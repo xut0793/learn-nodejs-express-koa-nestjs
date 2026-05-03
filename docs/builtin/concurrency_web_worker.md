@@ -450,9 +450,9 @@ export default self // 只需把顶级对象self暴露出去即可
 ### 调试
 
 - Web Worker 可以在当前页面的 Source 中进行查看。
-  ![workder debug](../doc/image/worker_debug.jpg)
+  ![workder debug](../public/images/worker_debug.jpg)
 - Shared Worker 需要在谷歌调试中调试，链接：chrome://inspect/#workers
-  ![shared worker debug](../doc/image/shared-worker-debug.jpg)
+  ![shared worker debug](../public/images/shared-worker-debug.jpg)
 
 ## 链接
 

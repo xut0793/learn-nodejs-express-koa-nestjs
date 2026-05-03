@@ -1,0 +1,146 @@
+# web 开发
+
+分别用原生 node、express、koa、nestjs 实现以下主题：
+
+- [x] Hello World
+- [x] 热更新 nodemon
+- [x] 请求 request
+  - [x] 查询参数 query
+  - [x] 路径参数 params
+  - [x] 请求体 body
+    - [x] application/json
+    - [x] x-www-form-urlencoded
+    - [x] multiPart/form-data 文件上传
+    - [x] stream 流文件接收
+  - [x] 请求头 headers
+    - [x] authorization
+    - [x] cookies
+  - [x] 请求参数验证 zod
+- [x] 响应 response
+  - [x] 响应状态码
+  - [x] 响应头
+    - [x] Set-Cookie
+  - [x] 响应体
+    - [x] text/plain text/html application/json
+    - [x] 文件下载 Content-Disposition
+    - [x] 流文件 application/octet-stream
+  - [x] 重定向 location
+  - [x] 响应数据序列化：是在网络响应中返回对象之前发生的过程
+- [x] router 实现
+- [x] middleware 中间件
+- [x] mvc 逻辑分层
+- [x] 视图模板
+  - [x] res.render
+  - [x] 模板组织：layout / partial / helper
+- [x] 静态资源服务
+- [x] 环境变量和配置参数 cross-env dotenv dotenv-expand
+- [x] 错误处理 error http-errors
+  - [x] 错误介绍和捕获
+  - [ ] 错误监控和预警 sentry
+- [x] 日志 log
+  - [x] 日志介绍
+  - [x] 日志集成 winston
+  - [x] 日志监控 ELK (ElasticSearch / LogStash / Kibana)
+- [x] 调试 debugger
+- [x] 测试 test
+  - [x] 单元测试 jest
+  - [x] 接口测试 cURL
+  - [x] 压测工具 autocannon
+- [x] 文档 swagger openapi
+- [ ] 数据持久化
+  - [ ] mysql
+    - [x] prisma
+  - [ ] mongoDB mongoose
+  - [ ] redis
+- [x] 访问控制
+  - [x] 注册
+    - [x] 账号+密码
+    - [x] 邮箱验证码+密码 nodemailer
+    - [x] 手机短信验证+密码 阿里云短信服务
+  - [x] 登录
+    - [x] 账号+密码
+    - [x] 邮箱+密码
+    - [x] 手机+密码
+    - [x] 第三方授权登录
+    - [x] 单点登录 SSO: 一处登录多处同时登录
+      - [x] 概念
+      - [x] SSO 代码示例
+      - [x] cas 代码实现 jscas
+  - [x] 认证 Authentication
+    - [x] cookie
+    - [x] session
+    - [x] HTTP Authentication
+      - [x] basic
+      - [x] digest
+      - [x] bearer
+        - [x] jwt 概念、示例、源码实现
+    - [ ] OIDC: OpenID Connect 联合身份认证
+    - [x] OAuth2: 访问授权，一处注册多处使用
+      - [x] 概念
+      - [x] 第三方授权登录客户端示例 gitee
+      - [x] oauth2 client 代码实现
+      - [x] oauth2 server 代码实现 oAuth2orize / node-oauth2-server
+    - [x] passport.js 使用
+      - [x] passport-local
+      - [x] passport-http
+      - [x] passport-jwt
+      - [x] passport-oauth2
+  - [x] 授权 Authorization 与鉴权 Audit (审计)
+    - [x] 概念
+      - [x] 访问控制列表 (Access Control List, ACL)，比如小红编辑博客内容
+      - [x] 自主访问控制 (Discretionary Access Control, DAC)，比如小红授权小明也能编辑博客内容
+      - [x] 强制访问控制 (Mandatory Access Control, MAC)，运营实习生只能对草稿状态的博客进行编辑
+      - [x] 基于角色的访问控制 (Role-Based Access Control, RBAC)
+        - [x] RBAC0，运营人员可以编辑博客内容
+        - [x] RBAC1，运营主管拥有运营人员的权限
+        - [x] RBAC2，在运营场景中拥有运营经理权限，但不能同时行使财务经理权限。
+        - [x] RBAC3=RBAC1+RBAC2，既引入了角色间的继承关系，又引入了角色限制关系。
+      - [x] 基于属性的访问控制 (Attribute-Based Access Control, ABAC)，比如运营人员只能在上午9点到12点之间在公司内网中可以编辑博客内容
+    - [ ] 代码实践
+      - [ ] 本地实现
+      - [ ] 集成 Casbin
+        - [ ] 客户端 casbin.js
+        - [x] 服务端 node-casbin / nest-authz 使用
+- [x] 定时任务 cron jobs
+- [x] SSE server-send event
+- [x] Websocket
+- [x] GraphQL
+- [x] 微服务 microservices
+  - [x] 微服务架构
+  - [x] RPC: Remote Procedure Call
+  - [x] Protocol Buffer: proto 规范
+  - [x] gRPC node 实践
+  - [x] gRPC nestjs 实践
+- [x] 安全 security
+  - [x] xss 跨站脚本攻击
+  - [x] csrf 跨站请求伪造
+  - [x] interface hijacking 界面劫持
+  - [x] helmet 是一些较小的中间件函数的集合，设置一些与安全有关的 HTTP 标头来保护应用 XSS/csrf/hijacking 漏洞的侵害
+  - [x] cors 跨域资源共享
+  - [x] rate limit 限流保护后端API免受恶意攻击，通过限制入站流量保证就行安全和稳定。比如 express-rate-limit 和 @nestjs/throttler 包
+- [ ] 构建 build
+  - [x] 正常构建
+  - [ ] 镜像构建
+- [ ] 部署 deploy
+  - [x] pm2
+  - [ ] docker
+- [ ] 发布 release
+  - [x] graceful start 优雅启动
+  - [x] graceful exit 优雅退出
+  - [ ] nginx 负载均衡
+  - [x] release policy 发布策略 金丝雀发布 灰度发布 蓝绿发布 AB Testing 功能开关
+  - [x] health check 健康检查
+- [ ] 运维 operation
+  - [x] 内存泄漏
+  - [ ] 火焰图查看
+  - [ ] 应用性能监控 APM (Application Performance Management)
+    - [ ] Grafana + Prometheus
+    - [ ] alinode
+
+入门后端学习
+
+- 数据库设计（可扩展、高性能），SQL 语言（不要因为有 orm 就不学 sql）
+- 基础组件（注意这里说的不是前端的组件）的应用和原理，比如 Nginx、Docker、MySQL、Redis、Kafka 等
+- 服务运维意识和手段的培养（监控、报警、日志、流量治理等）
+- 架构设计（微服务架构、分布式架构、分布式事务、高可用高性能设计等）
+- 算法&数据结构（后端开发可能不会直接手写算法，但要了解这些算法和数据结构，比如 LRU、LFU、LSM-Tree、RingBuffer）

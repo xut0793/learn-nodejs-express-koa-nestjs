@@ -331,7 +331,7 @@ export const slidingWindowMiddleware = async (req, res, next) => {
     await redisClient.hincrby(
       redisKey,
       splitTimestamp ? splitTimestamp : durationEnd,
-      1
+      1,
     )
     await redisClient.expire(redisKey, DURATION)
     next()
@@ -358,7 +358,7 @@ export const slidingWindowMiddleware = async (req, res, next) => {
 优势：这种技术可以平滑流量，从而防止服务器过载。
 劣势：由于漏斗流出速度是恒定的，也就是请求的处理速度是固定的，当某个小段时间点请求激增，不能有效的被处理。
 
-![leaky bucket]('../image/leaky_bucket.png')
+![leaky bucket]('..../../public//leaky_bucket.png')
 
 上面我们演示 Nginx 的控制速率其实使用的就是漏桶算法，当然我们也可以借助 Redis 很方便的实现漏桶算法。
 
@@ -403,7 +403,7 @@ export const leakyBucketMiddleware = async (req, res, next) => {
   const updateTime = await redisClient.hget(redisKey, "update_time")
   const amount = await redisClient.hget(redisKey, "amount")
   const newAmount = Math.ceil(
-    Math.max(0, amount - (now - updateTime) * RATE) + 1
+    Math.max(0, amount - (now - updateTime) * RATE) + 1,
   )
 
   if (newAmount <= CAPACITY) {
@@ -428,7 +428,7 @@ export const leakyBucketMiddleware = async (req, res, next) => {
 
 令牌桶算法，实现逻辑可以借鉴漏桶算法，只需要将部分流程反过来，从计算接口消耗的逻辑变为计算令牌消耗的逻辑。在数据结构结构上遵从之前定义出来的漏桶算法的结构，使用 Hash 储存用户当前的令牌数与更新时间，在下一次请求来的时候，再通过更新时间与令牌生成速率去生成新的令牌。
 
-![token bucket]('../image/token_bucket.jpeg')
+![token bucket]('..../../public//token_bucket.jpeg')
 
 代码逻辑如下：
 
@@ -610,4 +610,4 @@ export const tokenBucketMiddleware = async (req, res, next) => {
 
 限流的思想就来自于流量整形，通过算法对请求流量进行“削峰填谷”。
 
-![Traffic Shaping](../image/traffic-shaping.webp)
+![Traffic Shaping](..../../public//traffic-shaping.webp)

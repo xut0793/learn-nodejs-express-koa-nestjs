@@ -564,12 +564,12 @@ function fromList(n, state) {
           TypedArrayPrototypeSet(
             ret,
             new FastBuffer(data.buffer, data.byteOffset, n),
-            retLen - n
+            retLen - n,
           )
           buf[idx] = new FastBuffer(
             data.buffer,
             data.byteOffset + n,
-            data.length - n
+            data.length - n,
           )
         }
         break
@@ -702,8 +702,8 @@ function readableAddChunkPushByteMode(stream, state, chunk, encoding) {
       new ERR_INVALID_ARG_TYPE(
         "chunk",
         ["string", "Buffer", "TypedArray", "DataView"],
-        chunk
-      )
+        chunk,
+      ),
     )
     return false
   }
@@ -878,7 +878,7 @@ function flow(stream) {
 }
 ```
 
-![stream readable resource](../doc/image/stream_readable_resouce.png)
+![stream readable resource](../public/images/stream_readable_resouce.png)
 
 ### Writable
 
@@ -940,7 +940,7 @@ function _write(stream, chunk, encoding, cb) {
       throw new ERR_INVALID_ARG_TYPE(
         "chunk",
         ["string", "Buffer", "TypedArray", "DataView"],
-        chunk
+        chunk,
       )
     }
   }
@@ -1179,7 +1179,7 @@ Writable.prototype.uncork = function () {
 
 总结：
 
-![stream writable resource](../doc/image/stream_writable_resource.jpg)
+![stream writable resource](../public/images/stream_writable_resource.jpg)
 
 ### pipe
 

@@ -221,8 +221,8 @@ UTF-8 的编码的设计逻辑很简单：如果字符用一个字节存储就�
 - 大尾序方式：高位字节+低位字节，（也称大端序）（默认方式）
 - 小尾序方式：低位字节+高位字节，（也称小端序）
 
-![be.png](../image/be.png)
-![le.png](../image/le.png)
+![be.png](../../public/images/be.png)
+![le.png](../../public/images/le.png)
 
 示例：
 
