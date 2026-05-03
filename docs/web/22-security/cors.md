@@ -156,7 +156,7 @@ sendBtn.addEventListener("click", () => {
     console.log(
       "🚀 ~ xhrRequest ~ status: %s; statusText: %s",
       xhr.status,
-      xhr.statusText
+      xhr.statusText,
     )
 
     if (xhr.status == 200) {
@@ -210,7 +210,7 @@ app.get("/allow", (req, res) => {
 
   res.setHeader(
     "Access-Control-Expose-Headers",
-    "Access-Control-Allow-Origin, X-My-Custom-Header"
+    "Access-Control-Allow-Origin, X-My-Custom-Header",
   )
   res.setHeader("X-My-Custom-Header", "abc")
 
@@ -244,7 +244,7 @@ sendBtn.addEventListener("click", () => {
     console.log(
       "🚀 ~ xhrRequest ~ status: %s; statusText: %s",
       xhr.status,
-      xhr.statusText
+      xhr.statusText,
     )
 
     if (xhr.status == 200) {
@@ -290,7 +290,7 @@ app.options("/preflight", (req, res) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization") // 可以字符串，也可以是字符串数组
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, OPTIONS, POST, PUT, PATCH, DELETE"
+    "GET, OPTIONS, POST, PUT, PATCH, DELETE",
   )
 
   /**
@@ -372,7 +372,7 @@ sendBtn.addEventListener("click", () => {
     console.log(
       "🚀 ~ xhrRequest ~ status: %s; statusText: %s",
       xhr.status,
-      xhr.statusText
+      xhr.statusText,
     )
 
     if (xhr.status == 200) {
@@ -424,7 +424,7 @@ app.options("/credentials", (req, res) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, OPTIONS, POST, PUT, PATCH, DELETE"
+    "GET, OPTIONS, POST, PUT, PATCH, DELETE",
   )
   res.status(204).end()
 })
@@ -478,7 +478,7 @@ CORS与JSONP的使用目的相同，但是比JSONP更强大。JSONP只支持GET�
 
 使用 Nginx 代理服务器之后，请求不会直接到达需要跨域访问的服务端站点，请求会先经过 Nginx 服务器，然后在 Nginx 中设置 CORS 相关的响应头字段。
 
-```conf
+```
 server {
   listen          9003;
   server_name     localhost;
@@ -565,7 +565,7 @@ const contentWindow = window.frames[0].contentWindow
 // 这行语句的消息不会发送，因为第二个参数不是当前 iframe 嵌入窗口的域。（因为 targetOrigin 设置不对）
 contentWindow.postMessage(
   "The user is 'bob' and the password is 'secret'",
-  "https://secure.example.net"
+  "https://secure.example.net",
 )
 
 // 这条语句会成功添加 message 到发送队列中去（targetOrigin 设置对了）
@@ -603,7 +603,7 @@ function receiveMessage(event) {
   // 作为回信的对象，并且把 event.origin 作为 targetOrigin
   event.source.postMessage(
     "hi there yourself!  the secret response " + "is: rheeeeet!",
-    event.origin
+    event.origin,
   )
 }
 

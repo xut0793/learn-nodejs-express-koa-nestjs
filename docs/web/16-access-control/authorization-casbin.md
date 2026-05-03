@@ -43,7 +43,7 @@ casbin 支持的权限模型
 [访问模型的语法1](https://casbin.org/zh/docs/how-it-works)
 [访问模型的语法2](https://casbin.org/zh/docs/syntax-for-models)
 
-```conf
+```
 # subject 主体（被访问的实体）
 # object 对象（被访问的资源）
 # action 动作（访问方式）
@@ -220,7 +220,7 @@ import { AuthZRBACService } from "nest-authz"
 export class RoleService implements CoreRBACRole {
   constructor(
     private readonly userSrv: UserService,
-    private readonly authzService: AuthZRBACService
+    private readonly authzService: AuthZRBACService,
   ) {}
   async assignedUsers(role: string): Promise<string[]> {
     const isRoleExists = await this.exists(role)

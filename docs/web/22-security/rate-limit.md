@@ -107,7 +107,7 @@ app.listen(port, () => {
 
 使用单 IP 在 10ms 内发并发送了 6 个请求的执行结果，只有 1 个执行成功了，其他的 5 个被拒绝了（第 2 个在 501ms 才会被正常执行）。
 
-```conf
+```
 limit_req_zone $binary_remote_addr zone=mylimit:10m rate=2r/s;
 server {
     location / {
@@ -120,7 +120,7 @@ server {
 
 burst=4 表示每个 IP 最多允许4个突发请求。如果单个 IP 在 10ms 内发送 6 次请求的结果，有 1 个请求被立即处理了，4 个请求被放到 burst 队列里排队执行了，另外 1 个请求被拒绝了。
 
-```conf
+```
 limit_req_zone $binary_remote_addr zone=mylimit:10m rate=2r/s;
 server {
     location / {
@@ -137,7 +137,7 @@ server {
 
 > 只有当 request header 被后端处理后，这个连接才进行计数
 
-```conf
+```
 limit_conn_zone $binary_remote_addr zone=perip:10m;
 limit_conn_zone $server_name zone=perserver:10m;
 server {
@@ -358,7 +358,7 @@ export const slidingWindowMiddleware = async (req, res, next) => {
 优势：这种技术可以平滑流量，从而防止服务器过载。
 劣势：由于漏斗流出速度是恒定的，也就是请求的处理速度是固定的，当某个小段时间点请求激增，不能有效的被处理。
 
-![leaky bucket]('..../../public//leaky_bucket.png')
+![leaky bucket](../../public/images/leaky_bucket.png)
 
 上面我们演示 Nginx 的控制速率其实使用的就是漏桶算法，当然我们也可以借助 Redis 很方便的实现漏桶算法。
 
@@ -428,7 +428,7 @@ export const leakyBucketMiddleware = async (req, res, next) => {
 
 令牌桶算法，实现逻辑可以借鉴漏桶算法，只需要将部分流程反过来，从计算接口消耗的逻辑变为计算令牌消耗的逻辑。在数据结构结构上遵从之前定义出来的漏桶算法的结构，使用 Hash 储存用户当前的令牌数与更新时间，在下一次请求来的时候，再通过更新时间与令牌生成速率去生成新的令牌。
 
-![token bucket]('..../../public//token_bucket.jpeg')
+![token bucket](../../public/images/token_bucket.jpeg)
 
 代码逻辑如下：
 
@@ -610,4 +610,4 @@ export const tokenBucketMiddleware = async (req, res, next) => {
 
 限流的思想就来自于流量整形，通过算法对请求流量进行“削峰填谷”。
 
-![Traffic Shaping](..../../public//traffic-shaping.webp)
+![Traffic Shaping](../../public/images/traffic-shaping.webp)

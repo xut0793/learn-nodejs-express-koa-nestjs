@@ -10,7 +10,7 @@
 
 如果这类服务是单一部署的，那必然一上线就要承接全部任务。所以通常这类服务肯定是集群部署，然后集群服务的前面还有一层负载均衡的网关服务器控制着流量分配。比如使用 nginx 的负载均衡配置：
 
-```conf
+```
 worker_processes 4;
 events{
     worker_connections 1024;
@@ -153,7 +153,7 @@ process.on("SIGTERM", () => {
 // 集群中某个 work 异常退出后，会发出 exit 事件，可以在 cluster 上进行监听
 cluster.on("exit", (worker, code, signal) => {
   console.log(
-    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`
+    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`,
   )
 
   // 移除当前子进程内所有事件监听器，避免内存泄漏
@@ -177,7 +177,7 @@ async function onMasterSignal() {
 
 ;["SIGINT", "SIGQUIT", "SIGTERM"].forEach((signal) =>
   // 注意使用一次性事件监听 once
-  process.once(signal, onMasterSignal)
+  process.once(signal, onMasterSignal),
 )
 
 // worker 监听 master 要求的退出信息

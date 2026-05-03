@@ -157,7 +157,7 @@
 
 ## 微服务架构设计
 
-![Microservices Architecture](..../../public//microservices_architecture.png)
+![Microservices Architecture](../../public/images/microservices_architecture.png)
 
 ## SOA
 
@@ -174,7 +174,7 @@ SOA 架构紧密相关的技术主要有 UDDI、WSDL、SOAP 和 REST 等，而�
 
 SOA 架构的实现方式之一，就是采用企业服务总线的方式，称为 ESB（Enterprise Service Bus），是由中间件技术实现并支持 SOA 架构的可落地方案。
 
-![SOA ESB](..../../public//soa_esb.png)
+![SOA ESB](../../public/images/soa_esb.png)
 
 微服务架构可以看作是SOA的一种演进，它强调服务的轻量化（小且专注一个功能、轻量级通信）、独立性和敏捷性。两者的细微区别：
 

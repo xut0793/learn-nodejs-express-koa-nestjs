@@ -336,7 +336,7 @@ function crossEnv(args, options = {}) {
         stdio: "inherit",
         shell: options.shell,
         env,
-      }
+      },
     )
   }
   return null
@@ -451,18 +451,16 @@ processEnv: process.env, // 指定要将加载的变量写入到那里，默认�
 
 #### 解析规则如下：
 
-- BASIC=basic 变为 {BASIC： 'basic'}
+```
+- `BASIC=basic` 变为 `{BASIC： 'basic'}`
 - 跳过空行
-- 以 # 开头的行被视为注释
-- 空值变为空字符串（EMPTY= 变为 {EMPTY： ''}）
+- 以 `#` 开头的行被视为注释
+- 空值变为空字符串`（EMPTY= 变为 {EMPTY： ''}）`
 - 对象形式字符串会解析为 json 字符串，保留内部引号，类似 JSON.stringify 的效果，`JSON={“foo”： “bar”} 变为 {JSON：“{\”foo\“： \”bar\“}”`
 - 单引号会转成双引号 SINGLE_QUOTE='quoted' 变为 {SINGLE_QUOTE： “quoted”}
 - 不带引号的两端会删除空格 FOO= some value 为 {FOO： 'some value'}
 - 单引号或双引号内的空格保留 `FOO=" some value "` 为 `{FOO: ' some value '}`
 - 支持反引号，比如反引号内同时有单引号和双引号时。
-
-```
-BACKTICK_KEY=`This has 'single' and "double" quotes inside of it.`
 ```
 
 #### 加载优先级
@@ -484,7 +482,7 @@ dotEnv.config({ path: `${pathsDotenv}` }) // 加载.env
 
 比如，有时我们希望将某几个环境变量拼接为一个新的环境变量，可能会考虑如下的写法：
 
-```env
+```
 NAME = lisa
 AGE = 40
 
@@ -700,7 +698,7 @@ router.use(
     validationOptions: {
       allowUnknown: true,
     },
-  })
+  }),
 )
 
 router.get("/environment", (req, res) => {
@@ -709,7 +707,7 @@ router.get("/environment", (req, res) => {
     JSON.stringify({
       NODE_ENV: process.env.NODE_ENV,
       ...req.locals.config,
-    })
+    }),
   )
 })
 
@@ -734,7 +732,7 @@ app.use(
     validationOptions: {
       allowUnknown: true,
     },
-  })
+  }),
 )
 
 app.get("/environment", (req, res) => {
@@ -770,7 +768,7 @@ app
       validationOptions: {
         allowUnknown: true,
       },
-    })
+    }),
   )
   .use(router.routes())
   .use(router.allowedMethods())
@@ -829,7 +827,7 @@ export function envConfigValidate(config: Record<string, unknown>) {
     return result.data
   } else {
     throw new Error(
-      JSON.stringify((result as SafeParseError<envConfig>).error.format())
+      JSON.stringify((result as SafeParseError<envConfig>).error.format()),
     )
   }
 }
