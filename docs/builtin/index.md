@@ -52,17 +52,17 @@
   - [x] 概念：程序、进程、线程、协程、阻塞I/O、非阻塞I/O、同步、异步、并发、单核、多核
   - [x] process 进程
   - [x] child_process 子进程 spawn / exec / execFile / fork
+  - [x] cluster 集群
   - [x] worker_threads 线程
   - [x] web worker
   - [ ] service worker
-  - [x] cluster 集群
 - 网络
   - [x] Internet 历史
   - [x] IP/dns
   - [x] datagram UDP
   - [x] net TCP
   - [x] Web 历史
-  - [x] url / URL
+  - [x] URL
   - [x] querystring / URLSearchParams
   - [x] http
   - [x] https
