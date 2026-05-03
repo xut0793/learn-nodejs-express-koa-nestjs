@@ -1,8 +1,13 @@
 # child_process 子进程
 
-Node.js 的 child_process 模块允许在应用程序内部运行一些外部程序或者命令。
+在 Node.js 中，由于其单线程事件循环的特性，单核 CPU 无法被充分利用，且 CPU 密集型任务会阻塞整个应用。为了解决这些问题，Node.js 提供了强大的多进程编程能力。
 
-比如，因为 JS 是单线程语言，对一些 CPU 密集型的工作，为了不阻塞 js 的主线程，我们可以利用 child_process 来启动一个子进程来处理（也可利用 work_thread 子线程）。
+Node.js 的多进程编程主要围绕两大核心模块展开：
+
+- child_process：用于创建和管理子进程
+- cluster：用于构建多进程集群，充分利用多核 CPU
+
+child_process 模块允许你在 Node.js 应用中创建子进程来执行系统命令或其他的 Node.js 脚本。它提供了多种创建子进程的方法，其中最常用的是 spawn、exec 和 fork。
 
 child_process 模块提供了四种不同的方法来执行外部应用程序：
 
@@ -11,12 +16,23 @@ child_process 模块提供了四种不同的方法来执行外部应用程序：
 `child_process.fork(modulePath[, args][, options])`
 `child_process.spawn(command[, args][, options])`
 
-适用场景
+| 方法     | 特点与适用场景                                                                                                                                                                                                                                     | 返回值              |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
+| execFile | 当你只需要执行一个外部程序的时候使用它。这种方法执行速度快，使用简单，并且在处理有用户输入时相对更安全。                                                                                                                                           | `ChildProcess` 实例 |
+| exec     | 你想直接执行一段现成的 shell 命令的时候使用它，支持单个 shell 命令或者利用 shell 管道符组合的多个 shell 命令。调用 exec 方法时内部会启动一个子 shell 程序等待输入的 shell 命令来执行。但此方法要注意用户输入，避免执行一些不安全或不受信任的命令。 | `ChildProcess` 实例 |
+| spawn    | 当你处理一段 I/O 程序，会有大量输出需要处理的时候使用它。该方法会返回一个 nodejs 的流式对象 Stream。，适合处理大量数据或长时间运行的命令。                                                                                                         | `ChildProcess` 实例 |
+| fork     | `spawn` 的特殊形式，专门用于衍生新的 Node.js 进程执行 JS 程序，会自动建立 IPC 通道，方便父子进程通信。                                                                                                                                             | `ChildProcess` 实例 |
 
-execFile：当你只需要执行一个外部程序的时候使用它。这种方法执行速度快，使用简单，并且在处理有用户输入时相对更安全。
-exec：当你想直接执行一段现成的 shell 命令的时候使用它，支持单个 shell 命令或者利用 shell 管道符组合的多个 shell 命令。调用 exec 方法时内部会启动一个子 shell 程序等待输入的 shell 命令来执行。但此方法要注意用户输入，避免执行一些不安全或不受信任的命令。
-fork：当你想执行一段 js 程序时使用它。这种方法会在脱离当前 nodejs 主进程之外创建一个 nodejs 环境的子进程来运行 js 程序，并且创建的子进程和主进程之间可以进行通信。
-spawn：当你处理一段 I/O 程序，会有大量输出需要处理的时候使用它。该方法会返回一个 nodejs 的流式对象 Stream。
+无论是通过哪种方法创建的子进程，都会返回一个 ChildProcess 实例，它常用属性和方法。
+
+| 属性/方法       | 说明                                                   |
+| :-------------- | :----------------------------------------------------- |
+| `stdout`        | 子进程的标准输出流（可读流）。                         |
+| `stderr`        | 子进程的标准错误输出流（可读流）。                     |
+| `stdin`         | 子进程的标准输入流（可写流）。                         |
+| `pid`           | 子进程的进程标识符（PID）。                            |
+| `send(message)` | 向子进程发送消息（主要用于 `fork` 创建的进程）。       |
+| `kill(signal)`  | 向子进程发送信号（默认为 `SIGTERM`），用于终止子进程。 |
 
 ## 操作系统的 Path 环境变量
 
@@ -190,74 +206,6 @@ execFile("ls", ["-lh", "/usr"], (err, stdout, stderr) => {
 })
 ```
 
-## fork
-
-`child_process.fork()` 方法是 `child_process.spawn()` 的另一个特例，专门用于 spawn 衍生新的 Node.js 进程。与 `child_process.spawn()` 一样，返回 ChildProcess 对象。返回的 ChildProcess 将有额外的内置通信通道，允许消息在父进程和子进程之间来回传递。
-
-但是衍生的 Node.js 子进程独立于父进程，除了两者之间可以建立的 IPC 通信通道之外。每个进程都有自己的内存，具有自己的 V8 实例，需要额外的资源分配，所以不建议衍生大量子 Node.js 进程。
-
-```
-child_process.fork(modulePath[, args][, options])
-
-modulePath  <string> | <URL>  要在子进程中运行的模块。
-args        <string[]>        字符串参数列表。
-options     <Object>
-  cwd       <string> | <URL>  子进程的当前工作目录。
-  detached  <boolean>         准备子进程独立于其父进程运行。具体行为取决于平台，参见 options.detached。
-  env       <Object>          环境变量键值对。默认值：process.env。
-  execPath  <string>          用于创建子进程的可执行文件。
-  execArgv  <string[]>        传给可执行文件的字符串参数列表。默认值：process.execArgv。
-  gid       <number>          设置进程的组标识（请参阅 setgid(2)）。
-  serialization <string>      指定用于在进程之间发送消息的序列化类型。可能的值为 'json' 和 'advanced'。有关详细信息，请参阅 高级序列化。默认值：'json'。
-  signal   <AbortSignal>      允许使用中止信号关闭子进程。
-  killSignal <string> | <integer> 当衍生的进程将被超时或中止信号杀死时要使用的信号值。默认值：'SIGTERM'。
-  silent   <boolean>          如果为 true，则子进程的标准输入、标准输出和标准错误将通过管道传输到父进程，否则它们将从父进程继承，有关详细信息，请参阅 child_process.spawn() 的 stdio 的 'pipe' 和 'inherit' 选项。默认值：false。
-  stdio    <Array> | <string> 参见 child_process.spawn() 的 stdio。提供此选项时，它会覆盖 silent。如果使用数组变体，则它必须恰好包含一个值为 'ipc' 的条目，否则将抛出错误。例如 [0, 1, 2, 'ipc']。
-  uid      <number>          设置进程的用户身份（请参阅 setuid(2)）。
-  windowsVerbatimArguments <boolean> 在 Windows 上不为参数加上引号或转义。在 Unix 上被忽略。默认值：false。
-  timeout  <number>          允许进程运行的最长时间（以毫秒为单位）。默认值：undefined。
-返回：<ChildProcess>
-```
-
-注意点：
-
-- 默认情况下，`child_process.fork()` 将使用父进程的 process.execPath 衍生新的 Node.js 实例。options 对象中的 execPath 属性允许使用替代的执行路径。
-- `child_process.fork()` 不支持 `child_process.spawn()` 中可用的 shell 选项，如果设置将被忽略，因为 fork 内部启动的 `node.exe` 应用。
-
-一段需要在子进程执行 js 程序代码
-
-```js
-// sortWorker.js
-// 接收主进程发送的消息
-process.on("message", (data) => {
-  const sortedData = data.sort((a, b) => a - b)
-  // 将排好序的数据发回主进程
-  process.send(sortedData)
-})
-```
-
-在主进程中 fork 一个 Nodejs 子进程来执行上述代码，并进行进程间通信
-
-```js
-const { fork } = require("child_process")
-
-// 假设这是一堆需要排序的数据
-const unsortedData = [5, 3, 8, 1, 2, 9, 4, 7, 6]
-
-// 使用 fork 方法启动子进程
-const child = fork("./sortWorker.js")
-
-// 监听子进程发来的消息事件
-child.on("message", (sortedData) => {
-  console.log("排序后的数据：", sortedData)
-  // 当接收完数据后，可以关闭子进程
-  child.kill()
-})
-
-// 向子进程发送未排序的数据
-child.send(unsortedData)
-```
-
 ## spawn
 
 child_process.spawn 方法用来创建新的子进程。一个子进程就是从你正在运行的主程序（也称为父进程）中衍生出另一个程序实例。
@@ -368,6 +316,74 @@ const uniq = spawn("uniq")
 cat.stdout.pipe(sort.stdin)
 sort.stdout.pipe(uniq.stdin)
 uniq.stdout.pipe(process.stdout)
+```
+
+## fork
+
+`child_process.fork()` 方法是 `child_process.spawn()` 的另一个特例，专门用于 spawn 衍生新的 Node.js 进程。与 `child_process.spawn()` 一样，返回 ChildProcess 对象。返回的 ChildProcess 将有额外的内置通信通道，允许消息在父进程和子进程之间来回传递。
+
+但是衍生的 Node.js 子进程独立于父进程，除了两者之间可以建立的 IPC 通信通道之外。每个进程都有自己的内存，具有自己的 V8 实例，需要额外的资源分配，所以不建议衍生大量子 Node.js 进程。
+
+```
+child_process.fork(modulePath[, args][, options])
+
+modulePath  <string> | <URL>  要在子进程中运行的模块。
+args        <string[]>        字符串参数列表。
+options     <Object>
+  cwd       <string> | <URL>  子进程的当前工作目录。
+  detached  <boolean>         准备子进程独立于其父进程运行。具体行为取决于平台，参见 options.detached。
+  env       <Object>          环境变量键值对。默认值：process.env。
+  execPath  <string>          用于创建子进程的可执行文件。
+  execArgv  <string[]>        传给可执行文件的字符串参数列表。默认值：process.execArgv。
+  gid       <number>          设置进程的组标识（请参阅 setgid(2)）。
+  serialization <string>      指定用于在进程之间发送消息的序列化类型。可能的值为 'json' 和 'advanced'。有关详细信息，请参阅 高级序列化。默认值：'json'。
+  signal   <AbortSignal>      允许使用中止信号关闭子进程。
+  killSignal <string> | <integer> 当衍生的进程将被超时或中止信号杀死时要使用的信号值。默认值：'SIGTERM'。
+  silent   <boolean>          如果为 true，则子进程的标准输入、标准输出和标准错误将通过管道传输到父进程，否则它们将从父进程继承，有关详细信息，请参阅 child_process.spawn() 的 stdio 的 'pipe' 和 'inherit' 选项。默认值：false。
+  stdio    <Array> | <string> 参见 child_process.spawn() 的 stdio。提供此选项时，它会覆盖 silent。如果使用数组变体，则它必须恰好包含一个值为 'ipc' 的条目，否则将抛出错误。例如 [0, 1, 2, 'ipc']。
+  uid      <number>          设置进程的用户身份（请参阅 setuid(2)）。
+  windowsVerbatimArguments <boolean> 在 Windows 上不为参数加上引号或转义。在 Unix 上被忽略。默认值：false。
+  timeout  <number>          允许进程运行的最长时间（以毫秒为单位）。默认值：undefined。
+返回：<ChildProcess>
+```
+
+注意点：
+
+- 默认情况下，`child_process.fork()` 将使用父进程的 process.execPath 衍生新的 Node.js 实例。options 对象中的 execPath 属性允许使用替代的执行路径。
+- `child_process.fork()` 不支持 `child_process.spawn()` 中可用的 shell 选项，如果设置将被忽略，因为 fork 内部启动的 `node.exe` 应用。
+
+一段需要在子进程执行 js 程序代码
+
+```js
+// sortWorker.js
+// 接收主进程发送的消息
+process.on("message", (data) => {
+  const sortedData = data.sort((a, b) => a - b)
+  // 将排好序的数据发回主进程
+  process.send(sortedData)
+})
+```
+
+在主进程中 fork 一个 Nodejs 子进程来执行上述代码，并进行进程间通信
+
+```js
+const { fork } = require("child_process")
+
+// 假设这是一堆需要排序的数据
+const unsortedData = [5, 3, 8, 1, 2, 9, 4, 7, 6]
+
+// 使用 fork 方法启动子进程
+const child = fork("./sortWorker.js")
+
+// 监听子进程发来的消息事件
+child.on("message", (sortedData) => {
+  console.log("排序后的数据：", sortedData)
+  // 当接收完数据后，可以关闭子进程
+  child.kill()
+})
+
+// 向子进程发送未排序的数据
+child.send(unsortedData)
 ```
 
 ## options.stdio

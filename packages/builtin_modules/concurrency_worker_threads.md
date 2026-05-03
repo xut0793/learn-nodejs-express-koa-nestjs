@@ -2,54 +2,92 @@
 
 ## What 线程是什么
 
-线程是什么，见 [程序、进程、线程、协程、阻塞I/O、非阻塞I/O、同步、异步、并发]()
+线程是什么，见 [程序、进程、线程、协程、阻塞I/O、非阻塞I/O、同步、异步、并发](./concurrency_index.md)
 
 ## Why 为什么需要线程
 
-Nodejs 基于 V8 实现 js 程序执行，js 是单线程执行的语言，默认情况下，所有你的代码都在一个主线程上顺序执行。而 nodejs 基于 libuv 实现的事件循环驱动的异步机制，天然对 I/O 密集型工作有效率。但对 CPU 密集型的工作会阻塞当前主线程，优势不大。所以 nodejs 提供了 worker_threads / child_process / cluster 等模块来能很好解决此类 CPU 密集型任务。
+Node.js 的底层架构非常独特，它基于 V8 引擎和 libuv 库，采用“单线程事件循环 + 异步非阻塞 I/O”模型。这意味着它的 JavaScript 执行层（V8）是单线程的，非常适合处理高并发的 I/O 密集型任务（如网络请求、数据库查询）；但在面对 CPU 密集型任务（如图像处理、复杂加密、大数据计算）时，单线程会导致事件循环阻塞，进而影响整个服务的响应。
+
+所以 nodejs 提供了 worker_threads / child_process / cluster 等模块来能很好解决此类 CPU 密集型任务。
+
+其中 worker_threads 与 child_process / cluster 衍生新的子进程不同，worker_threads 工作线程仍然工作在 nodejs 主进程中，可以与 nodejs 程序执行的主线程共享当前进程的内存资源。它们通过传输 ArrayBuffer 实例或共享 SharedArrayBuffer 实例来实现。
 
 Worker Threads 允许你创建额外的线程，运行 JavaScript 和 Node.js 的 API，而不必阻塞主线程。这意味着你可以在后台线程中执行计算或其他任务，而主线程继续响应用户请求或其他 I/O 操作。
 
-## 与 child_process / cluster 创建的子进程区别
+## worker_threads 模块
 
-但是 worker_threads 与 child_process / cluster 衍生新的子进程不同，worker_threads 工作线程仍然工作在 nodejs 主进程中，可以与 nodejs 程序执行的主线程共享当前进程的内存资源。它们通过传输 ArrayBuffer 实例或共享 SharedArrayBuffer 实例来实现。
+worker_threads 模块的核心对象、属性及方法
+
+| 对象/属性/方法     | 类型   | 说明                                                                                      |
+| :----------------- | :----- | :---------------------------------------------------------------------------------------- |
+| Worker             | 类     | 代表一个独立的 JavaScript 执行线程。主线程通过它来创建工作线程。                          |
+| isMainThread       | 布尔值 | 如果当前代码不在 Worker 线程内运行则为 `true`，用于区分主线程与工作线程。                 |
+| parentPort         | 对象   | 在工作线程中可用，是一个 `MessagePort`，用于与父线程（主线程）进行双向消息通信。          |
+| workerData         | 任意值 | 包含初始化 Worker 时传入的数据副本，在工作线程中可以直接读取。                            |
+| postMessage()      | 方法   | 用于在线程之间异步发送消息。数据会通过结构化克隆算法进行序列化（大对象会有性能开销）。    |
+| SharedArrayBuffer  | 对象   | 允许在多个线程之间共享原始二进制数据，实现真正的零拷贝共享内存（需配合 `Atomics` 使用）。 |
+| worker.terminate() | 方法   | 用于强制终止工作线程的执行并释放相关资源。                                                |
 
 ## 基本使用
 
 假设我们正在开发一个服务，该服务需要处理大量图片的压缩。如果我们只使用 Node.js 的单个主线程来执行这项任务，那么在处理这些耗时的操作时，我们的应用将无法同时处理其他任何事情（如响应用户请求）。这会导致用户体验非常差，尤其是在高负载时。
 
+下面通过一个计算斐波那契数列的经典 CPU 密集型任务，来演示主线程与工作线程的交互：
+
+1. 创建工作线程逻辑 (fibonacciWorker.js)
+
 ```js
-const compressImage = (imagePath) => {
-  // 假设这是一个耗时的图片压缩操作
-  console.log(`Compressing image at ${imagePath}...`)
-  // 图片处理完成
+const { parentPort, workerData } = require("worker_threads")
+
+// 模拟耗时的 CPU 密集型计算
+function calculateFibonacci(n) {
+  if (n <= 1) return n
+  return calculateFibonacci(n - 1) + calculateFibonacci(n - 2)
 }
-compressImage("/path/to/image.jpg")
-console.log("This message has to wait until the image is compressed.")
+
+// 监听来自主线程的消息，并返回计算结果
+parentPort.on("message", (n) => {
+  const result = calculateFibonacci(n)
+  parentPort.postMessage({ n, result })
+})
 ```
 
-在上面的例子中，`console.log('This message...')` 需要等待 compressImage 完成才能执行，这会导致阻塞。
-
-所以可以使用工作线程处理图片压缩工作。假设处理图片压缩的具体代码在 `image-compress.js` 中。
+2. 主线程调用 (main.js)
 
 ```js
 const { Worker } = require("worker_threads")
 
-const compressImage = (imagePath) => {
-  const worker = new Worker("./image-compress.js", { workData: imagePath })
+console.log("主线程开始，准备分配任务...")
 
-  worker.on("message", (data) => {
-    console.log(`From worker threads message: `, data)
-  })
-}
+// 创建一个新的工作线程，并传入初始化数据
+const worker = new Worker("./fibonacciWorker.js", {
+  workerData: { num: 40 }, // 传入初始参数
+})
 
-compressImage("/path/to/image.jpg")
-console.log(
-  "This message does not have to wait for the image to be compressed."
-)
+// 监听工作线程发来的消息
+worker.on("message", (data) => {
+  console.log(`工作线程计算完成：第 ${data.n} 个斐波那契数为 ${data.result}`)
+})
+
+// 监听工作线程的错误
+worker.on("error", (err) => {
+  console.error("工作线程发生错误:", err)
+})
+
+// 监听工作线程退出
+worker.on("exit", (code) => {
+  if (code !== 0) {
+    console.error(`工作线程异常退出，退出码: ${code}`)
+  } else {
+    console.log("工作线程正常退出")
+  }
+})
+
+// 向工作线程发送计算指令
+worker.postMessage(40)
+
+console.log("主线程继续处理其他 I/O 任务，未被阻塞...")
 ```
-
-在这个例子中，我们创建了一个新的工作线程来处理图片压缩任务。这样，即使图片压缩任务正在进行，主线程也可以继续执行其他操作，比如立即打印出 'This message does not have to wait...'。这就是利用 Worker Threads 来提升 Node.js 应用性能和响应能力的一个实际例子。
 
 ## isMainThread
 
@@ -178,7 +216,7 @@ setTimeout(() => {
   const barValue = getEnvironmentData("bar")
 
   console.log(
-    `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`
+    `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`,
   )
 
   parentPort.postMessage({ foo: fooValue, bar: barValue })
@@ -193,7 +231,7 @@ fooValue.foo = "456"
 const barValue = getEnvironmentData("bar")
 
 console.log(
-  `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`
+  `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`,
 )
 
 parentPort.postMessage({ foo: fooValue, bar: barValue })
@@ -204,7 +242,7 @@ const fooValue = getEnvironmentData("foo")
 const barValue = getEnvironmentData("bar")
 
 console.log(
-  `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`
+  `Worker Thread ${threadId} get foo = ${fooValue}; bar = ${barValue}`,
 )
 
 parentPort.postMessage({ foo: fooValue, bar: barValue })

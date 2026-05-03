@@ -4,9 +4,117 @@
 
 进程是操作系统里非常重要的概念，也是不容易理解的概念，但是看起来很复杂的进程，其实在操作系统的代码里，也只是一些数据结构和算法，只不过它比一般的数据结构和算法更复杂。
 
-进程在操作系统里，是用一个 task_struct 结构体表示的。因为操作系统是大部分是用C语言实现的，没有对象这个概念。如果我们用 JS 来理解的话，每个进程就是一个对象，每次新建一个进程，就是新建一个对象。
+进程在操作系统里，是用一个 `task_struct` 结构体表示的。因为操作系统是大部分是用C语言实现的，没有对象这个概念。如果我们用 JS 来理解的话，每个进程就是一个对象，每次新建一个进程，就是新建一个对象。
 
-task_struct 结构体里保存了一个进程所需要的一些信息，包括当前执行状态、执行上下文、打开的文件、根目录、工作目录、收到的信号、信号处理函数、代码段、数据段的信息、进程id、执行时间、退出码等等。
+`task_struct` 结构体里保存了一个进程所需要的一些信息，包括当前执行状态、执行上下文、打开的文件、根目录、工作目录、收到的信号、信号处理函数、代码段、数据段的信息、进程id、执行时间、退出码等等。
+
+Nodejs 中可以通过 `node:process` 获取程序当前程序运行的进程信息。
+
+## nodejs 自身信息和系统信息
+
+```
+process.version // 显示当前 Nodejs 的版本 v22.2.0
+process.versions // 显示当前 Nodejs 内部依赖库的版本，{node: '22.2.0', v8: '12.4.254.14-node.12', 'base64': '0.5.2', ..}
+process.release // 显示 Nodejs 编译后相关 tar.gz 文件地址， {name: 'node', lts: 'Hydrogen', sourceUrl: 'https://xxx', headersUrl: 'xxx', libUrl: 'xxx'}
+process.config // 返回一个对象，显示用于编译当前 Node.js 可执行文件的配置选项，{target_defaults: {xxx}, variables: { xxx }, ..}
+process.allowedNodeEnvironmentFlags // 返回 NODE_OPTIONS 环境变量中允许的选项参数的只读 Set 对象，可遍历行到，类似 --inspect-brk， --abort_on_uncaught_exception 选项参数
+process.arch // 返回当前操作系统 CPU 架构，可能的值 'arm'、'arm64'、'ia32'、'loong64'、'mips'、'mipsel'、'ppc'、'ppc64'、'riscv64'、's390'、's390x' 和 'x64'
+process.platform // 返回当前操作系统操，可能的值 ‘linux' 'win32' 'android' ’freebsd' 等等
+process.pid // 返回当前进程号
+process.ppid // 如果当前是在子进程中调用，则返回当前进程的父进程的 PID。
+```
+
+## 命令行参数和环境变量
+
+```js
+/**
+ * 返回一个数组，数组元素内容如下：
+ * 1. 数组的第一个元素是 node 的完整路径。
+ * 2. 第二个元素是正被执行的文件的路径。
+ * 3. 从第三个元素开始，每个元素都是一个传递给该脚本的命令行参数。
+ *
+ * 假设命令行执行 node process-args.js one two=three four，那么输出内容如下：
+ * 0: /usr/local/bin/node // node.exe 根据用户安装的路径，输出可能不同
+ * 1: /Users/mjr/work/node/process-args.js // 当前执行脚本所在的路径
+ * 2: one
+ * 3: two=three
+ * 4: four
+ *
+ * 获取命令行参数的常用方法 const args = process.argv.slice(2)，移除前两个不关心的元素
+ */
+process.argv
+
+/**
+ * process.argv0 实际上就提供了 process.argv 数组中的第一个元素的值，
+ * 但是它的优点是即使用户修改了 process.argv 数组，process.argv0 依然保持不变，
+ * 提供了一种获取原始 Node.js 可执行文件路径的可靠方式。
+ */
+process.argv0
+
+/**
+ * 它返回一个字符串，表示启动当前 Node.js 进程的可执行文件的绝对路径。
+ * 与 process.argv[0] 和 process.argv0 的值相同
+ */
+process.execPath
+
+/**
+ * 提供了一种方法来获取和操作 Node.js 进程的启动参数，这在诊断、调试或者特定行为定制方面非常有用。
+ *
+ * 比如命令行执行 node --max-old-space-size=200 yourScript.js，那么输出
+ * ["--max-old-space-size=200"];
+ *
+ */
+process.execArgv
+
+/**
+ * 包含了当前程序进程中的环境变量，可以修改此对象，但此类修改不会反映在 Node.js 进程之外。但一般不会修改，只用于读取某些环境变量
+ */
+process.env
+
+/**
+ * nodejs v20.12.0 最近版本引入的新功能，将 .env 文件加载到 process.env 中。
+ */
+process.loadEnvFile(path)
+```
+
+## 运行时
+
+```js
+// 返回当前进程标头（即返回 ps 的当前值）。为 process.title 分配一个新值会修改 ps 的当前值。
+process.title
+
+// 返回当前工作目录，所谓“当前工作目录”（Current Working Directory），指的是运行你的 Node.js 程序时，终端或命令行所处的目录。
+process.cwd()
+
+/**
+ * 在程序运行期，更改当前工作目录，此时再用 process.cwd 返回值为新设置的值
+ *
+ * 应用场景：
+ * 1. 当你的 Node.js 应用需要根据不同的运行环境（开发、测试、生产）访问不同目录中的文件时。
+ * 当你的应用需要操作大量文件，而这些文件分散在不同的目录中，并且希望通过使用相对路径来简化文件访问逻辑时。
+ *
+ * 注意事项
+ * 1. 在使用process.chdir()时，如果提供的目录不存在，会抛出异常。因此，最好在调用这个方法前检查目录是否存在。
+ * 2. 更改工作目录是一个有副作用的操作，它会影响到进程中所有相关的路径解析。因此，务必谨慎使用，确保它不会导致其他部分的相对路径出错。
+ */
+process.chdir(directory)
+
+/**
+ * 在这个事件循环中，process.nextTick() 允许你将一个回调函数放到下一个事件循环迭代的开始处执行。
+ * 这意味着无论何时调用 process.nextTick()，提供给它的回调函数都会在当前操作完成后、任何 I/O 事件（包括定时器）处理之前被执行
+ */
+process.nextTick(callback[, ...args])
+
+/**
+ * 何时使用 queueMicrotask() 与 process.nextTick()
+ * 1.process.nextTick() 是把一个回调函数放到下一个事件循环中迭代
+ * 2. queueMicrotask() 是把一个回调函数放当前微任务队列中
+ *
+ * 区别：
+ * 1. 当前事件循环中，微任务队列里回调函数执行完后，才进入下一事件循环的迭代，所以 queueMicrotask 比 nextTick 更早被执行
+ * 2.  process.nextTick() 除第一个传入回调函数外，后续参数值将在调用时作为参数传递给回调函数。使用 queueMicrotask() 实现相同的效果，需要使用闭包或绑定函数
+ */
+```
 
 ## 事件
 
@@ -73,7 +181,7 @@ Promise 是处理异步操作的一种方式，它有几种状态：pending（�
 process.on("rejectionHandled", (promise) => {
   console.log(
     "C: 先前未处理的 rejected，现已被处理",
-    promise instanceof Promise
+    promise instanceof Promise,
   )
 })
 
@@ -82,7 +190,7 @@ process.on("unhandledRejection", (reason, promise) => {
     "A: 未被处理的 rejected:",
     promise instanceof Promise,
     "reason:",
-    reason
+    reason,
   )
 })
 
@@ -182,26 +290,6 @@ uncaughtException 事件捕获错误后，进程不会因报错而终止了。�
 
 主要是因为在很多情况下，一旦出现了未捕获的异常，Node.js 的状态可能已经不稳定了，尤其是对于 V8 引擎的堆栈和资源来说。因此，在这个事件的回调函数中执行太多逻辑或尝试继续正常运行程序是有风险的。
 
-### worker
-
-在当前进程内，创建一个 Worker 线程时触发。这里的 “Worker” 指的就是通过 worker_threads 模块创建的一个后台线程。通过监听这个事件，开发者可以知道何时有新的 Worker 线程被创建，并执行一些逻辑，比如进行日志记录或资源分配等。
-
-```js
-import { Worker, isMainThread } from "node:worker_threads"
-
-if (isMainThread) {
-  process.on("worker", () => {
-    console.log("新的Worker线程被创建了。")
-  })
-
-  // 创建一个新的Worker线程去处理任务
-  const worker = new Worker("./path/to/your/worker/script.js")
-} else {
-  // Worker线程的代码
-  // 这里放置你想在线程中执行的代码
-}
-```
-
 ### 信号事件 signal event
 
 系统信号是一种用于操作系统上进程间的通信机制。类比于 node 语境中的事件，一个信号是一个异步的消息通知，它会发送到一个进程后，进程内特定的信号监听回调就会执行。
@@ -293,7 +381,7 @@ process.on("SIGTERM", () => {
 // 集群中某个 work 异常退出后，会发出 exit 事件，可以在 cluster 上进行监听
 cluster.on("exit", (worker, code, signal) => {
   console.log(
-    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`
+    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`,
   )
 
   // 移除当前子进程内所有事件监听器，避免内存泄漏
@@ -317,7 +405,7 @@ async function onMasterSignal() {
 
 ;["SIGINT", "SIGQUIT", "SIGTERM"].forEach((signal) =>
   // 注意使用一次性事件监听 once
-  process.once(signal, onMasterSignal)
+  process.once(signal, onMasterSignal),
 )
 
 // worker 监听 master 要求的退出信息
@@ -427,112 +515,6 @@ emitMyWarning()
 // Emits nothing
 ```
 
-## nodejs 自身信息和系统信息
-
-```
-process.version // 显示当前 Nodejs 的版本 v22.2.0
-process.versions // 显示当前 Nodejs 内部依赖库的版本，{node: '22.2.0', v8: '12.4.254.14-node.12', 'base64': '0.5.2', ..}
-process.release // 显示 Nodejs 编译后相关 tar.gz 文件地址， {name: 'node', lts: 'Hydrogen', sourceUrl: 'https://xxx', headersUrl: 'xxx', libUrl: 'xxx'}
-process.config // 返回一个对象，显示用于编译当前 Node.js 可执行文件的配置选项，{target_defaults: {xxx}, variables: { xxx }, ..}
-process.allowedNodeEnvironmentFlags // 返回 NODE_OPTIONS 环境变量中允许的选项参数的只读 Set 对象，可遍历行到，类似 --inspect-brk， --abort_on_uncaught_exception 选项参数
-process.arch // 返回当前操作系统 CPU 架构，可能的值 'arm'、'arm64'、'ia32'、'loong64'、'mips'、'mipsel'、'ppc'、'ppc64'、'riscv64'、's390'、's390x' 和 'x64'
-process.platform // 返回当前操作系统操，可能的值 ‘linux' 'win32' 'android' ’freebsd' 等等
-process.pid // 返回当前进程号
-process.ppid // 如果当前是在子进程中调用，则返回当前进程的父进程的 PID。
-```
-
-## 命令行参数和环境变量
-
-```js
-/**
- * 返回一个数组，数组元素内容如下：
- * 1. 数组的第一个元素是 node 的完整路径。
- * 2. 第二个元素是正被执行的文件的路径。
- * 3. 从第三个元素开始，每个元素都是一个传递给该脚本的命令行参数。
- *
- * 假设命令行执行 node process-args.js one two=three four，那么输出内容如下：
- * 0: /usr/local/bin/node // node.exe 根据用户安装的路径，输出可能不同
- * 1: /Users/mjr/work/node/process-args.js // 当前执行脚本所在的路径
- * 2: one
- * 3: two=three
- * 4: four
- *
- * 获取命令行参数的常用方法 const args = process.argv.slice(2)，移除前两个不关心的元素
- */
-process.argv
-
-/**
- * process.argv0 实际上就提供了 process.argv 数组中的第一个元素的值，
- * 但是它的优点是即使用户修改了 process.argv 数组，process.argv0 依然保持不变，
- * 提供了一种获取原始 Node.js 可执行文件路径的可靠方式。
- */
-process.argv0
-
-/**
- * 它返回一个字符串，表示启动当前 Node.js 进程的可执行文件的绝对路径。
- * 与 process.argv[0] 和 process.argv0 的值相同
- */
-process.execPath
-
-/**
- * 提供了一种方法来获取和操作 Node.js 进程的启动参数，这在诊断、调试或者特定行为定制方面非常有用。
- *
- * 比如命令行执行 node --max-old-space-size=200 yourScript.js，那么输出
- * ["--max-old-space-size=200"];
- *
- */
-process.execArgv
-
-/**
- * 包含了当前程序进程中的环境变量，可以修改此对象，但此类修改不会反映在 Node.js 进程之外。但一般不会修改，只用于读取某些环境变量
- */
-process.env
-
-/**
- * nodejs v20.12.0 最近版本引入的新功能，将 .env 文件加载到 process.env 中。
- */
-process.loadEnvFile(path)
-```
-
-## 运行时
-
-```js
-// 返回当前进程标头（即返回 ps 的当前值）。为 process.title 分配一个新值会修改 ps 的当前值。
-process.title
-
-// 返回当前工作目录，所谓“当前工作目录”（Current Working Directory），指的是运行你的 Node.js 程序时，终端或命令行所处的目录。
-process.cwd()
-
-/**
- * 在程序运行期，更改当前工作目录，此时再用 process.cwd 返回值为新设置的值
- *
- * 应用场景：
- * 1. 当你的 Node.js 应用需要根据不同的运行环境（开发、测试、生产）访问不同目录中的文件时。
- * 当你的应用需要操作大量文件，而这些文件分散在不同的目录中，并且希望通过使用相对路径来简化文件访问逻辑时。
- *
- * 注意事项
- * 1. 在使用process.chdir()时，如果提供的目录不存在，会抛出异常。因此，最好在调用这个方法前检查目录是否存在。
- * 2. 更改工作目录是一个有副作用的操作，它会影响到进程中所有相关的路径解析。因此，务必谨慎使用，确保它不会导致其他部分的相对路径出错。
- */
-process.chdir(directory)
-
-/**
- * 在这个事件循环中，process.nextTick() 允许你将一个回调函数放到下一个事件循环迭代的开始处执行。
- * 这意味着无论何时调用 process.nextTick()，提供给它的回调函数都会在当前操作完成后、任何 I/O 事件（包括定时器）处理之前被执行
- */
-process.nextTick(callback[, ...args])
-
-/**
- * 何时使用 queueMicrotask() 与 process.nextTick()
- * 1.process.nextTick() 是把一个回调函数放到下一个事件循环中迭代
- * 2. queueMicrotask() 是把一个回调函数放当前微任务队列中
- *
- * 区别：
- * 1. 当前事件循环中，微任务队列里回调函数执行完后，才进入下一事件循环的迭代，所以 queueMicrotask 比 nextTick 更早被执行
- * 2.  process.nextTick() 除第一个传入回调函数外，后续参数值将在调用时作为参数传递给回调函数。使用 queueMicrotask() 实现相同的效果，需要使用闭包或绑定函数
- */
-```
-
 ## nextTick / setImmediate / queueMicrotask
 
 ## 进程 I/O
@@ -564,7 +546,7 @@ fs.writeSync(
   process.stdout.fd,
   "fs.writeSync 结合 process.stdout.fd 输出信息\n",
   null,
-  "utf8"
+  "utf8",
 )
 ```
 

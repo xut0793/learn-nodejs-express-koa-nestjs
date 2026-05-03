@@ -1,5 +1,7 @@
 # ORM Prisma
 
+[如何在 Node.js 中选择 SQL、查询构建器和 ORM](https://mp.weixin.qq.com/s/3Zm7WUCGTIus4uZXg6MI5A)
+
 prisma 主要为分为三个模块：
 
 - prisma cli
@@ -27,7 +29,7 @@ pnpm dlx prisma init
 pnpm dlx prisma db pull
 
 # 3. 生成本地客户端 @prisma/client 可调用的数据模型
-pnm dlx prisma generate
+pnpm dlx prisma generate
 
 ```
 
@@ -44,7 +46,7 @@ pnpm dlx prisma init
 pnpm dlx prisma migrate dev --name init
 
 # 4. prisma generate命令会读取 schema.prisma，并在node_modules/@prisma/client中更新生成本地客户端 @prisma/client 可调用的数据模型
-pnm dlx prisma generate
+pnpm dlx prisma generate
 
 ```
 

@@ -82,7 +82,7 @@ console.log("Hello Web Worker")
 <script>
   // 该脚本会被 JS 引擎解析，因为它的 mime-type 默认是 text/javascript。
   const workerScriptEl = document.querySelector(
-    "script[type='text\/js-worker']"
+    "script[type='text\/js-worker']",
   )
   const workerScript = workerScriptEl.textContent
   const blob = new Blob([workerScript], { type: "text/javascript" })
@@ -216,7 +216,7 @@ sharedWorker.port.addEventListener(
   function (e) {
     // 业务逻辑
   },
-  false
+  false,
 )
 sharedWorker.port.start() // 需要显式打开
 ```

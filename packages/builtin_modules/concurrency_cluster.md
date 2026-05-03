@@ -1,10 +1,11 @@
 # Cluster 集群
 
-javascript 程序是单进程单线程的应用，这种架构带来的缺点是不能很好地利用多核的能力，因为一个线程同时只能在一个核上执行。
+Node.js 的多进程编程主要围绕两大核心模块展开：
 
-child_process 模块一定程度地解决了这个问题，child_process 模块使得 Node.js 应用可以在多个核上执行。
+- child_process：用于创建和管理子进程
+- cluster：用于构建多进程集群，充分利用多核 CPU
 
-而 cluster 模块在 child_process 模块的基础上更进一步的功能增强，使得多个进程可以监听同一个端口，实现 Web 服务器的多进程的集群架构，实现高负载均衡的能力。
+javascript 程序是单进程单线程的应用，这种架构带来的缺点是不能很好地利用多核的能力，因为一个线程同时只能在一个核上执行。child_process 模块一定程度地解决了这个问题，child_process 模块使得 Node.js 应用可以在多个核上执行。而 cluster 模块在 child_process 模块的基础上更进一步的功能增强，使得多个进程可以监听同一个端口，实现 Web 服务器的多进程的集群架构，实现高负载均衡的能力。
 
 比如，有一个 Node 应用程序，通常它会运行在单个 CPU 核心上。但如果你的服务器有多个核心，那么你可以用 Cluster 模块来利用这些额外的 CPU 核心，提高了计算机的资源利用率和应用的吞吐量。
 
@@ -15,6 +16,14 @@ child_process 模块一定程度地解决了这个问题，child_process 模块�
 - 所有工作进程都是独立的进程，它们在不同的 CPU 核心上运行，并且都有自己的 V8 实例和内存空间，这样它们就不会互相干扰。
 - 这些工作进程通过 IPC（Inter-Process Communication，进程间通信）与主进程通信。
 - 当一个工作进程死掉（比如由于错误崩溃），主进程可以检测到这个事件并重新启动一个新的工作进程来替代它。
+
+| 属性/方法                 | 说明                                                     |
+| :------------------------ | :------------------------------------------------------- |
+| `isMaster`                | 判断当前进程是否为主进程（Master）。                     |
+| `isWorker`                | 判断当前进程是否为工作进程（Worker）。                   |
+| `fork()`                  | 创建一个新的工作进程。                                   |
+| `workers`                 | 一个包含所有活跃工作进程对象的哈希表（在主进程中使用）。 |
+| `setupMaster([settings])` | 修改 `fork` 的默认行为（如指定执行的脚本文件）。         |
 
 ## 创建集群的两种方式
 
@@ -215,13 +224,13 @@ async function onMasterSignal() {
 
 ;["SIGINT", "SIGQUIT", "SIGTERM"].forEach((signal) =>
   // 注意使用一次性事件监听 once
-  process.once(signal, onMasterSignal)
+  process.once(signal, onMasterSignal),
 )
 
 // 集群中某个 work 异常退出后，会发出 exit 事件，可以在 cluster 上进行监听
 cluster.on("exit", (worker, code, signal) => {
   console.log(
-    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`
+    `Worker ${worker.process.pid} died, code: ${code}, signal: ${signal}`,
   )
 
   if (signal) {
