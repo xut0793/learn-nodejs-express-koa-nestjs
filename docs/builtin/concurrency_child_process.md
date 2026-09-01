@@ -11,10 +11,10 @@ child_process 模块允许你在 Node.js 应用中创建子进程来执行系统
 
 child_process 模块提供了四种不同的方法来执行外部应用程序：
 
-`child_process.execFile(file[, args][, options][, callback])`
-`child_process.exec(command[, options][, callback])`
-`child_process.fork(modulePath[, args][, options])`
-`child_process.spawn(command[, args][, options])`
+- `child_process.execFile(file[, args][, options][, callback])`
+- `child_process.exec(command[, options][, callback])`
+- `child_process.fork(modulePath[, args][, options])`
+- `child_process.spawn(command[, args][, options])`
 
 | 方法     | 特点与适用场景                                                                                                                                                                                                                                     | 返回值              |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
@@ -48,7 +48,7 @@ child_process 模块提供了四种不同的方法来执行外部应用程序：
 echo $PATH
 ```
 
-输入的是以 `:` 连接的字符串，要更好的格式输出，可以在 Nodejs 提供的 repl 模式下，执行以下代码。
+输入的是以英文半角分号 `;` 连接的字符串，要更好的格式输出，可以在 Nodejs 提供的 repl 模式下，执行以下代码。
 
 ```sh
 node
@@ -80,8 +80,9 @@ java -v
 
 执行外部程序出现的异常主要三类：
 
-ENOENT 错误：系统找不到调用的程序，这种错误可能是我们把外部应用程序的名称或者路径输入错误导致的。
-EPERM 或 EACCES 错误：表示没有足够的权限访问它。
+- ENOENT 错误：系统找不到调用的程序，这种错误可能是我们把外部应用程序的名称或者路径输入错误导致的。
+- EPERM 或 EACCES 错误：表示没有足够的权限访问它。
+
 外部程序调用后退出的状态码非零状态时：表示该程序不能够在当前操作系统下执行对应的任务。 Nodejs 会把该返回的状态码作为异常和相关的数据输出到 stdout 和 stderr 中，即终端控制台上。
 
 ## execFile
@@ -241,7 +242,7 @@ const { spawn } = require("child_process")
 // 假设这是一堆需要排序的数据
 const unsortedData = [5, 3, 8, 1, 2, 9, 4, 7, 6]
 
-// 使用 fork 方法启动子进程
+// 使用 spawn 方法启动子进程
 const child = spawn("node", ["./sortWorker.js"])
 
 // 监听子进程发来的消息事件

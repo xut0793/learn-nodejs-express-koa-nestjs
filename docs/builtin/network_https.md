@@ -1,5 +1,7 @@
 # https
 
+[How HTTPS Works](https://howhttps.works/zh/)
+
 Node.js 的 `https` 模块是构建安全 Web 服务的基础，它本质上是基于 TLS/SSL 的 HTTP 协议实现。
 
 核心类与方法：
