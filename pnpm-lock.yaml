@@ -8,6 +8,10 @@ importers:
 
   .:
     dependencies:
+      vitepress:
+        specifier: 2.0.0-alpha.17
+        version: 2.0.0-alpha.17(@types/node@20.19.39)(postcss@8.5.13)(terser@5.46.2)(typescript@5.9.3)
+    devDependencies:
       '@alicloud/pop-core':
         specifier: ^1.7.13
         version: 1.8.0
@@ -23,6 +27,9 @@ importers:
       cron:
         specifier: ^3.1.6
         version: 3.5.0
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       dayjs:
         specifier: ^1.11.10
         version: 1.11.20
@@ -41,15 +48,24 @@ importers:
       handlebars:
         specifier: ^4.7.8
         version: 4.7.9
+      jest:
+        specifier: ^29.5.0
+        version: 29.7.0(@types/node@20.19.39)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@20.19.39)(typescript@5.9.3))
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.3
+      markdown-it-task-lists:
+        specifier: ^2.1.1
+        version: 2.1.1
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
       nodemailer:
         specifier: ^6.9.10
         version: 6.10.1
+      nodemon:
+        specifier: ^3.0.2
+        version: 3.1.14
       oauth2orize:
         specifier: ^1.12.0
         version: 1.12.0
@@ -74,6 +90,15 @@ importers:
       prisma:
         specifier: ^5.9.0
         version: 5.22.0
+      supertest:
+        specifier: ^6.3.3
+        version: 6.3.4
+      swagger-jsdoc:
+        specifier: ^6.2.8
+        version: 6.2.8(openapi-types@12.1.3)
+      swagger-ui-express:
+        specifier: ^5.0.0
+        version: 5.0.1(express@4.22.1)
       winston:
         specifier: ^3.11.0
         version: 3.19.0
@@ -86,31 +111,6 @@ importers:
       zod:
         specifier: ^3.22.4
         version: 3.25.76
-    devDependencies:
-      cross-env:
-        specifier: ^7.0.3
-        version: 7.0.3
-      jest:
-        specifier: ^29.5.0
-        version: 29.7.0(@types/node@20.19.39)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@20.19.39)(typescript@5.9.3))
-      markdown-it-task-lists:
-        specifier: ^2.1.1
-        version: 2.1.1
-      nodemon:
-        specifier: ^3.0.2
-        version: 3.1.14
-      supertest:
-        specifier: ^6.3.3
-        version: 6.3.4
-      swagger-jsdoc:
-        specifier: ^6.2.8
-        version: 6.2.8(openapi-types@12.1.3)
-      swagger-ui-express:
-        specifier: ^5.0.0
-        version: 5.0.1(express@4.22.1)
-      vitepress:
-        specifier: 2.0.0-alpha.17
-        version: 2.0.0-alpha.17(@types/node@20.19.39)(postcss@8.5.13)(terser@5.46.2)(typescript@5.9.3)
 
   packages/express:
     dependencies:
@@ -1344,6 +1344,13 @@ packages:
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
+
+  '@swc/core-linux-arm64-musl@1.15.33':
+    resolution: {integrity: sha512-il7tYM+CpUNzieQbwAjFT1P8zqAhmGWNAGhQZBnxurXZ0aNn+5nqYFTEUKNZl7QibtT0uQXzTZrNGHCIj6Y1Og==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-ppc64-gnu@1.15.33':
     resolution: {integrity: sha512-ZtNBwN0Z7CFj9Il0FcPaKdjgP7URyKu/3RfH46vq+0paOBqLj4NYldD6Qo//Duif/7IOtAraUfDOmp0PLAufog==}
@@ -6317,6 +6324,9 @@ snapshots:
   '@swc/core-linux-arm64-gnu@1.15.33':
     optional: true
 
+  '@swc/core-linux-arm64-musl@1.15.33':
+    optional: true
+
   '@swc/core-linux-ppc64-gnu@1.15.33':
     optional: true
 
@@ -6347,6 +6357,7 @@ snapshots:
       '@swc/core-darwin-x64': 1.15.33
       '@swc/core-linux-arm-gnueabihf': 1.15.33
       '@swc/core-linux-arm64-gnu': 1.15.33
+      '@swc/core-linux-arm64-musl': 1.15.33
       '@swc/core-linux-ppc64-gnu': 1.15.33
       '@swc/core-linux-s390x-gnu': 1.15.33
       '@swc/core-linux-x64-gnu': 1.15.33
