@@ -8,6 +8,7 @@ import markdownItTaskLists from "markdown-it-task-lists"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/learn-nodejs-express-koa-nestjs/",
   title: "learn-node",
   description: "learn node express koa nestjs",
   lang: "zh-CN",
