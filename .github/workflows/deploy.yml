@@ -60,7 +60,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: pnpm install --production
+        run: pnpm install --production --no-frozen-lockfile
       - name: Build with VitePress
         run: pnpm docs:build
       - name: Upload artifact
